@@ -27,6 +27,9 @@ def add_basic_security(response):
     # Allow YouTube embeds and essential content
     response.headers['Content-Security-Policy'] = "default-src 'self' 'unsafe-inline' 'unsafe-eval' https:; img-src 'self' data: https:; media-src 'self' https:; frame-src 'self' https://www.youtube.com"
     response.headers['X-Content-Type-Options'] = 'nosniff'
+    response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+    response.headers['Pragma'] = 'no-cache'
+    response.headers['Expires'] = '0'
     return response
 app.permanent_session_lifetime = timedelta(days=30)
 app.config['SESSION_TYPE'] = 'filesystem'
