@@ -591,6 +591,10 @@ def reset_password():
 def terms():
     return render_template('terms.html')
 
+@app.route('/portfolio')
+def portfolio():
+    return render_template('portfolio.html')
+
 @app.route('/pricing')
 def pricing():
     return render_template('pricing.html')
