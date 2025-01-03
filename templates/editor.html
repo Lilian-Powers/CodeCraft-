@@ -1,0 +1,278 @@
+
+{% extends "base.html" %}
+
+{% block title %}Code Editor{% endblock %}
+
+{% block head %}
+{{ super() }}
+<script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+<style>
+    :root {
+        --editor-bg: #1e1e1e;
+        --editor-border: #2d2d2d;
+        --editor-text: #d4d4d4;
+    }
+
+    .editor-container {
+        display: grid;
+        grid-template-rows: auto 1fr;
+        height: calc(100vh - 80px);
+        gap: 1rem;
+        padding: 2rem 3rem;
+        background: var(--editor-bg);
+        color: var(--editor-text);
+    }
+
+    .top-controls {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #2d2d2d;
+        padding: 1.5rem 2rem;
+        border-radius: 8px;
+    }
+
+    .language-select-container {
+        position: relative;
+        min-width: 200px;
+    }
+
+    .language-select {
+        width: 100%;
+        padding: 0.5rem;
+        background: var(--editor-bg);
+        color: var(--editor-text);
+        border: 1px solid var(--editor-border);
+        border-radius: 4px;
+        font-size: 1rem;
+        appearance: none;
+    }
+
+    .select-label {
+        position: absolute;
+        top: -0.8rem;
+        left: 0.5rem;
+        padding: 0 0.5rem;
+        background: #2d2d2d;
+        color: #7c4dff;
+        font-size: 0.8rem;
+    }
+
+    .main-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        height: 100%;
+    }
+
+    .editor-section {
+        background: #2d2d2d;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    #monaco-editor {
+        height: 100%;
+        width: 100%;
+    }
+
+    .preview-section {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .preview-container {
+        flex-grow: 1;
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .preview-frame {
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+
+    .output-container {
+        height: 150px;
+        background: #2d2d2d;
+        border-radius: 8px;
+        padding: 1rem;
+        overflow-y: auto;
+        font-family: 'Monaco', monospace;
+    }
+
+    .btn-run {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1.5rem;
+        background: #7c4dff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+    .btn-run:hover {
+        background: #6b42e0;
+        transform: translateY(-1px);
+    }
+
+    .error-message {
+        color: #ff6b6b;
+        margin: 0.5rem 0;
+    }
+
+    .success-message {
+        color: #69db7c;
+        margin: 0.5rem 0;
+    }
+
+    @media (max-width: 768px) {
+        .main-content {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="editor-container">
+    <div class="top-controls">
+        <div class="language-select-container">
+            <span class="select-label">Choose a Language</span>
+            <select class="language-select" id="languageSelect">
+                <option value="python">Python</option>
+                <option value="javascript">JavaScript</option>
+                <option value="html">HTML</option>
+                <option value="css">CSS</option>
+            </select>
+        </div>
+        <button class="btn-run" id="runCode">
+            <i class="fas fa-play"></i> Run Code
+        </button>
+    </div>
+    <div class="main-content">
+        <div class="editor-section">
+            <div id="monaco-editor"></div>
+        </div>
+        <div class="preview-section">
+            <div class="preview-container">
+                <iframe id="preview" class="preview-frame" sandbox="allow-scripts"></iframe>
+            </div>
+            <div class="output-container" id="output">
+                <div class="output-content"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+let editor = null;
+let pyodide = null;
+
+const defaultCode = {
+    python: '# Welcome to Python!\nprint("Hello, World!")',
+    javascript: '// Welcome to JavaScript!\nconsole.log("Hello, World!");',
+    html: '<!DOCTYPE html>\n<html>\n<head>\n    <title>My Page</title>\n</head>\n<body>\n    <h1>Hello, World!</h1>\n</body>\n</html>',
+    css: '/* Welcome to CSS! */\nbody {\n    background-color: #f0f0f0;\n    color: #333;\n    font-family: Arial, sans-serif;\n}'
+};
+
+function getLanguageErrorHint(error, language) {
+    const hints = {
+        python: {
+            'NameError': 'Make sure you defined the variable before using it',
+            'SyntaxError': 'Check your syntax - you might be missing parentheses or colons',
+            'IndentationError': 'Python needs proper indentation. Use 4 spaces for each level',
+            'TypeError': 'Make sure you\'re using compatible data types'
+        },
+        javascript: {
+            'ReferenceError': 'Variable might not be defined. Declare it with let, const, or var',
+            'SyntaxError': 'Check for missing brackets, semicolons, or quotes',
+            'TypeError': 'You\'re trying to use a value in an incorrect way'
+        }
+    };
+
+    const langHints = hints[language] || {};
+    for (const [errorType, hint] of Object.entries(langHints)) {
+        if (error.includes(errorType)) {
+            return hint;
+        }
+    }
+    return 'Try breaking down your code into smaller parts to find the issue';
+}
+
+async function initPyodide() {
+    if (!pyodide) {
+        const loadingMessage = document.querySelector('.output-content');
+        loadingMessage.innerHTML = 'Loading Python environment...';
+        pyodide = await loadPyodide();
+        loadingMessage.innerHTML = 'Python environment ready!';
+    }
+}
+
+async function runCode() {
+    const language = document.getElementById('languageSelect').value;
+    const code = editor.getValue();
+    const output = document.querySelector('.output-content');
+    const preview = document.getElementById('preview');
+
+    try {
+        if (language === 'python') {
+            await initPyodide();
+            try {
+                const result = await pyodide.runPythonAsync(code);
+                output.innerHTML = `<div class="success-message">${result}</div>`;
+            } catch (error) {
+                const hint = getLanguageErrorHint(error.toString(), 'python');
+                output.innerHTML = `<div class="error-message">${error}\n\nHint: ${hint}</div>`;
+            }
+        } else {
+            if (language === 'html') {
+                preview.srcdoc = code;
+            } else if (language === 'javascript') {
+                preview.srcdoc = `
+                    <script>
+                        try {
+                            ${code}
+                        } catch (error) {
+                            console.error(error);
+                        }
+                    <\/script>
+                `;
+            } else if (language === 'css') {
+                preview.srcdoc = `
+                    <style>${code}</style>
+                    <div class="demo-content">
+                        <h1>Sample Content</h1>
+                        <p>This text will be styled by your CSS</p>
+                        <button>Button Example</button>
+                    </div>
+                `;
+            }
+        }
+    } catch (error) {
+        output.innerHTML = `<div class="error-message">${error}\n\nHint: ${getLanguageErrorHint(error.toString(), language)}</div>`;
+    }
+}
+
+// Initialize editor using global function
+window.initMonaco('monaco-editor', 'python').then(monacoEditor => {
+    editor = monacoEditor;
+    editor.setValue(defaultCode.python);
+    
+    document.getElementById('languageSelect').addEventListener('change', function(e) {
+        const language = e.target.value;
+        monaco.editor.setModelLanguage(editor.getModel(), language);
+        editor.setValue(defaultCode[language]);
+    });
+
+    document.getElementById('runCode').addEventListener('click', runCode);
+});
+</script>
+{% endblock %}

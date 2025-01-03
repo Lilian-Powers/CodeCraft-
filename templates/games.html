@@ -1,0 +1,210 @@
+
+{% extends "base.html" %}
+{% block title %}Interactive Games{% endblock %}
+{% block head %}
+{{ super() }}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<style>
+.game-section {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+  margin-bottom: 2rem;
+  overflow: hidden;
+}
+
+.game-section:hover {
+  transform: translateY(-5px);
+}
+
+.game-header {
+  background: var(--accent-color);
+  color: white;
+  padding: 1rem;
+}
+
+.game-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.game-content {
+  padding: 2rem;
+}
+
+.game-response {
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 8px;
+  background: #f8f9fa;
+}
+
+.btn-game {
+  background: var(--accent-color);
+  border: none;
+  padding: 0.8rem 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.btn-game:hover {
+  transform: scale(1.05);
+  background: var(--accent-color-dark);
+}
+
+.score-display {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--accent-color);
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h1 class="games-title mb-4">Interactive Learning Games</h1>
+  <div class="beginners-note mb-4">
+    <p class="note-text">Welcome to our learning games section! These games are specifically designed for absolute beginners taking their first steps in programming. While they may seem simple now, remember that every expert was once a beginner. As you progress through our curriculum, you'll gain the skills to enhance and create more challenging versions of these games. Embrace the learning journey with an open mind!</p>
+  </div>
+  <style>
+    .beginners-note {
+      background: rgba(var(--accent-color-rgb), 0.1);
+      border-left: 4px solid var(--accent-color);
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin: 2rem 0;
+    }
+    .note-text {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: var(--text-color);
+      margin: 0;
+    }
+  </style>
+
+  <!-- Conversation Game -->
+  <section class="game-section conversation-game">
+    <div class="game-header">
+      <h2>Conversation Game</h2>
+    </div>
+    <div class="game-content">
+      <form id="conversationForm">
+        <input type="hidden" name="game" value="conversation" />
+        <div class="mb-3">
+          <label class="form-label">What's your name?</label>
+          <input type="text" name="name" class="form-control" required />
+        </div>
+        <button type="submit" class="btn btn-game">Start Conversation</button>
+      </form>
+      <div id="conversationFormResponse" class="game-response"></div>
+    </div>
+  </section>
+
+  <!-- Rock Paper Scissors -->
+  <section class="game-section rps-game">
+    <div class="game-header">
+      <h2>Rock Paper Scissors</h2>
+      <div class="score-display">
+        Score: <span id="playerScore">0</span> | Streak: <span id="playerStreak">0</span>
+      </div>
+    </div>
+    <div class="game-content">
+      <form id="rpsForm">
+        <input type="hidden" name="game" value="rock_paper_scissors" />
+        <div class="btn-group d-flex justify-content-center mb-3" role="group">
+          <button type="button" class="btn btn-game mx-2" onclick="playRPS('rock')">🪨 Rock</button>
+          <button type="button" class="btn btn-game mx-2" onclick="playRPS('paper')">📄 Paper</button>
+          <button type="button" class="btn btn-game mx-2" onclick="playRPS('scissors')">✂️ Scissors</button>
+        </div>
+      </form>
+      <div id="rpsFormResponse" class="game-response"></div>
+    </div>
+  </section>
+
+  <!-- Guessing Game -->
+  <section class="game-section guessing-game">
+    <div class="game-header">
+      <h2>Number Guessing Game</h2>
+    </div>
+    <div class="game-content">
+      <form id="guessingForm">
+        <input type="hidden" name="game" value="guessing" />
+        <div class="mb-3">
+          <label class="form-label">Guess a number between 1 and 10:</label>
+          <input type="number" name="guess" min="1" max="10" class="form-control" required />
+        </div>
+        <button type="submit" class="btn btn-game">Make Guess</button>
+      </form>
+      <div id="guessingFormResponse" class="game-response"></div>
+    </div>
+  </section>
+
+  <!-- Math Game -->
+  <section class="game-section math-game">
+    <div class="game-header">
+      <h2>Math Game</h2>
+    </div>
+    <div class="game-content">
+      <form id="mathForm">
+        <input type="hidden" name="game" value="math" />
+        <input type="hidden" name="num1" value="{{ random.randint(1, 10) }}">
+        <input type="hidden" name="num2" value="{{ random.randint(1, 10) }}">
+        <div class="mb-3">
+          <label class="form-label">What is {{ random.randint(1, 10) }} + {{ random.randint(1, 10) }}?</label>
+          <input type="number" name="answer" class="form-control" required />
+        </div>
+        <button type="submit" class="btn btn-game">Submit Answer</button>
+      </form>
+      <div id="mathFormResponse" class="game-response"></div>
+    </div>
+  </section>
+</div>
+
+<script>
+$(document).ready(function() {
+  const forms = document.querySelectorAll('form');
+  forms.forEach(form => {
+    if (form.id !== 'rpsForm') {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formId = this.id;
+        const responseDiv = document.getElementById(formId + 'Response');
+        
+        fetch('/games', {
+          method: 'POST',
+          body: new FormData(this)
+        })
+        .then(response => response.json())
+        .then(data => {
+          responseDiv.innerHTML = data.response;
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          responseDiv.innerHTML = "An error occurred. Please try again.";
+        });
+      });
+    }
+  });
+});
+
+function playRPS(choice) {
+  const formData = new FormData();
+  formData.append('game', 'rock_paper_scissors');
+  formData.append('player_choice', choice);
+  
+  fetch('/games', {
+    method: 'POST',
+    body: formData
+  })
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById('rpsFormResponse').innerHTML = data.response;
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    document.getElementById('rpsFormResponse').innerHTML = "An error occurred. Please try again.";
+  });
+}
+</script>
+{% endblock %}

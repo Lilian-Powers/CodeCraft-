@@ -1,0 +1,141 @@
+
+{% extends "base.html" %}
+
+{% block title %}Register - CodeCraft Academy{% endblock %}
+
+{% block head %}
+{{ super() }}
+<style>
+    .register-container {
+        max-width: 600px;
+        margin: 2rem auto;
+        padding: 2rem;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    }
+
+    .register-header {
+        text-align: center;
+        margin-bottom: 2.5rem;
+    }
+
+    .register-header h1 {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: var(--text-color);
+        margin-bottom: 1rem;
+    }
+
+    .register-header p {
+        color: #666;
+        font-size: 1.1rem;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+        font-weight: 600;
+        color: var(--text-color);
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+
+    .form-control {
+        padding: 0.8rem;
+        border: 2px solid #e1e1e1;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+    .form-control:focus {
+        border-color: var(--accent-color);
+        box-shadow: 0 0 0 3px rgba(124, 77, 255, 0.1);
+    }
+
+    .register-btn {
+        width: 100%;
+        padding: 1rem;
+        background: var(--accent-color);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+    .register-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(124, 77, 255, 0.2);
+        background: #6b42e0;
+    }
+
+    .brand-highlight {
+        color: var(--accent-color);
+        font-weight: 800;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="register-container">
+    <div class="register-header">
+        <h1>Join <span class="brand-highlight">CodeCraft</span> Academy</h1>
+        <p>Start your coding journey with us today</p>
+    </div>
+    
+    <form id="Register" action="/register" method="post">
+        <div class="form-group">
+            <label for="first_name">First Name</label>
+            <input type="text" class="form-control" id="first_name" 
+                   placeholder="Enter your first name" name="fname" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="last_name">Last Name</label>
+            <input type="text" class="form-control" id="last_name" 
+                   placeholder="Enter your last name" name="lname" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" class="form-control" id="email" 
+                   placeholder="Enter your email" name="mail" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" 
+                   placeholder="Choose a strong password" name="password" required>
+        </div>
+        
+        <div class="form-group">
+            <div class="terms-checkbox">
+                <input type="checkbox" id="terms" name="terms" required>
+                <label for="terms">I agree to the <a href="/terms" target="_blank">Terms and Conditions</a></label>
+            </div>
+        </div>
+        
+        <button type="submit" class="register-btn">Create Account</button>
+    </form>
+</div>
+
+<style>
+.terms-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+.terms-checkbox input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+}
+.terms-checkbox label {
+    font-size: 0.9rem;
+}
+</style>
+{% endblock %}

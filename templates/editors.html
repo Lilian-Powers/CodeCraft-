@@ -1,0 +1,58 @@
+
+{% extends "base.html" %}
+{% block content %}
+<div class="container py-5">
+    <h1 class="text-center mb-5">Development Tools</h1>
+    
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="mb-0">Python Practicals for Lesson_1</h2>
+                </div>
+                <div class="card-body">
+                    <p class="alert alert-info">
+                        The following video provides detailed step-by-step instructions for installing both Python and Visual Studio Code on your computer.
+                    </p>
+                    <div class="ratio ratio-16x9 mb-4">
+                        <iframe src="https://www.youtube.com/embed/0sYm_0cLlmM" 
+                                title="Python Installation Tutorial" 
+                                allowfullscreen></iframe>
+                    </div>
+                    <div class="installation-steps mt-4">
+                        <h4 class="text-primary">Python Installation Steps:</h4>
+                        <ol class="list-group list-group-numbered mb-4">
+                            <li class="list-group-item">Visit the <a href="https://www.python.org/downloads" target="_blank" class="text-primary fw-bold">official Python website</a></li>
+                            <li class="list-group-item">Click the <span class="fw-bold text-success">"Download Python [Latest Version]"</span> button</li>
+                            <li class="list-group-item">Run the installer:
+                                <ul>
+                                    <li>Windows: Check <span class="fw-bold text-success">"Add Python to PATH"</span> before clicking <span class="fw-bold">"Install Now"</span></li>
+                                    <li>macOS: Open the <span class="fw-bold">.pkg</span> installer and follow prompts</li>
+                                    <li>Linux: Use your distribution's package manager</li>
+                                </ul>
+                            </li>
+                        </ol>
+
+                        <h4 class="text-primary">Visual Studio Code Installation Steps:</h4>
+                        <ol class="list-group list-group-numbered mb-4">
+                            <li class="list-group-item">Visit the <a href="https://code.visualstudio.com" target="_blank" class="text-primary fw-bold">Visual Studio Code website</a></li>
+                            <li class="list-group-item">Click the <span class="fw-bold text-success">"Download"</span> button for your operating system</li>
+                            <li class="list-group-item">Run the installer and follow the installation wizard</li>
+                            <li class="list-group-item">After installation, open VS Code and install the Python extension from the Extensions marketplace</li>
+                        </ol>
+
+                        <div class="card bg-light p-3 mt-4">
+                            <h4 class="text-primary">Verifying Installation:</h4>
+                            <p>Open Command Prompt (Windows) or Terminal (macOS/Linux) and type:</p>
+                            <div class="bg-dark text-light p-2 rounded">
+                                <code>python --version</code>
+                            </div>
+                            <p class="mt-2 mb-0">This should display your installed Python version</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

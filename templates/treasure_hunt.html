@@ -1,0 +1,195 @@
+
+{% extends "base.html" %}
+{% block title %}Treasure Hunt - CodeCraft Academy{% endblock %}
+
+{% block head %}
+{{ super() }}
+<style>
+.treasure-container {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: linear-gradient(135deg, #2c3e50, #3498db);
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    color: #FFFFFF;
+}
+
+.journey-steps {
+    list-style-position: inside;
+    padding: 1.5rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    margin: 1.5rem 0;
+}
+
+.journey-steps li {
+    padding: 0.8rem;
+    margin: 0.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.journey-steps li:last-child {
+    border-bottom: none;
+}
+
+.journey-steps li.completed {
+    background: rgba(40, 167, 69, 0.2);
+    border-radius: 8px;
+}
+
+.journey-steps li.current {
+    background: rgba(52, 152, 219, 0.3);
+    border-radius: 8px;
+    font-weight: bold;
+    padding: 1rem;
+}
+
+.code-editor {
+    background: #1e1e1e;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1rem 0;
+}
+
+.code-input {
+    width: 100%;
+    background: #282c34;
+    color: #abb2bf;
+    font-family: 'Monaco', 'Menlo', monospace;
+    padding: 1rem;
+    border: none;
+    border-radius: 6px;
+    resize: vertical;
+    min-height: 120px;
+}
+
+.code-input:focus {
+    outline: 1px solid #3498db;
+    box-shadow: 0 0 10px rgba(52, 152, 219, 0.3);
+}
+
+.output-terminal {
+    background: #282c34;
+    color: #abb2bf;
+    padding: 1rem;
+    border-radius: 6px;
+    font-family: monospace;
+    min-height: 80px;
+    margin-top: 1rem;
+}
+
+.treasure-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.treasure-score {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 0.8rem 1.5rem;
+    border-radius: 20px;
+    display: inline-block;
+    margin-top: 1rem;
+}
+
+.btn-submit {
+    background: #2ecc71;
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-submit:hover {
+    background: #27ae60;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="treasure-container">
+    <div class="treasure-header">
+        <h1><i class="fas fa-gem"></i> Code Treasure Hunt</h1>
+        <p class="lead">Master Python basics and collect treasures!</p>
+    </div>
+    
+    <div class="steps-overview mb-4">
+        <h4>Journey Map:</h4>
+        <ol class="journey-steps">
+            {% for i in range(10) %}
+            <li class="{% if session.get('completed_questions', [])|length > 0 and i in session.get('completed_questions', []) %}completed{% else %}current{% endif %}">
+                {% if session.get('completed_questions', [])|length > 0 and i in session.get('completed_questions', []) %}
+                <i class="fas fa-check-circle text-success"></i>
+                {% endif %}
+                {{ ['Use print() to output \'Hello Python!\'',
+                    'Create a variable named \'age\' and assign it the number 25',
+                    'Convert the number 42 to a string using str()',
+                    'Create an f-string that says \'I am learning Python\'',
+                    'Add two numbers: 15 + 7',
+                    'Check the type of number 3.14 using type()',
+                    'Convert text to uppercase: \'python\'',
+                    'Concatenate \'Hello\' and \'World\'',
+                    'Convert \'123\' to integer using int()',
+                    'Convert number 10 to float using float()'][i] }}
+            </li>
+            {% endfor %}
+        </ol>
+    </div>
+
+    <form id="treasureForm">
+        <input type="hidden" name="game" value="treasure_hunt" />
+        <div class="code-editor">
+            <h4 class="text-light mb-3">Question {{ level + 1 }} of 10</h4>
+            <textarea id="codeInput" class="code-input" name="code" placeholder="Type your Python code here..." spellcheck="false"></textarea>
+            <div class="output-terminal" id="outputTerminal"></div>
+        </div>
+        
+        <div class="d-flex justify-content-between align-items-center mt-4">
+            <button type="submit" class="btn-submit">
+                <i class="fas fa-check-circle"></i> Submit Solution
+            </button>
+            <div class="treasure-score">
+                Treasures: <span id="treasureScore">{{ session.get('treasures', 0) }}</span> 💎
+            </div>
+        </div>
+    </form>
+    <div id="treasureResponse" class="mt-3"></div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('treasureForm');
+    const responseDiv = document.getElementById('treasureResponse');
+    const codeInput = document.getElementById('codeInput');
+    
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+        
+        fetch('/treasure_hunt', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            responseDiv.innerHTML = data.response;
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            responseDiv.innerHTML = "An error occurred. Please try again.";
+        });
+    });
+    
+    codeInput.addEventListener('input', function() {
+        if (responseDiv.innerHTML.includes("treasureScore")) {
+            responseDiv.innerHTML = '';
+        }
+    });
+});
+</script>
+{% endblock %}

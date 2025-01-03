@@ -1,0 +1,57 @@
+
+{% extends "base.html" %}
+{% block title %}Pricing - CodeCraft Academy{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-5">Choose Your Learning Path</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Free Plan</h5>
+                    <h6 class="card-price">$0/month</h6>
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li>Basic Tutorials</li>
+                        <li>Community Support</li>
+                        <li>Limited Challenges</li>
+                    </ul>
+                    <button class="btn btn-outline-primary">Current Plan</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 border-primary">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Pro Plan</h5>
+                    <h6 class="card-price">$29/month</h6>
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li>All Free Features</li>
+                        <li>Premium Tutorials</li>
+                        <li>1-on-1 Mentoring</li>
+                        <li>Code Reviews</li>
+                        <li>Certification</li>
+                    </ul>
+                    <button class="btn btn-primary">Upgrade Now</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Enterprise</h5>
+                    <h6 class="card-price">Contact Us</h6>
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li>All Pro Features</li>
+                        <li>Custom Training</li>
+                        <li>Bulk Licensing</li>
+                        <li>API Access</li>
+                        <li>Priority Support</li>
+                    </ul>
+                    <button class="btn btn-outline-primary">Contact Sales</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

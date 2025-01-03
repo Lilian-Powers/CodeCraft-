@@ -1,0 +1,128 @@
+
+{% extends "base.html" %}
+
+{% block title %}Home - CodeCraft Academy{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="welcome-header text-center mb-5">
+        <h1 class="welcome-title">Welcome to <span class="brand-highlight">CodeCraft</span>, {{ session.get('first_name', 'Coder') }}!</h1>
+        <p class="welcome-subtitle">Your journey to becoming a skilled programmer starts here</p>
+    </div>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+        
+        .welcome-header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            margin-top: 2rem;
+        }
+
+        .welcome-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #0ea5e9, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .welcome-subtitle {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.4rem;
+            color: var(--text-color);
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            opacity: 1;
+            animation: fadeInUp 0.8s ease-out 0.2s forwards;
+        }
+
+        .brand-highlight {
+            font-weight: 800;
+            position: relative;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+    
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Getting Started</h5>
+                    <p class="card-text">Ready to begin your coding adventure? Check out our interactive lessons and coding challenges.</p>
+                    <a href="/editors" class="btn btn-primary">Start Coding</a>
+                </div>
+            </div>
+
+            <div class="quick-links">
+                <h4 class="mb-4">Quick Links</h4>
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5><i class="fas fa-gamepad"></i> Coding Games</h5>
+                                <p>Learn through fun interactive games</p>
+                                <a href="/games" class="btn btn-outline-primary">Play & Learn</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5><i class="fas fa-map-signs"></i> Treasure Hunt</h5>
+                                <p>Solve puzzles and find coding treasures</p>
+                                <a href="/treasure_hunt" class="btn btn-outline-primary">Start Hunt</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5><i class="fas fa-video"></i> Video Tutorials</h5>
+                                <p>Learn through step-by-step video lessons</p>
+                                <a href="/tutorials" class="btn btn-outline-primary">Watch Tutorials</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.quick-links {
+    margin-top: 2rem;
+}
+.quick-links .card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.quick-links .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+.quick-links i {
+    margin-right: 0.5rem;
+    color: var(--accent-color);
+}
+</style>
+{% endblock %}
