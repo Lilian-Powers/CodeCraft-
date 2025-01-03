@@ -24,14 +24,15 @@
         <section class="featured-section">
             <h2>Featured Work</h2>
             <div class="featured-grid">
-                <a href="https://www.youtube.com/channel/UC6d9bq2T8A72bl6zrZvT_wQ" class="featured-card" target="_blank">
-                    <div class="python-logo">
-                        <img src="/static/python_logo.png" alt="Python for Beginners">
-                    </div>
+                <div class="featured-card youtube-card">
+                    <img src="/static/python_logo.png" alt="Python Tutorial Channel" class="youtube-preview">
                     <h3>YouTube Channel</h3>
-                    <p>Programming Tutorials & Educational Content</p>
-                </a>
-                <a href="https://introductiontocoding101.replit.app" class="featured-card" target="_blank">
+                    <p>Learn Python Programming from Scratch</p>
+                    <a href="https://www.youtube.com/channel/UC6d9bq2T8A72bl6zrZvT_wQ" class="btn btn-primary" target="_blank">
+                        Watch Tutorials
+                    </a>
+                </div>
+                <a href="https://introductiontocoding101.replit.app" class="featured-card website-card" target="_blank">
                     <img src="/static/logo.svg" alt="CodeCraft Logo">
                     <div class="website-preview">
                         <h3>CodeCraft Academy</h3>
@@ -40,8 +41,6 @@
                 </a>
             </div>
         </section>
-
-        <!-- Previous sections remain the same -->
 
         <section class="availability-section">
             <h2>Work Availability</h2>
@@ -59,7 +58,7 @@
         <footer class="portfolio-footer">
             <div class="footer-content">
                 <div class="footer-statement">
-                    <p>"Passionate about bridging the gap between complex technology and beginner-friendly learning. Creating innovative solutions while nurturing the next generation of developers."</p>
+                    <p>"Bringing a unique blend of technical expertise and teaching ability, I excel at breaking down complex concepts into simple, understandable pieces. My experience in both development and education positions me perfectly to contribute to teams that value clear communication and continuous learning."</p>
                 </div>
                 <div class="contact-info">
                     <a href="mailto:introductiontocoding101@gmail.com"><i class="fas fa-envelope"></i> introductiontocoding101@gmail.com</a>
@@ -76,6 +75,7 @@
             color: #fff;
             margin: 0;
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            min-height: 100vh;
         }
 
         .back-btn {
@@ -97,12 +97,48 @@
             transform: translateX(-5px);
         }
 
-        .python-logo img {
+        .portfolio-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .portfolio-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .portfolio-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .featured-card {
+            background: rgba(75, 0, 130, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+            text-decoration: none;
+            color: white;
+        }
+
+        .featured-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .youtube-preview {
             width: 100%;
             max-width: 300px;
             height: auto;
-            margin: 0 auto;
-            display: block;
+            margin-bottom: 1rem;
         }
 
         .availability-section {
@@ -110,12 +146,6 @@
             padding: 2rem;
             border-radius: 15px;
             margin: 2rem 0;
-        }
-
-        .availability-card {
-            background: rgba(75, 0, 130, 0.2);
-            padding: 2rem;
-            border-radius: 10px;
         }
 
         .availability-card ul {
@@ -141,22 +171,18 @@
             background: linear-gradient(135deg, #4B0082, #800080);
             padding: 3rem 0;
             margin-top: 4rem;
-            border-radius: 15px 15px 0 0;
+            border-radius: 15px;
         }
 
         .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
             text-align: center;
         }
 
         .footer-statement {
-            font-style: italic;
-            margin-bottom: 2rem;
             max-width: 800px;
             margin: 0 auto 2rem;
             line-height: 1.6;
+            font-style: italic;
         }
 
         .contact-info {
@@ -178,6 +204,10 @@
         }
 
         @media (max-width: 768px) {
+            .portfolio-container {
+                padding: 60px 15px;
+            }
+            
             .contact-info {
                 flex-direction: column;
                 gap: 1rem;
@@ -187,6 +217,10 @@
                 top: 10px;
                 left: 10px;
                 padding: 8px 15px;
+            }
+
+            .portfolio-header h1 {
+                font-size: 2rem;
             }
         }
     </style>
