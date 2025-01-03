@@ -11,9 +11,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-    <button onclick="history.back()" class="back-btn">
-        <i class="fas fa-arrow-left"></i> Back
-    </button>
+    <nav class="portfolio-nav">
+        <button onclick="history.back()" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Back
+        </button>
+    </nav>
 
     <div class="portfolio-container">
         <header class="portfolio-header">
@@ -33,8 +35,8 @@
                     </a>
                 </div>
                 <a href="https://introductiontocoding101.replit.app" class="featured-card website-card" target="_blank">
-                    <img src="/static/logo.svg" alt="CodeCraft Logo">
-                    <div class="website-preview">
+                    <img src="/static/logo.svg" alt="CodeCraft Logo" class="website-preview">
+                    <div class="website-info">
                         <h3>CodeCraft Academy</h3>
                         <p>Empowering Future Developers</p>
                     </div>
@@ -62,7 +64,7 @@
                 </div>
                 <div class="contact-info">
                     <a href="mailto:introductiontocoding101@gmail.com"><i class="fas fa-envelope"></i> introductiontocoding101@gmail.com</a>
-                    <a href="https://wa.me/254707878699"><i class="fab fa-whatsapp"></i> +254 707 878 699</a>
+                    <a href="https://wa.me/254707878699" class="whatsapp-link"><i class="fab fa-whatsapp"></i> +254 707 878 699</a>
                     <a href="https://github.com/Lilian-Powers/CodeCraft-"><i class="fab fa-github"></i> GitHub</a>
                 </div>
             </div>
@@ -78,17 +80,25 @@
             min-height: 100vh;
         }
 
-        .back-btn {
+        .portfolio-nav {
             position: fixed;
-            top: 20px;
-            left: 20px;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(26, 26, 46, 0.95);
+            padding: 1rem;
+            z-index: 1000;
+            transition: opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .back-btn {
             padding: 10px 20px;
             background: rgba(75, 0, 130, 0.8);
             color: white;
             border: none;
             border-radius: 25px;
             cursor: pointer;
-            z-index: 1000;
             transition: all 0.3s ease;
         }
 
@@ -106,11 +116,26 @@
         .portfolio-header {
             text-align: center;
             margin-bottom: 60px;
+            background: url('https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=1200&q=80') center/cover;
+            padding: 4rem 2rem;
+            border-radius: 15px;
+            position: relative;
         }
 
-        .portfolio-header h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+        .portfolio-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(26, 26, 46, 0.8);
+            border-radius: 15px;
+        }
+
+        .portfolio-header h1, .portfolio-header p {
+            position: relative;
+            z-index: 1;
         }
 
         .featured-grid {
@@ -134,37 +159,8 @@
             transform: translateY(-10px);
         }
 
-        .youtube-preview {
-            width: 100%;
-            max-width: 300px;
-            height: auto;
-            margin-bottom: 1rem;
-        }
-
-        .availability-section {
-            background: #2d2d4d;
-            padding: 2rem;
-            border-radius: 15px;
-            margin: 2rem 0;
-        }
-
-        .availability-card ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .availability-card li {
-            margin: 10px 0;
-            padding-left: 20px;
-            position: relative;
-        }
-
-        .availability-card li:before {
-            content: "•";
-            color: #4B0082;
-            font-weight: bold;
-            position: absolute;
-            left: 0;
+        .whatsapp-link i {
+            color: #25D366;
         }
 
         .portfolio-footer {
@@ -172,35 +168,6 @@
             padding: 3rem 0;
             margin-top: 4rem;
             border-radius: 15px;
-        }
-
-        .footer-content {
-            text-align: center;
-        }
-
-        .footer-statement {
-            max-width: 800px;
-            margin: 0 auto 2rem;
-            line-height: 1.6;
-            font-style: italic;
-        }
-
-        .contact-info {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .contact-info a {
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .contact-info a:hover {
-            color: #e6e6fa;
-            transform: translateY(-2px);
         }
 
         @media (max-width: 768px) {
@@ -212,17 +179,31 @@
                 flex-direction: column;
                 gap: 1rem;
             }
-            
-            .back-btn {
-                top: 10px;
-                left: 10px;
-                padding: 8px 15px;
-            }
-
-            .portfolio-header h1 {
-                font-size: 2rem;
-            }
         }
     </style>
+
+    <script>
+        let timeout;
+        const nav = document.querySelector('.portfolio-nav');
+
+        function showNav() {
+            nav.style.opacity = '1';
+            clearTimeout(timeout);
+        }
+
+        function hideNav() {
+            timeout = setTimeout(() => {
+                nav.style.opacity = '0';
+            }, 2000);
+        }
+
+        document.addEventListener('mousemove', () => {
+            showNav();
+            hideNav();
+        });
+
+        // Initial hide
+        hideNav();
+    </script>
 </body>
 </html>
