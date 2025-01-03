@@ -1,28 +1,74 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lilian Powers - Portfolio</title>
+    <title>Portfolio - CodeCraft Academy</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        .navbar {
+            transition: transform 0.3s ease-in-out;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar.hidden {
+            transform: translateY(-100%);
+        }
+        .whatsapp-icon {
+            color: #25D366;
+        }
+        .portfolio-footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        .back-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        body {
+            background: #1a1a2e;
+            color: #fff;
+            margin: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            min-height: 100vh;
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .featured-card {
+            background: rgba(75, 0, 130, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+            text-decoration: none;
+            color: white;
+        }
+
+        .featured-card:hover {
+            transform: translateY(-10px);
+        }
+
+    </style>
 </head>
 <body>
-    <nav class="portfolio-nav">
-        <button onclick="history.back()" class="back-btn">
-            <i class="fas fa-arrow-left"></i> Back
-        </button>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <!-- Your existing navbar content -->
     </nav>
 
-    <div class="portfolio-container">
-        <header class="portfolio-header">
-            <h1>Lilian Powers</h1>
-            <p class="title">Full Stack Developer & Coding Instructor</p>
-        </header>
-
+    <div class="container mt-5 pt-5">
         <section class="featured-section">
             <h2>Featured Work</h2>
             <div class="featured-grid">
@@ -57,153 +103,52 @@
             </div>
         </section>
 
-        <footer class="portfolio-footer">
-            <div class="footer-content">
-                <div class="footer-statement">
-                    <p>"Bringing a unique blend of technical expertise and teaching ability, I excel at breaking down complex concepts into simple, understandable pieces. My experience in both development and education positions me perfectly to contribute to teams that value clear communication and continuous learning."</p>
-                </div>
-                <div class="contact-info">
-                    <a href="mailto:introductiontocoding101@gmail.com"><i class="fas fa-envelope"></i> introductiontocoding101@gmail.com</a>
-                    <a href="https://wa.me/254707878699" class="whatsapp-link"><i class="fab fa-whatsapp"></i> +254 707 878 699</a>
-                    <a href="https://github.com/Lilian-Powers/CodeCraft-"><i class="fab fa-github"></i> GitHub</a>
-                </div>
-            </div>
-        </footer>
+
     </div>
 
-    <style>
-        body {
-            background: #1a1a2e;
-            color: #fff;
-            margin: 0;
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            min-height: 100vh;
-        }
+    <footer class="portfolio-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <h4>Available for Remote & Part-Time Opportunities</h4>
+                    <p>I am passionate about creating efficient, scalable solutions and am open to both remote and part-time positions. My expertise in Python and web development makes me a valuable addition to any team.</p>
+                </div>
+                <div class="col-md-4">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-envelope"></i> introductiontocoding101@gmail.com</p>
+                    <p><i class="fab fa-whatsapp whatsapp-icon"></i> Contact me on WhatsApp</p>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-        .portfolio-nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(26, 26, 46, 0.95);
-            padding: 1rem;
-            z-index: 1000;
-            transition: opacity 0.3s ease;
-            opacity: 0;
-        }
-
-        .back-btn {
-            padding: 10px 20px;
-            background: rgba(75, 0, 130, 0.8);
-            color: white;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .back-btn:hover {
-            background: rgba(75, 0, 130, 1);
-            transform: translateX(-5px);
-        }
-
-        .portfolio-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 80px 20px;
-        }
-
-        .portfolio-header {
-            text-align: center;
-            margin-bottom: 60px;
-            background: url('https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=1200&q=80') center/cover;
-            padding: 4rem 2rem;
-            border-radius: 15px;
-            position: relative;
-        }
-
-        .portfolio-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(26, 26, 46, 0.8);
-            border-radius: 15px;
-        }
-
-        .portfolio-header h1, .portfolio-header p {
-            position: relative;
-            z-index: 1;
-        }
-
-        .featured-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .featured-card {
-            background: rgba(75, 0, 130, 0.2);
-            border-radius: 15px;
-            padding: 2rem;
-            text-align: center;
-            transition: transform 0.3s ease;
-            text-decoration: none;
-            color: white;
-        }
-
-        .featured-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .whatsapp-link i {
-            color: #25D366;
-        }
-
-        .portfolio-footer {
-            background: linear-gradient(135deg, #4B0082, #800080);
-            padding: 3rem 0;
-            margin-top: 4rem;
-            border-radius: 15px;
-        }
-
-        @media (max-width: 768px) {
-            .portfolio-container {
-                padding: 60px 15px;
-            }
-            
-            .contact-info {
-                flex-direction: column;
-                gap: 1rem;
-            }
-        }
-    </style>
+    <button onclick="history.back()" class="btn btn-primary back-button">
+        <i class="fas fa-arrow-left"></i> Go Back
+    </button>
 
     <script>
-        let timeout;
-        const nav = document.querySelector('.portfolio-nav');
+        let lastScrollY = window.scrollY;
+        const navbar = document.querySelector('.navbar');
 
-        function showNav() {
-            nav.style.opacity = '1';
-            clearTimeout(timeout);
-        }
-
-        function hideNav() {
-            timeout = setTimeout(() => {
-                nav.style.opacity = '0';
-            }, 2000);
-        }
-
-        document.addEventListener('mousemove', () => {
-            showNav();
-            hideNav();
+        window.addEventListener('scroll', () => {
+            if (lastScrollY < window.scrollY) {
+                navbar.classList.add('hidden');
+            } else {
+                navbar.classList.remove('hidden');
+            }
+            lastScrollY = window.scrollY;
         });
 
-        // Initial hide
-        hideNav();
+        let timer;
+        document.addEventListener('mousemove', () => {
+            navbar.classList.remove('hidden');
+            clearTimeout(timer);
+            timer = setTimeout(() => {
+                if (window.scrollY > 100) {
+                    navbar.classList.add('hidden');
+                }
+            }, 2000);
+        });
     </script>
 </body>
 </html>
