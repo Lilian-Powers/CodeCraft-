@@ -9,70 +9,82 @@
         <p class="title">Full Stack Developer & Coding Instructor</p>
     </header>
 
-    <section class="hero-section">
-        <div class="video-showcase">
-            <h2>Featured Work</h2>
-            <iframe 
-                src="https://www.youtube.com/embed/P-R3ORxbu_M" 
-                title="CodeCraft Academy Introduction" 
-                frameborder="0" 
-                allowfullscreen>
-            </iframe>
+    <section class="featured-section">
+        <h2>Featured Work</h2>
+        <div class="featured-grid">
+            <a href="https://www.youtube.com/channel/UC6d9bq2T8A72bl6zrZvT_wQ" class="featured-card" target="_blank">
+                <img src="https://yt3.googleusercontent.com/UC6d9bq2T8A72bl6zrZvT_wQ" alt="YouTube Channel">
+                <h3>YouTube Channel</h3>
+                <p>Programming Tutorials & Educational Content</p>
+            </a>
+            <a href="https://introductiontocoding101.replit.app" class="featured-card" target="_blank">
+                <img src="/static/logo.svg" alt="CodeCraft Logo">
+                <div class="website-preview">
+                    <h3>CodeCraft Academy</h3>
+                    <p>Empowering Future Developers</p>
+                </div>
+            </a>
         </div>
     </section>
 
     <section class="skills-section">
         <h2>Skills & Expertise</h2>
         <div class="skills-grid">
-            <div class="skill-card">
-                <i class="fas fa-code"></i>
-                <h3>Full Stack Development</h3>
-                <p>Python, Flask, SQLite, HTML5, CSS3, JavaScript</p>
+            <div class="skill-card" style="background-image: url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500')">
+                <div class="skill-content">
+                    <h3>Full Stack Development</h3>
+                    <p>Python, Flask, SQLite, HTML5, CSS3, JavaScript</p>
+                </div>
             </div>
-            <div class="skill-card">
-                <i class="fas fa-chalkboard-teacher"></i>
-                <h3>Technical Education</h3>
-                <p>Created comprehensive coding tutorials and interactive learning platforms</p>
+            <div class="skill-card" style="background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=500')">
+                <div class="skill-content">
+                    <h3>Technical Education</h3>
+                    <p>Created comprehensive coding tutorials and interactive learning platforms</p>
+                </div>
             </div>
-            <div class="skill-card">
-                <i class="fas fa-database"></i>
-                <h3>Database Management</h3>
-                <p>Database design, SQL, User authentication systems</p>
+            <div class="skill-card" style="background-image: url('https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=500')">
+                <div class="skill-content">
+                    <h3>Database Management</h3>
+                    <p>Database design, SQL, User authentication systems</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="projects-section">
+    <section class="projects-section" style="background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1000')">
         <h2>Featured Projects</h2>
         <div class="project-grid">
             <a href="https://github.com/Lilian-Powers/CodeCraft-" class="project-card" target="_blank">
-                <img src="https://opengraph.githubassets.com/1/Lilian-Powers/CodeCraft-" alt="CodeCraft GitHub">
-                <h3>CodeCraft Academy</h3>
-                <p>A comprehensive learning platform for aspiring programmers</p>
+                <div class="project-content">
+                    <h3>CodeCraft Academy</h3>
+                    <p>A comprehensive learning platform for aspiring programmers</p>
+                </div>
             </a>
             <a href="https://introductiontocoding101.replit.app" class="project-card" target="_blank">
-                <div class="thumbnail">
-                    <i class="fas fa-graduation-cap"></i>
+                <img src="/static/login-screenshot.jpg" alt="Platform Login Page">
+                <div class="project-content">
+                    <h3>Live Platform</h3>
+                    <p>Interactive coding education platform with games and tutorials</p>
                 </div>
-                <h3>Live Platform</h3>
-                <p>Interactive coding education platform with games and tutorials</p>
             </a>
             <a href="https://www.youtube.com/channel/UC6d9bq2T8A72bl6zrZvT_wQ" class="project-card" target="_blank">
-                <div class="thumbnail">
-                    <i class="fab fa-youtube"></i>
+                <img src="/static/tutorials-screenshot.jpg" alt="Tutorial Videos">
+                <div class="project-content">
+                    <h3>Tutorial Channel</h3>
+                    <p>Educational content teaching programming fundamentals</p>
                 </div>
-                <h3>Tutorial Channel</h3>
-                <p>Educational content teaching programming fundamentals</p>
             </a>
         </div>
     </section>
 
     <section class="achievements-section">
         <h2>Certifications & Achievements</h2>
-        <div class="achievement-card">
-            <i class="fas fa-certificate"></i>
-            <h3>Certificate in Full Stack Software Development (With AI)</h3>
-            <p>TECH CAMP Advanced Technology Hub</p>
+        <div class="certificate-card">
+            <img src="/static/certificate.jpg" alt="Full Stack Certificate">
+            <div class="certificate-content">
+                <h3>Certificate in Full Stack Software Development (With AI)</h3>
+                <p>TECH CAMP Advanced Technology Hub</p>
+            </div>
         </div>
     </section>
 
@@ -83,7 +95,7 @@
                 <i class="fas fa-envelope"></i>
                 <span>introductiontocoding101@gmail.com</span>
             </a>
-            <a href="https://wa.me/254707878699" class="contact-card">
+            <a href="https://wa.me/254707878699" class="contact-card" target="_blank">
                 <i class="fab fa-whatsapp"></i>
                 <span>+254 707 878 699</span>
             </a>
@@ -94,67 +106,116 @@
 <style>
     .portfolio-container {
         max-width: 1200px;
-        margin: 0 auto;
+        margin: 80px auto 0;
         padding: 2rem;
+        background: #1a1a2e;
+        color: #fff;
     }
 
     .portfolio-header {
         text-align: center;
         margin-bottom: 3rem;
-        padding: 2rem;
-        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-        color: white;
+        padding: 3rem;
+        background: linear-gradient(135deg, #4B0082, #800080);
         border-radius: 15px;
+        margin-top: 2rem;
     }
 
     .portfolio-header h1 {
-        font-size: 3rem;
+        font-size: 3.5rem;
         margin-bottom: 1rem;
+        font-family: 'Playfair Display', serif;
     }
 
     .title {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
         opacity: 0.9;
+        font-family: 'Poppins', sans-serif;
     }
 
     section {
         margin-bottom: 4rem;
+        padding: 2rem;
+        background: #232342;
+        border-radius: 15px;
     }
 
-    .video-showcase {
-        margin: 2rem 0;
+    section h2 {
+        color: #e6e6fa;
+        font-size: 2.2rem;
+        margin-bottom: 2rem;
+        font-family: 'Playfair Display', serif;
     }
 
-    .video-showcase iframe {
+    .featured-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+    }
+
+    .featured-card {
+        background: #2d2d4d;
+        border-radius: 15px;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+        text-decoration: none;
+        color: #fff;
+    }
+
+    .featured-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .featured-card img {
         width: 100%;
-        aspect-ratio: 16/9;
-        border-radius: 10px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        height: 200px;
+        object-fit: cover;
     }
 
     .skills-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         gap: 2rem;
     }
 
     .skill-card {
-        background: white;
-        padding: 2rem;
-        border-radius: 10px;
-        text-align: center;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        transition: transform 0.3s ease;
+        height: 250px;
+        border-radius: 15px;
+        position: relative;
+        background-size: cover;
+        background-position: center;
+        overflow: hidden;
     }
 
-    .skill-card:hover {
-        transform: translateY(-5px);
+    .skill-content {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 1.5rem;
+        background: linear-gradient(transparent, rgba(26, 26, 46, 0.9));
+        color: #fff;
     }
 
-    .skill-card i {
-        font-size: 2.5rem;
-        color: var(--primary-color);
-        margin-bottom: 1rem;
+    .projects-section {
+        background-size: cover;
+        background-position: center;
+        position: relative;
+    }
+
+    .projects-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(26, 26, 46, 0.9);
+        border-radius: 15px;
+    }
+
+    .projects-section > * {
+        position: relative;
     }
 
     .project-grid {
@@ -164,12 +225,11 @@
     }
 
     .project-card {
-        background: white;
-        border-radius: 10px;
+        background: rgba(45, 45, 77, 0.8);
+        border-radius: 15px;
         overflow: hidden;
         text-decoration: none;
-        color: var(--text-color);
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        color: #fff;
         transition: transform 0.3s ease;
     }
 
@@ -177,40 +237,30 @@
         transform: translateY(-5px);
     }
 
-    .project-card img,
-    .project-card .thumbnail {
+    .project-card img {
         width: 100%;
         height: 200px;
         object-fit: cover;
-        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-        display: flex;
-        align-items: center;
-        justify-content: center;
     }
 
-    .project-card .thumbnail i {
-        font-size: 4rem;
-        color: white;
+    .project-content {
+        padding: 1.5rem;
     }
 
-    .project-card h3,
-    .project-card p {
-        padding: 1rem;
-        margin: 0;
+    .certificate-card {
+        background: #2d2d4d;
+        border-radius: 15px;
+        overflow: hidden;
     }
 
-    .achievement-card {
-        background: white;
-        padding: 2rem;
-        border-radius: 10px;
-        text-align: center;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    .certificate-card img {
+        width: 100%;
+        max-height: 400px;
+        object-fit: contain;
     }
 
-    .achievement-card i {
-        font-size: 3rem;
-        color: var(--primary-color);
-        margin-bottom: 1rem;
+    .certificate-content {
+        padding: 1.5rem;
     }
 
     .contact-grid {
@@ -220,38 +270,50 @@
     }
 
     .contact-card {
-        background: white;
-        padding: 2rem;
+        background: #2d2d4d;
+        padding: 1.5rem;
         border-radius: 10px;
-        text-align: center;
         text-decoration: none;
-        color: var(--text-color);
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        transition: transform 0.3s ease;
+        color: #fff;
         display: flex;
         align-items: center;
-        justify-content: center;
         gap: 1rem;
+        transition: transform 0.3s ease;
     }
 
     .contact-card:hover {
         transform: translateY(-5px);
     }
 
-    .contact-card i {
-        font-size: 1.5rem;
-        color: var(--primary-color);
-    }
-
     @media (max-width: 768px) {
-        .portfolio-header h1 {
-            font-size: 2rem;
+        .portfolio-container {
+            padding: 1rem;
+            margin-top: 60px;
         }
+
+        .portfolio-header {
+            padding: 2rem 1rem;
+        }
+
+        .portfolio-header h1 {
+            font-size: 2.5rem;
+        }
+
         .title {
             font-size: 1.2rem;
         }
-        .portfolio-container {
+
+        section {
             padding: 1rem;
+        }
+
+        .skill-card {
+            height: 200px;
+        }
+
+        .contact-card {
+            flex-direction: column;
+            text-align: center;
         }
     }
 </style>
