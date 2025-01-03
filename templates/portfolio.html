@@ -1,320 +1,194 @@
 
-{% extends "base.html" %}
-{% block title %}Lilian Powers - Portfolio{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lilian Powers - Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <button onclick="history.back()" class="back-btn">
+        <i class="fas fa-arrow-left"></i> Back
+    </button>
 
-{% block content %}
-<div class="portfolio-container">
-    <header class="portfolio-header">
-        <h1>Lilian Powers</h1>
-        <p class="title">Full Stack Developer & Coding Instructor</p>
-    </header>
+    <div class="portfolio-container">
+        <header class="portfolio-header">
+            <h1>Lilian Powers</h1>
+            <p class="title">Full Stack Developer & Coding Instructor</p>
+        </header>
 
-    <section class="featured-section">
-        <h2>Featured Work</h2>
-        <div class="featured-grid">
-            <a href="https://www.youtube.com/channel/UC6d9bq2T8A72bl6zrZvT_wQ" class="featured-card" target="_blank">
-                <img src="https://yt3.googleusercontent.com/UC6d9bq2T8A72bl6zrZvT_wQ" alt="YouTube Channel">
-                <h3>YouTube Channel</h3>
-                <p>Programming Tutorials & Educational Content</p>
-            </a>
-            <a href="https://introductiontocoding101.replit.app" class="featured-card" target="_blank">
-                <img src="/static/logo.svg" alt="CodeCraft Logo">
-                <div class="website-preview">
-                    <h3>CodeCraft Academy</h3>
-                    <p>Empowering Future Developers</p>
+        <section class="featured-section">
+            <h2>Featured Work</h2>
+            <div class="featured-grid">
+                <a href="https://www.youtube.com/channel/UC6d9bq2T8A72bl6zrZvT_wQ" class="featured-card" target="_blank">
+                    <div class="python-logo">
+                        <img src="/static/python_logo.png" alt="Python for Beginners">
+                    </div>
+                    <h3>YouTube Channel</h3>
+                    <p>Programming Tutorials & Educational Content</p>
+                </a>
+                <a href="https://introductiontocoding101.replit.app" class="featured-card" target="_blank">
+                    <img src="/static/logo.svg" alt="CodeCraft Logo">
+                    <div class="website-preview">
+                        <h3>CodeCraft Academy</h3>
+                        <p>Empowering Future Developers</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Previous sections remain the same -->
+
+        <section class="availability-section">
+            <h2>Work Availability</h2>
+            <div class="availability-card">
+                <p>I am available for both remote and on-site opportunities, including:</p>
+                <ul>
+                    <li>Full-time positions</li>
+                    <li>Part-time collaborations</li>
+                    <li>Project-based work</li>
+                    <li>Technical consultation</li>
+                </ul>
+            </div>
+        </section>
+
+        <footer class="portfolio-footer">
+            <div class="footer-content">
+                <div class="footer-statement">
+                    <p>"Passionate about bridging the gap between complex technology and beginner-friendly learning. Creating innovative solutions while nurturing the next generation of developers."</p>
                 </div>
-            </a>
-        </div>
-    </section>
-
-    <section class="skills-section">
-        <h2>Skills & Expertise</h2>
-        <div class="skills-grid">
-            <div class="skill-card" style="background-image: url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500')">
-                <div class="skill-content">
-                    <h3>Full Stack Development</h3>
-                    <p>Python, Flask, SQLite, HTML5, CSS3, JavaScript</p>
+                <div class="contact-info">
+                    <a href="mailto:introductiontocoding101@gmail.com"><i class="fas fa-envelope"></i> introductiontocoding101@gmail.com</a>
+                    <a href="https://wa.me/254707878699"><i class="fab fa-whatsapp"></i> +254 707 878 699</a>
+                    <a href="https://github.com/Lilian-Powers/CodeCraft-"><i class="fab fa-github"></i> GitHub</a>
                 </div>
             </div>
-            <div class="skill-card" style="background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=500')">
-                <div class="skill-content">
-                    <h3>Technical Education</h3>
-                    <p>Created comprehensive coding tutorials and interactive learning platforms</p>
-                </div>
-            </div>
-            <div class="skill-card" style="background-image: url('https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=500')">
-                <div class="skill-content">
-                    <h3>Database Management</h3>
-                    <p>Database design, SQL, User authentication systems</p>
-                </div>
-            </div>
-        </div>
-    </section>
+        </footer>
+    </div>
 
-    <section class="projects-section" style="background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1000')">
-        <h2>Featured Projects</h2>
-        <div class="project-grid">
-            <a href="https://github.com/Lilian-Powers/CodeCraft-" class="project-card" target="_blank">
-                <div class="project-content">
-                    <h3>CodeCraft Academy</h3>
-                    <p>A comprehensive learning platform for aspiring programmers</p>
-                </div>
-            </a>
-            <a href="https://introductiontocoding101.replit.app" class="project-card" target="_blank">
-                <img src="/static/login-screenshot.jpg" alt="Platform Login Page">
-                <div class="project-content">
-                    <h3>Live Platform</h3>
-                    <p>Interactive coding education platform with games and tutorials</p>
-                </div>
-            </a>
-            <a href="https://www.youtube.com/channel/UC6d9bq2T8A72bl6zrZvT_wQ" class="project-card" target="_blank">
-                <img src="/static/tutorials-screenshot.jpg" alt="Tutorial Videos">
-                <div class="project-content">
-                    <h3>Tutorial Channel</h3>
-                    <p>Educational content teaching programming fundamentals</p>
-                </div>
-            </a>
-        </div>
-    </section>
-
-    <section class="achievements-section">
-        <h2>Certifications & Achievements</h2>
-        <div class="certificate-card">
-            <img src="/static/certificate.jpg" alt="Full Stack Certificate">
-            <div class="certificate-content">
-                <h3>Certificate in Full Stack Software Development (With AI)</h3>
-                <p>TECH CAMP Advanced Technology Hub</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="contact-section">
-        <h2>Let's Connect</h2>
-        <div class="contact-grid">
-            <a href="mailto:introductiontocoding101@gmail.com" class="contact-card">
-                <i class="fas fa-envelope"></i>
-                <span>introductiontocoding101@gmail.com</span>
-            </a>
-            <a href="https://wa.me/254707878699" class="contact-card" target="_blank">
-                <i class="fab fa-whatsapp"></i>
-                <span>+254 707 878 699</span>
-            </a>
-        </div>
-    </section>
-</div>
-
-<style>
-    .portfolio-container {
-        max-width: 1200px;
-        margin: 80px auto 0;
-        padding: 2rem;
-        background: #1a1a2e;
-        color: #fff;
-    }
-
-    .portfolio-header {
-        text-align: center;
-        margin-bottom: 3rem;
-        padding: 3rem;
-        background: linear-gradient(135deg, #4B0082, #800080);
-        border-radius: 15px;
-        margin-top: 2rem;
-    }
-
-    .portfolio-header h1 {
-        font-size: 3.5rem;
-        margin-bottom: 1rem;
-        font-family: 'Playfair Display', serif;
-    }
-
-    .title {
-        font-size: 1.8rem;
-        opacity: 0.9;
-        font-family: 'Poppins', sans-serif;
-    }
-
-    section {
-        margin-bottom: 4rem;
-        padding: 2rem;
-        background: #232342;
-        border-radius: 15px;
-    }
-
-    section h2 {
-        color: #e6e6fa;
-        font-size: 2.2rem;
-        margin-bottom: 2rem;
-        font-family: 'Playfair Display', serif;
-    }
-
-    .featured-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-    }
-
-    .featured-card {
-        background: #2d2d4d;
-        border-radius: 15px;
-        overflow: hidden;
-        transition: transform 0.3s ease;
-        text-decoration: none;
-        color: #fff;
-    }
-
-    .featured-card:hover {
-        transform: translateY(-5px);
-    }
-
-    .featured-card img {
-        width: 100%;
-        height: 200px;
-        object-fit: cover;
-    }
-
-    .skills-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 2rem;
-    }
-
-    .skill-card {
-        height: 250px;
-        border-radius: 15px;
-        position: relative;
-        background-size: cover;
-        background-position: center;
-        overflow: hidden;
-    }
-
-    .skill-content {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        padding: 1.5rem;
-        background: linear-gradient(transparent, rgba(26, 26, 46, 0.9));
-        color: #fff;
-    }
-
-    .projects-section {
-        background-size: cover;
-        background-position: center;
-        position: relative;
-    }
-
-    .projects-section::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(26, 26, 46, 0.9);
-        border-radius: 15px;
-    }
-
-    .projects-section > * {
-        position: relative;
-    }
-
-    .project-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-    }
-
-    .project-card {
-        background: rgba(45, 45, 77, 0.8);
-        border-radius: 15px;
-        overflow: hidden;
-        text-decoration: none;
-        color: #fff;
-        transition: transform 0.3s ease;
-    }
-
-    .project-card:hover {
-        transform: translateY(-5px);
-    }
-
-    .project-card img {
-        width: 100%;
-        height: 200px;
-        object-fit: cover;
-    }
-
-    .project-content {
-        padding: 1.5rem;
-    }
-
-    .certificate-card {
-        background: #2d2d4d;
-        border-radius: 15px;
-        overflow: hidden;
-    }
-
-    .certificate-card img {
-        width: 100%;
-        max-height: 400px;
-        object-fit: contain;
-    }
-
-    .certificate-content {
-        padding: 1.5rem;
-    }
-
-    .contact-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 2rem;
-    }
-
-    .contact-card {
-        background: #2d2d4d;
-        padding: 1.5rem;
-        border-radius: 10px;
-        text-decoration: none;
-        color: #fff;
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        transition: transform 0.3s ease;
-    }
-
-    .contact-card:hover {
-        transform: translateY(-5px);
-    }
-
-    @media (max-width: 768px) {
-        .portfolio-container {
-            padding: 1rem;
-            margin-top: 60px;
+    <style>
+        body {
+            background: #1a1a2e;
+            color: #fff;
+            margin: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
         }
 
-        .portfolio-header {
-            padding: 2rem 1rem;
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background: rgba(75, 0, 130, 0.8);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
         }
 
-        .portfolio-header h1 {
-            font-size: 2.5rem;
+        .back-btn:hover {
+            background: rgba(75, 0, 130, 1);
+            transform: translateX(-5px);
         }
 
-        .title {
-            font-size: 1.2rem;
+        .python-logo img {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            margin: 0 auto;
+            display: block;
         }
 
-        section {
-            padding: 1rem;
+        .availability-section {
+            background: #2d2d4d;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
         }
 
-        .skill-card {
-            height: 200px;
+        .availability-card {
+            background: rgba(75, 0, 130, 0.2);
+            padding: 2rem;
+            border-radius: 10px;
         }
 
-        .contact-card {
-            flex-direction: column;
+        .availability-card ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .availability-card li {
+            margin: 10px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .availability-card li:before {
+            content: "•";
+            color: #4B0082;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .portfolio-footer {
+            background: linear-gradient(135deg, #4B0082, #800080);
+            padding: 3rem 0;
+            margin-top: 4rem;
+            border-radius: 15px 15px 0 0;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
             text-align: center;
         }
-    }
-</style>
-{% endblock %}
+
+        .footer-statement {
+            font-style: italic;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: #e6e6fa;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .contact-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .back-btn {
+                top: 10px;
+                left: 10px;
+                padding: 8px 15px;
+            }
+        }
+    </style>
+</body>
+</html>
