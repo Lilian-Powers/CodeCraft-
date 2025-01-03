@@ -382,7 +382,9 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <embed src="{{ url_for('static', filename='techcamp-certficate-tech3822.pdf') }}" type="application/pdf" width="100%" height="600px">
+                        <object data="{{ url_for('static', filename='techcamp-certficate-tech3822.pdf') }}" type="application/pdf" width="100%" height="600px">
+                            <p>Unable to display PDF. <a href="{{ url_for('static', filename='techcamp-certficate-tech3822.pdf') }}" target="_blank">Click here to download.</a></p>
+                        </object>
                     </div>
                 </div>
             </div>
