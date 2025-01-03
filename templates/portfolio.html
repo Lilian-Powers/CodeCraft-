@@ -69,10 +69,14 @@
             transition: transform 0.3s ease;
             color: white;
             text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .featured-card:hover {
             transform: translateY(-10px);
+            background: rgba(75, 0, 130, 0.3);
         }
 
         .youtube-preview, .website-preview {
@@ -104,6 +108,33 @@
             background: rgba(67, 97, 238, 1);
             transform: translateY(-2px);
         }
+
+        .portfolio-section {
+            margin: 2rem auto;
+            max-width: 1200px;
+            padding: 0 1rem;
+        }
+
+        .skills-section {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: rgba(75, 0, 130, 0.1);
+            border-radius: 15px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .skill-item {
+            background: rgba(67, 97, 238, 0.2);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -129,6 +160,20 @@
                 <p>Empowering Future Developers</p>
             </div>
         </a>
+    </div>
+
+    <div class="portfolio-section">
+        <div class="skills-section">
+            <h3>Technical Skills</h3>
+            <div class="skills-grid">
+                <div class="skill-item">Python</div>
+                <div class="skill-item">Web Development</div>
+                <div class="skill-item">Flask</div>
+                <div class="skill-item">JavaScript</div>
+                <div class="skill-item">HTML/CSS</div>
+                <div class="skill-item">SQL</div>
+            </div>
+        </div>
     </div>
 
     <footer class="portfolio-footer">
@@ -157,7 +202,6 @@
         const navbar = document.querySelector('.navbar');
         const footer = document.querySelector('.portfolio-footer');
 
-        // Hide navigation after 3 seconds of inactivity
         function hideNavigation() {
             if (window.scrollY > 100) {
                 navbar.classList.add('hidden');
@@ -165,7 +209,6 @@
             }
         }
 
-        // Show navigation on mouse movement
         document.addEventListener('mousemove', () => {
             navbar.classList.remove('hidden');
             footer.classList.remove('hidden');
@@ -173,7 +216,6 @@
             timer = setTimeout(hideNavigation, 3000);
         });
 
-        // Hide/show navigation on scroll
         window.addEventListener('scroll', () => {
             if (lastScrollY < window.scrollY) {
                 navbar.classList.add('hidden');
@@ -187,7 +229,6 @@
             timer = setTimeout(hideNavigation, 3000);
         });
 
-        // Initial timer
         timer = setTimeout(hideNavigation, 3000);
     </script>
 </body>
