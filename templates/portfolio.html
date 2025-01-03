@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,13 +15,14 @@
         }
 
         .portfolio-header {
-            background: linear-gradient(rgba(26, 26, 46, 0.9), rgba(22, 33, 62, 0.9)), url('https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=1600');
+            background: linear-gradient(rgba(26, 26, 46, 0.7), rgba(22, 33, 62, 0.7)), url('https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=1600'); /* Increased transparency */
             background-size: cover;
             background-position: center;
             padding: 6rem 2rem;
             text-align: center;
             position: relative;
             margin-bottom: 3rem;
+            color: white;
         }
 
         .portfolio-header h1 {
@@ -149,6 +149,21 @@
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
+        .social-links a {
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        .social-links a:hover {
+            transform: translateY(-5px) scale(1.1);
+        }
+        .social-links a.youtube:hover {
+            color: #ff0000 !important;
+        }
+        .social-links a.whatsapp:hover {
+            color: #25D366 !important;
+        }
+        .social-links a.website:hover {
+            color: #4361ee !important;
+        }
     </style>
 </head>
 <body>
@@ -185,6 +200,13 @@
                     <a href="https://github.com/yourusername/codecraft-academy" class="btn btn-outline-primary ms-2" target="_blank">View on GitHub</a>
                 </div>
             </div>
+            <div class="project-card">
+                <h3>YouTube Channel: Absolute Beginners</h3>
+                <p>Tutorials and resources for absolute beginners in coding.</p>
+                <a href="https://www.youtube.com/channel/UC6d9bq2T8A72bl6zrZvT_wQ" class="btn btn-outline-primary" target="_blank">View Channel</a>
+            </div>
+             <!-- Added YouTube project -->
+
         </section>
 
         <section class="mb-5">
@@ -200,9 +222,9 @@
             <div class="text-center">
                 <p><i class="fas fa-envelope"></i> <a href="mailto:introductiontocoding101@gmail.com">introductiontocoding101@gmail.com</a></p>
                 <div class="social-links mt-4">
-                    <a href="https://www.youtube.com/channel/UC6d9bq2T8A72bl6zrZvT_wQ" target="_blank"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.youtube.com/channel/UC6d9bq2T8A72bl6zrZvT_wQ" target="_blank" class="youtube"><i class="fab fa-youtube"></i></a>
                     <a href="https://wa.me/254707878699" target="_blank" class="whatsapp"><i class="fab fa-whatsapp"></i></a>
-                    <a href="https://introductiontocoding101.replit.app" target="_blank"><i class="fas fa-globe"></i></a>
+                    <a href="https://introductiontocoding101.replit.app" target="_blank" class="website"><i class="fas fa-globe"></i></a>
                 </div>
             </div>
             <div class="remote-notice">
