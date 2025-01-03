@@ -14,10 +14,12 @@
             margin: 0;
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             min-height: 100vh;
+            position: relative;
+            padding-bottom: 250px;
         }
 
         .navbar {
-            transition: transform 0.3s ease-in-out;
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
             position: fixed;
             width: 100%;
             top: 0;
@@ -28,17 +30,28 @@
 
         .navbar.hidden {
             transform: translateY(-100%);
+            opacity: 0;
         }
 
         .whatsapp-icon {
             color: #25D366 !important;
+            font-size: 1.5em;
         }
 
         .portfolio-footer {
-            background: #1a1a1a;
+            background: rgba(26, 26, 46, 0.95);
             color: white;
             padding: 2rem 0;
-            margin-top: 3rem;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        }
+
+        .portfolio-footer.hidden {
+            transform: translateY(100%);
+            opacity: 0;
         }
 
         .featured-grid {
@@ -96,7 +109,7 @@
 
     <div class="featured-grid">
         <div class="featured-card youtube-card">
-            <img src="/static/python_logo.png" alt="Python Tutorial Channel" class="youtube-preview">
+            <img src="https://i.imgur.com/xEUeeld.png" alt="Python Tutorial Channel" class="youtube-preview">
             <h3>YouTube Channel</h3>
             <p>Learn Python Programming from Scratch</p>
             <a href="https://www.youtube.com/channel/UC6d9bq2T8A72bl6zrZvT_wQ" class="btn btn-primary" target="_blank">
@@ -104,7 +117,7 @@
             </a>
         </div>
         <a href="https://introductiontocoding101.replit.app" class="featured-card website-card" target="_blank">
-            <img src="/static/logo.svg" alt="CodeCraft Logo" class="website-preview">
+            <img src="https://i.imgur.com/xEUeeld.png" alt="CodeCraft Logo" class="website-preview">
             <div class="website-info">
                 <h3>CodeCraft Academy</h3>
                 <p>Empowering Future Developers</p>
@@ -134,27 +147,42 @@
 
     <script>
         let lastScrollY = window.scrollY;
-        const navbar = document.querySelector('.navbar');
         let timer;
+        const navbar = document.querySelector('.navbar');
+        const footer = document.querySelector('.portfolio-footer');
 
+        // Hide navigation after 3 seconds of inactivity
+        function hideNavigation() {
+            if (window.scrollY > 100) {
+                navbar.classList.add('hidden');
+                footer.classList.add('hidden');
+            }
+        }
+
+        // Show navigation on mouse movement
+        document.addEventListener('mousemove', () => {
+            navbar.classList.remove('hidden');
+            footer.classList.remove('hidden');
+            clearTimeout(timer);
+            timer = setTimeout(hideNavigation, 3000);
+        });
+
+        // Hide/show navigation on scroll
         window.addEventListener('scroll', () => {
             if (lastScrollY < window.scrollY) {
                 navbar.classList.add('hidden');
+                footer.classList.add('hidden');
             } else {
                 navbar.classList.remove('hidden');
+                footer.classList.remove('hidden');
             }
             lastScrollY = window.scrollY;
+            clearTimeout(timer);
+            timer = setTimeout(hideNavigation, 3000);
         });
 
-        document.addEventListener('mousemove', () => {
-            navbar.classList.remove('hidden');
-            clearTimeout(timer);
-            timer = setTimeout(() => {
-                if (window.scrollY > 100) {
-                    navbar.classList.add('hidden');
-                }
-            }, 2000);
-        });
+        // Initial timer
+        timer = setTimeout(hideNavigation, 3000);
     </script>
 </body>
 </html>
