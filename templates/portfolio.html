@@ -302,31 +302,82 @@
 
         <section class="mb-5">
             <h2 class="section-title">Certifications</h2>
-            <div class="text-center">
-                <p>
-                    Certificate in Full Stack Software Development (With AI) - 
-                    <a href="https://techcamp.co.ke/" target="_blank">TECH CAMP Advanced Technology Hub</a>
-                </p>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#certificateModal">
-                    View Certificate
-                </button>
+            <div class="text-center certification-container">
+                <div class="certification-card">
+                    <h3>Certificate in Full Stack Software Development (With AI)</h3>
+                    <p class="institution">
+                        <a href="https://techcamp.co.ke/" target="_blank">TECH CAMP Advanced Technology Hub</a>
+                    </p>
+                    <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#certificateModal">
+                        <i class="fas fa-certificate me-2"></i>View Certificate
+                    </button>
+                </div>
             </div>
         </section>
 
         <!-- Certificate Modal -->
         <div class="modal fade" id="certificateModal" tabindex="-1" aria-labelledby="certificateModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content bg-dark">
+                    <div class="modal-header border-bottom border-secondary">
                         <h5 class="modal-title" id="certificateModalLabel">Full Stack Software Development Certificate</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body text-center">
-                        <img src="/static/certificate.png" alt="TECH CAMP Certificate" style="max-width: 100%; height: auto;">
+                    <div class="modal-body text-center p-0">
+                        <img src="/static/certificate.png" alt="TECH CAMP Certificate" style="width: 100%; height: auto; border-radius: 8px;">
                     </div>
                 </div>
             </div>
         </div>
+
+        <style>
+            .certification-container {
+                max-width: 800px;
+                margin: 0 auto;
+            }
+            .certification-card {
+                background: rgba(67, 97, 238, 0.05);
+                border-radius: 15px;
+                padding: 2.5rem;
+                margin: 2rem 0;
+                transition: transform 0.3s ease;
+            }
+            .certification-card:hover {
+                transform: translateY(-5px);
+            }
+            .certification-card h3 {
+                color: #4361ee;
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+            }
+            .certification-card .institution a {
+                color: #fff;
+                text-decoration: none;
+                transition: color 0.3s ease;
+            }
+            .certification-card .institution a:hover {
+                color: #4361ee;
+            }
+            #certificateModal .modal-dialog {
+                max-width: 90%;
+            }
+            #certificateModal .modal-content {
+                border: none;
+            }
+            #certificateModal .modal-body {
+                background: #1a1a2e;
+            }
+            .btn-primary {
+                background: linear-gradient(45deg, #4361ee, #4895ef);
+                border: none;
+                padding: 0.75rem 1.5rem;
+                font-weight: 500;
+            }
+            .btn-primary:hover {
+                background: linear-gradient(45deg, #4895ef, #4361ee);
+                transform: translateY(-2px);
+            }
+        </style>
 
         <section class="contact-section">
             <h2 class="section-title">Get in Touch</h2>
