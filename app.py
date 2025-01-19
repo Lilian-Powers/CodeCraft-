@@ -138,10 +138,7 @@ init_db()
 
 @app.route('/')
 def home():
-    if not session.get('logged_in'):
-        return redirect(url_for('login'))
-    
-    # Track visit
+    # Track visit only if logged in
     if session.get('email'):
         conn = sqlite3.connect('users.db')
         c = conn.cursor()
