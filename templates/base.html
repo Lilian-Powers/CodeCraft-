@@ -126,13 +126,26 @@
         </div>
     </footer>
     <div class="floating-nav">
-        <button onclick="window.history.back()" class="float-nav-btn back-btn" title="Previous page">
+        <button onclick="navigatePage('prev')" class="float-nav-btn back-btn" title="Previous page">
             <i class="fas fa-arrow-left"></i>
         </button>
-        <button onclick="window.history.forward()" class="float-nav-btn next-btn" title="Next page">
+        <button onclick="navigatePage('next')" class="float-nav-btn next-btn" title="Next page">
             <i class="fas fa-arrow-right"></i>
         </button>
     </div>
+    <script>
+        function navigatePage(direction) {
+            const navLinks = Array.from(document.querySelectorAll('.navbar-nav .nav-link')).map(link => link.getAttribute('href'));
+            const currentPath = window.location.pathname;
+            const currentIndex = navLinks.indexOf(currentPath);
+            
+            if (direction === 'next' && currentIndex < navLinks.length - 1) {
+                window.location.href = navLinks[currentIndex + 1];
+            } else if (direction === 'prev' && currentIndex > 0) {
+                window.location.href = navLinks[currentIndex - 1];
+            }
+        }
+    </script>
     <style>
         .floating-nav {
             position: fixed;
