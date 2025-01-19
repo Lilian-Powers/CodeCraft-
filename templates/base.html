@@ -96,12 +96,12 @@
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
             <div class="container mt-5">
-                {% for category, message in messages %}
-                    <div class="alert alert-{{ 'warning' if category == 'error' else category }} alert-dismissible fade show" role="alert">
-                        {{ message }}
+                {% with message = messages[0] %}
+                    <div class="alert alert-{{ 'warning' if message[0] == 'error' else message[0] }} alert-dismissible fade show" role="alert">
+                        {{ message[1] }}
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
-                {% endfor %}
+                {% endwith %}
             </div>
         {% endif %}
     {% endwith %}
@@ -126,17 +126,17 @@
         </div>
     </footer>
     <div class="floating-nav">
-        <button onclick="history.back()" class="float-nav-btn back-btn">
-            <i class="fas fa-arrow-left"></i> Back
+        <button onclick="window.history.back()" class="float-nav-btn back-btn" title="Previous page">
+            <i class="fas fa-arrow-left"></i>
         </button>
-        <button onclick="history.forward()" class="float-nav-btn next-btn">
-            Next <i class="fas fa-arrow-right"></i>
+        <button onclick="window.history.forward()" class="float-nav-btn next-btn" title="Next page">
+            <i class="fas fa-arrow-right"></i>
         </button>
     </div>
     <style>
         .floating-nav {
             position: fixed;
-            bottom: 20px;
+            bottom: 100px;
             right: 20px;
             display: flex;
             gap: 10px;
