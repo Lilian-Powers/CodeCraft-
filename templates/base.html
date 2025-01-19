@@ -79,14 +79,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/tutorials">Tutorials Part 1</a>
                     </li>
-                    <div class="nav-item-group ms-auto">
-                        <a class="nav-link btn btn-outline-light me-2" onclick="history.back()">
-                            <i class="fas fa-arrow-left"></i> Back
-                        </a>
-                        <a class="nav-link btn btn-outline-light" onclick="history.forward()">
-                            Next <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
+                    
                     <li class="nav-item">
                         {% if not session.get('logged_in') %}
                             <a class="nav-link" href="{{ url_for('login') }}">Sign In</a>
@@ -132,7 +125,38 @@
             </div>
         </div>
     </footer>
+    <div class="floating-nav">
+        <button onclick="history.back()" class="float-nav-btn back-btn">
+            <i class="fas fa-arrow-left"></i> Back
+        </button>
+        <button onclick="history.forward()" class="float-nav-btn next-btn">
+            Next <i class="fas fa-arrow-right"></i>
+        </button>
+    </div>
     <style>
+        .floating-nav {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+        .float-nav-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            background: var(--primary-color);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .float-nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
         @media (max-width: 768px) {
             .navbar-nav {
                 padding: 1rem 0;

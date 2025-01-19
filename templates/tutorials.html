@@ -1,4 +1,3 @@
-
 {% extends "base.html" %}
 {% block title %}Video Tutorials - CodeCraft Academy{% endblock %}
 
@@ -8,7 +7,7 @@
         <h1>Video Tutorials</h1>
         <p class="welcome-text">Welcome to our structured learning path!</p>
     </div>
-    
+
     <div class="tutorials-grid">
         <div class="tutorial-card">
             <h2>Lesson 1: Introduction to Programming</h2>
@@ -132,27 +131,27 @@
         background: linear-gradient(135deg, rgba(67, 97, 238, 0.1), rgba(72, 149, 239, 0.1));
         min-height: 100vh;
     }
-    
+
     .tutorials-header {
         text-align: center;
         max-width: 800px;
         margin: 0 auto 3rem auto;
         padding: 2rem;
     }
-    
+
     .tutorials-header h1 {
         color: var(--primary-color);
         font-size: 2.5rem;
         margin-bottom: 1rem;
         font-weight: 700;
     }
-    
+
     .welcome-text {
         font-size: 1.2rem;
         color: var(--text-color);
         margin-bottom: 2rem;
     }
-    
+
     .tutorials-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -161,7 +160,7 @@
         max-width: 1200px;
         margin: 0 auto;
     }
-    
+
     .tutorial-card {
         background: white;
         border-radius: 15px;
@@ -169,25 +168,25 @@
         box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         transition: transform 0.3s ease;
     }
-    
+
     .tutorial-card:hover {
         transform: translateY(-5px);
     }
-    
+
     .tutorial-card h2 {
         color: var(--primary-color);
         font-size: 1.5rem;
         padding: 1.5rem;
         margin: 0;
     }
-    
+
     .video-container {
         position: relative;
         padding-bottom: 56.25%;
         height: 0;
         overflow: hidden;
     }
-    
+
     .video-container iframe {
         position: absolute;
         top: 0;
@@ -196,7 +195,7 @@
         height: 100%;
         border: none;
     }
-    
+
     .tutorial-description {
         padding: 1.5rem;
         color: var(--text-color);

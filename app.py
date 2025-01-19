@@ -138,16 +138,20 @@ init_db()
 
 @app.route('/')
 def home():
-    # Track visit only if logged in
     if session.get('email'):
         conn = sqlite3.connect('users.db')
         c = conn.cursor()
+        # Check if user exists in database
+        c.execute('SELECT * FROM users WHERE email = ?', (session['email'],))
+        user = c.fetchone()
+        if not user:
+            # If logged in but not registered, redirect to register
+            return redirect(url_for('register'))
+            
         c.execute('INSERT INTO visits (email, page) VALUES (?, ?)', 
                  (session['email'], 'home'))
         conn.commit()
         conn.close()
-        
-        # Check if we should send analytics email
         check_and_send_analytics()
     
     return render_template('home.html')
