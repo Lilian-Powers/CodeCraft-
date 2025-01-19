@@ -135,8 +135,8 @@
     </div>
     <script>
         function navigatePage(direction) {
-            const navLinks = Array.from(document.querySelectorAll('.navbar-nav .nav-link')).map(link => link.getAttribute('href'));
-            const currentPath = window.location.pathname;
+            const navLinks = ['/home', '/games', '/treasure_hunt', '/editors', '/tutorials'];
+            const currentPath = window.location.pathname === '/' ? '/home' : window.location.pathname;
             const currentIndex = navLinks.indexOf(currentPath);
             
             if (direction === 'next' && currentIndex < navLinks.length - 1) {
