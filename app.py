@@ -138,25 +138,24 @@ init_db()
 
 @app.route('/')
 def home():
-    if session.get('email'):
-        try:
+    try:
+        if session.get('email'):
             conn = sqlite3.connect('users.db')
             c = conn.cursor()
             c.execute('SELECT * FROM users WHERE email = ?', (session['email'],))
             user = c.fetchone()
-            if not user:
-                return redirect(url_for('register'))
-                
-            c.execute('INSERT INTO visits (email, page) VALUES (?, ?)', 
-                     (session['email'], 'home'))
-            conn.commit()
-        except Exception as e:
-            flash(str(e), 'error')
-        finally:
+            
+            if user:
+                c.execute('INSERT INTO visits (email, page) VALUES (?, ?)', 
+                         (session['email'], 'home'))
+                conn.commit()
+                check_and_send_analytics()
             conn.close()
-            check_and_send_analytics()
-    
-    return render_template('home.html')
+            
+        return render_template('home.html')
+    except Exception as e:
+        flash(str(e), 'error')
+        return render_template('home.html')
 
 @app.route('/analytics')
 def analytics():
