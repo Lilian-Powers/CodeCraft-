@@ -231,7 +231,7 @@
         cursor: pointer;
     }
 
-    .project-item:hover {
+    .project-item:not(.open):hover {
         transform: translateY(-5px);
         background: linear-gradient(135deg, rgba(67, 97, 238, 0.1), rgba(72, 149, 239, 0.1));
     }
@@ -270,15 +270,17 @@
         position: fixed;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%) !important;
         width: 320px;
         border-radius: 20px;
         box-shadow: 0 15px 30px rgba(0,0,0,0.3);
         padding: 2rem;
-        z-index: 1000000;
+        z-index: 2000000;
         text-align: center;
         color: white;
         font-family: 'Poppins', sans-serif;
+        margin: 0 !important;
+        pointer-events: auto;
     }
 
     /* Ensure modals stay above all other content */
@@ -403,20 +405,7 @@
     }
 
     .superhero-generator .superhero-content {
-        display: none;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 320px;
         background: linear-gradient(145deg, #9c27b0, #673ab7);
-        border-radius: 20px;
-        box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-        padding: 2rem;
-        z-index: 100000;
-        text-align: center;
-        color: white;
-        font-family: 'Poppins', sans-serif;
     }
 
     .superhero-generator.open .superhero-content {
