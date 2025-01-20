@@ -60,7 +60,23 @@
             <p class="tutor-message">With the skills you've learned so far, I'm confident you can tackle these exciting projects! Get creative and make them your own. If you'd like to see video tutorials for these projects, comment the word "projects" on any of our YouTube videos above.</p>
         </div>
         <div class="projects-grid">
-            <div class="project-item">1. Age Calculator</div>
+            <div class="project-item age-calculator" onclick="toggleCalculator(this)">
+                <div class="project-front">1. Age Calculator</div>
+                <div class="calculator-content">
+                    <h3>Age Calculator</h3>
+                    <div class="code-example">
+                        <pre><code class="language-python">current_year = 2024
+birth_year = input("What year were you born? ")
+age = current_year - int(birth_year)
+print(f"You are {age} years old!")</code></pre>
+                    </div>
+                    <div class="calculator-interactive">
+                        <input type="number" id="birthYear" placeholder="Enter your birth year" class="birth-year-input">
+                        <button onclick="calculateAge(this)" class="calculate-btn">Calculate Age</button>
+                        <div class="age-result"></div>
+                    </div>
+                </div>
+            </div>
             <div class="project-item">2. Super-hero Game Generator</div>
             <div class="project-item">3. Favorite Food</div>
             <div class="project-item">4. Dream Vacation</div>
@@ -117,15 +133,77 @@
         font-size: 1.1rem;
         color: var(--text-color);
         text-align: center;
+        position: relative; /* Added for absolute positioning of calculator-content */
     }
 
     .project-item:hover {
         transform: translateY(-5px);
         background: linear-gradient(135deg, rgba(67, 97, 238, 0.1), rgba(72, 149, 239, 0.1));
     }
-</style>
 
-<style>
+    .age-calculator .calculator-content {
+        display: none; /* Initially hidden */
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 1rem;
+        z-index: 1; /* Ensure it's above the project-item */
+    }
+
+    .age-calculator.open .calculator-content {
+        display: block;
+    }
+
+    .code-example {
+        background-color: #f0f0f0;
+        padding: 1rem;
+        border-radius: 5px;
+        margin-bottom: 1rem;
+    }
+
+    .code-example pre {
+        margin: 0;
+    }
+
+    .code-example code {
+        font-family: monospace;
+    }
+
+
+    .calculator-interactive {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    .birth-year-input {
+        padding: 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .calculate-btn {
+        padding: 0.5rem 1rem;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .age-result {
+        font-weight: bold;
+        margin-top: 0.5rem;
+    }
+
+    .project-front {
+        cursor: pointer;
+    }
+
+
     .tutorials-container {
         padding: 4rem 0;
         background: linear-gradient(135deg, rgba(67, 97, 238, 0.1), rgba(72, 149, 239, 0.1));
@@ -204,4 +282,34 @@
         margin: 0;
     }
 </style>
+
+<script>
+    function toggleCalculator(element) {
+        element.classList.toggle('open');
+    }
+
+    function calculateAge(button) {
+        const birthYear = document.getElementById('birthYear').value;
+        const currentYear = 2024;
+        const age = currentYear - birthYear;
+
+        if (age < 0 || isNaN(age)) {
+            button.nextElementSibling.textContent = "Invalid input!";
+            return;
+        }
+
+        let message = `You are ${age} years old!`;
+        if (age < 18) {
+            message += "  Wow, you're still young and full of energy!";
+        } else if (age < 30) {
+            message += "  Entering the prime of your life. Amazing!";
+        } else if (age < 60) {
+            message += "  You've accomplished so much already!";
+        } else {
+            message += "  Wisdom and experience shine from within. Keep going!";
+        }
+
+        button.nextElementSibling.textContent = message;
+    }
+</script>
 {% endblock %}
