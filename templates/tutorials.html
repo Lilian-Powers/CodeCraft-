@@ -274,11 +274,12 @@
         left: 50%;
         transform: translate(-50%, -50%);
         width: min(90vw, 400px);
-        max-height: 90vh;
+        max-height: 85vh;
         overflow-y: auto;
         border-radius: 20px;
         box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-        padding: 1.5rem;
+        padding: 1rem;
+        margin: 0;
         z-index: 2000001;
         text-align: center;
         color: white;
@@ -315,13 +316,25 @@
         .temp-content,
         .story-content,
         .talking-content {
-            width: 90vw;
-            padding: 1rem;
-            max-height: 80vh;
+            width: 95vw;
+            padding: 0.75rem;
+            max-height: 90vh;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             margin: 0;
+            border-radius: 15px;
+        }
+        
+        .calculator-interactive,
+        .superhero-interactive,
+        .food-interactive,
+        .vacation-interactive,
+        .compliment-interactive,
+        .temp-interactive,
+        .story-interactive,
+        .chat-interactive {
+            padding: 0.5rem;
         }
     }
 
