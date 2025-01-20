@@ -483,7 +483,9 @@ def login():
                     else:
                         flash('Incorrect password. Please try again.', 'error')
                 else:
-                    flash('Email not found. Please check your email or register if you haven\'t already.', 'error')
+                    flash('Account not found. Creating a new account for you...', 'info')
+                    # Store email in session for pre-filling registration form
+                    session['temp_email'] = email
                     return redirect(url_for('register'))
                     
         except sqlite3.Error as e:

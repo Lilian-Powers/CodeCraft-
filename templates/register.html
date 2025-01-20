@@ -103,7 +103,8 @@
         <div class="form-group">
             <label for="email">Email Address</label>
             <input type="email" class="form-control" id="email" 
-                   placeholder="Enter your email" name="mail" required>
+                   placeholder="Enter your email" name="mail" 
+                   value="{{ session.pop('temp_email', '') }}" required>
         </div>
         
         <div class="form-group">
