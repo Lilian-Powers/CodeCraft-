@@ -143,8 +143,9 @@ print(f"You are {age} years old!")</code></pre>
     }
 
     .age-calculator .calculator-content {
-        display: none;
         position: absolute;
+        visibility: hidden;
+        opacity: 0;
         top: 100%;
         left: 0;
         width: 300px;
@@ -156,10 +157,12 @@ print(f"You are {age} years old!")</code></pre>
         margin-top: 10px;
         text-align: left;
         cursor: default;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
     }
 
     .age-calculator.open .calculator-content {
-        display: block;
+        visibility: visible;
+        opacity: 1;
     }
 
     .code-example {
