@@ -170,9 +170,9 @@
                     <h3>🤖 Friendly Chat Bot ✨</h3>
                     <p class="chat-subtitle">Let's have a fun conversation!</p>
                     <div class="chat-interactive">
-                        <input type="text" id="userName" placeholder="What's your name?" class="chat-input">
-                        <input type="text" id="favoriteColor" placeholder="What's your favorite color?" class="chat-input">
-                        <input type="text" id="favoriteAnimal" placeholder="What's your favorite animal?" class="chat-input">
+                        <input type="text" id="chatUserName" placeholder="What's your name?" class="chat-input">
+                        <input type="text" id="chatFavoriteColor" placeholder="What's your favorite color?" class="chat-input">
+                        <input type="text" id="chatFavoriteAnimal" placeholder="What's your favorite animal?" class="chat-input">
                         <button onclick="generateChatResponse()" class="generate-btn chat-btn">Let's Chat!</button>
                         <div class="chat-result"></div>
                     </div>
@@ -1255,9 +1255,9 @@
     }
 
     function generateChatResponse() {
-        const name = document.getElementById('userName').value;
-        const color = document.getElementById('favoriteColor').value;
-        const animal = document.getElementById('favoriteAnimal').value;
+        const name = document.getElementById('chatUserName').value;
+        const color = document.getElementById('chatFavoriteColor').value;
+        const animal = document.getElementById('chatFavoriteAnimal').value;
 
         if (!name || !color || !animal) {
             document.querySelector('.chat-result').textContent = "Please answer all the questions!";
