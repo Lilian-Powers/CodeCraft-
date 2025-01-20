@@ -63,6 +63,7 @@
         <div class="projects-grid">
             <div class="project-item age-calculator" onclick="toggleCalculator(this)">
                 <div class="project-front">1. Age Calculator</div>
+                <div class="modal-overlay"></div>
                 <div class="calculator-content">
                     <button class="close-btn">&times;</button>
                     <h3>Time Machine</h3>
@@ -142,15 +143,15 @@
     .age-calculator .calculator-content {
         display: none;
         position: fixed;
-        top: 50%;
+        top: 20%;
         left: 50%;
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, 0);
         width: 320px;
         background: linear-gradient(145deg, #2c3e50, #3498db);
         border-radius: 20px;
         box-shadow: 0 15px 30px rgba(0,0,0,0.3);
         padding: 2rem;
-        z-index: 1000;
+        z-index: 9999;
         text-align: center;
         color: white;
         font-family: 'Poppins', sans-serif;
@@ -158,7 +159,27 @@
 
     .age-calculator.open .calculator-content {
         display: block;
-        animation: popIn 0.3s ease-out;
+        animation: popIn 0.3s ease-out forwards;
+        pointer-events: auto;
+    }
+
+    .calculator-interactive * {
+        pointer-events: auto;
+    }
+
+    .modal-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 9998;
+    }
+
+    .age-calculator.open .modal-overlay {
+        display: block;
     }
 
     @keyframes popIn {
@@ -345,16 +366,21 @@
         
         if (element.classList.contains('open')) {
             const closeBtn = element.querySelector('.close-btn');
-            closeBtn.onclick = () => element.classList.remove('open');
+            const overlay = element.querySelector('.modal-overlay');
             
-            setTimeout(() => {
-                document.addEventListener('click', function closeCalc(e) {
-                    if (!element.querySelector('.calculator-content').contains(e.target)) {
-                        element.classList.remove('open');
-                        document.removeEventListener('click', closeCalc);
-                    }
-                });
-            }, 0);
+            closeBtn.onclick = (e) => {
+                e.stopPropagation();
+                element.classList.remove('open');
+            };
+            
+            overlay.onclick = (e) => {
+                e.stopPropagation();
+                element.classList.remove('open');
+            };
+            
+            element.querySelector('.calculator-content').onclick = (e) => {
+                e.stopPropagation();
+            };
         }
     }
 
