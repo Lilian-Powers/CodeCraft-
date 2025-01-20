@@ -36,6 +36,18 @@ A dynamic web platform for teaching coding to beginners, built with Python Flask
 
 This project is hosted on Replit, providing seamless development and deployment. Credentials and sensitive data are securely stored using Replit's Secrets management system.
 
+### Setup Instructions
+
+1. Fork this project on Replit
+2. Set up the following secrets in Replit's Secrets tab:
+   - SECRET_KEY
+   - MAIL_USERNAME
+   - MAIL_PASSWORD
+3. Click "Run" to start the development server
+4. The app will be available at your Repl's URL
+
+Note: All sensitive credentials are managed through Replit's Secrets system for security.
+
 ## Contact
 
 For more information about CodeCraft Academy, visit our social media:
