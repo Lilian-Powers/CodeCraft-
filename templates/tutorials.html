@@ -132,7 +132,20 @@
                     </div>
                 </div>
             </div>
-            <div class="project-item">6. Temperature Converter</div>
+            <div class="project-item temp-converter" onclick="toggleTempConverter(this)">
+                <div class="project-front">6. Temperature Converter</div>
+                <div class="modal-overlay"></div>
+                <div class="temp-content">
+                    <button class="close-btn">&times;</button>
+                    <h3>🌡️ Temperature Wizard 🔮</h3>
+                    <p class="temp-subtitle">Transform temperatures with a touch of magic!</p>
+                    <div class="temp-interactive">
+                        <input type="number" id="celsiusInput" placeholder="Enter temperature in Celsius" class="temp-input" step="0.1">
+                        <button onclick="convertTemperature()" class="generate-btn temp-btn">Convert!</button>
+                        <div class="temp-result"></div>
+                    </div>
+                </div>
+            </div>
             <div class="project-item">7. Funny Story Maker</div>
             <div class="project-item">8. Talking Computer</div>
         </div>
@@ -553,6 +566,61 @@
     }
 
     .compliment-result {
+        font-weight: bold;
+        margin-top: 1rem;
+        padding: 1rem;
+        background: rgba(255,255,255,0.1);
+        border-radius: 15px;
+        font-size: 1.2rem;
+    }
+
+    .temp-converter .temp-content {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 320px;
+        background: linear-gradient(145deg, #8E44AD, #9B59B6);
+        border-radius: 20px;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        padding: 2rem;
+        z-index: 100000;
+        text-align: center;
+        color: white;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .temp-converter.open .temp-content {
+        display: block;
+        animation: popIn 0.3s ease-out forwards;
+    }
+
+    .temp-input {
+        width: 100%;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border: 2px solid rgba(255,255,255,0.2);
+        border-radius: 15px;
+        background: rgba(255,255,255,0.1);
+        color: white;
+        font-size: 1.1rem;
+        text-align: center;
+    }
+
+    .temp-input::placeholder {
+        color: rgba(255,255,255,0.7);
+    }
+
+    .temp-btn {
+        background: #9B59B6;
+    }
+
+    .temp-btn:hover {
+        background: #8E44AD;
+    }
+
+    .temp-result {
         font-weight: bold;
         margin-top: 1rem;
         padding: 1rem;
@@ -985,6 +1053,66 @@
         
         document.querySelector('.hero-result').innerHTML = 
             `${randomCompliment}<br><span style="font-size: 1.4em; color: #fff176">${superheroName}</span><br>${randomPower}`;
+    }
+
+    function toggleTempConverter(element) {
+        event.preventDefault();
+        event.stopPropagation();
+        
+        const tempContent = element.querySelector('.temp-content');
+        
+        document.querySelectorAll('.temp-converter').forEach(temp => {
+            if (temp !== element) {
+                temp.classList.remove('open');
+            }
+        });
+        
+        element.classList.toggle('open');
+        
+        if (element.classList.contains('open')) {
+            const closeBtn = element.querySelector('.close-btn');
+            const overlay = element.querySelector('.modal-overlay');
+            
+            tempContent.onclick = (e) => {
+                e.stopPropagation();
+            };
+            
+            closeBtn.onclick = (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                element.classList.remove('open');
+            };
+            
+            overlay.onclick = (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                element.classList.remove('open');
+            };
+        }
+    }
+
+    function convertTemperature() {
+        const celsius = parseFloat(document.getElementById('celsiusInput').value);
+        
+        if (isNaN(celsius)) {
+            document.querySelector('.temp-result').textContent = "Please enter a valid temperature!";
+            return;
+        }
+
+        const fahrenheit = (celsius * 9/5) + 32;
+
+        const compliments = [
+            "🌟 Amazing! You've mastered temperature conversion!",
+            "✨ Brilliant work! You're becoming a temperature wizard!",
+            "🎉 Fantastic job! Keep exploring the world of science!",
+            "💫 Excellent! You're getting better at this!",
+            "🌈 Wonderful! Your curiosity is inspiring!"
+        ];
+
+        const randomCompliment = compliments[Math.floor(Math.random() * compliments.length)];
+        
+        document.querySelector('.temp-result').innerHTML = 
+            `${randomCompliment}<br><span style="font-size: 1.4em; color: #E8E8E8">${celsius}°C = ${fahrenheit.toFixed(1)}°F</span>`;
     }
 </script>
 {% endblock %}
