@@ -118,7 +118,20 @@
                     </div>
                 </div>
             </div>
-            <div class="project-item">5. Compliment Machine</div>
+            <div class="project-item compliment-machine" onclick="toggleComplimentMachine(this)">
+                <div class="project-front">5. Compliment Machine</div>
+                <div class="modal-overlay"></div>
+                <div class="compliment-content">
+                    <button class="close-btn">&times;</button>
+                    <h3>✨ Compliment Generator ✨</h3>
+                    <p class="compliment-subtitle">Let's brighten your day with some positivity!</p>
+                    <div class="compliment-interactive">
+                        <input type="text" id="userName" placeholder="What's your name?" class="compliment-input">
+                        <button onclick="generateCompliment()" class="generate-btn compliment-btn">Get Compliment</button>
+                        <div class="compliment-result"></div>
+                    </div>
+                </div>
+            </div>
             <div class="project-item">6. Temperature Converter</div>
             <div class="project-item">7. Funny Story Maker</div>
             <div class="project-item">8. Talking Computer</div>
@@ -493,6 +506,61 @@
         font-size: 1.2rem;
     }
 
+    .compliment-machine .compliment-content {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 320px;
+        background: linear-gradient(145deg, #FF1493, #FF69B4);
+        border-radius: 20px;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        padding: 2rem;
+        z-index: 100000;
+        text-align: center;
+        color: white;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .compliment-machine.open .compliment-content {
+        display: block;
+        animation: popIn 0.3s ease-out forwards;
+    }
+
+    .compliment-input {
+        width: 100%;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border: 2px solid rgba(255,255,255,0.2);
+        border-radius: 15px;
+        background: rgba(255,255,255,0.1);
+        color: white;
+        font-size: 1.1rem;
+        text-align: center;
+    }
+
+    .compliment-input::placeholder {
+        color: rgba(255,255,255,0.7);
+    }
+
+    .compliment-btn {
+        background: #FF69B4;
+    }
+
+    .compliment-btn:hover {
+        background: #FF1493;
+    }
+
+    .compliment-result {
+        font-weight: bold;
+        margin-top: 1rem;
+        padding: 1rem;
+        background: rgba(255,255,255,0.1);
+        border-radius: 15px;
+        font-size: 1.2rem;
+    }
+
     .project-front {
         cursor: pointer;
     }
@@ -816,6 +884,73 @@
         
         document.querySelector('.vacation-result').innerHTML = 
             `${randomCompliment}<br><span style="font-size: 1.4em; color: #e3f2fd">${destination}</span><br>${randomActivity}`;
+    }
+
+    function toggleComplimentMachine(element) {
+        event.preventDefault();
+        event.stopPropagation();
+        
+        const complimentContent = element.querySelector('.compliment-content');
+        
+        document.querySelectorAll('.compliment-machine').forEach(comp => {
+            if (comp !== element) {
+                comp.classList.remove('open');
+            }
+        });
+        
+        element.classList.toggle('open');
+        
+        if (element.classList.contains('open')) {
+            const closeBtn = element.querySelector('.close-btn');
+            const overlay = element.querySelector('.modal-overlay');
+            
+            complimentContent.onclick = (e) => {
+                e.stopPropagation();
+            };
+            
+            closeBtn.onclick = (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                element.classList.remove('open');
+            };
+            
+            overlay.onclick = (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                element.classList.remove('open');
+            };
+        }
+    }
+
+    function generateCompliment() {
+        const name = document.getElementById('userName').value;
+        
+        if (!name) {
+            document.querySelector('.compliment-result').textContent = "Please tell us your name!";
+            return;
+        }
+
+        const compliments = [
+            "🌟 You are absolutely amazing,",
+            "✨ You light up every room you enter,",
+            "💫 Your potential is limitless,",
+            "⭐ You make the world a better place,",
+            "🌈 Your positive energy is contagious,"
+        ];
+
+        const affirmations = [
+            "Keep shining bright!",
+            "You're capable of incredible things!",
+            "Your future is so bright!",
+            "You inspire others every day!",
+            "Success follows wherever you go!"
+        ];
+
+        const randomCompliment = compliments[Math.floor(Math.random() * compliments.length)];
+        const randomAffirmation = affirmations[Math.floor(Math.random() * affirmations.length)];
+        
+        document.querySelector('.compliment-result').innerHTML = 
+            `${randomCompliment}<br><span style="font-size: 1.4em; color: #FFB6C1">${name}</span><br>${randomAffirmation}`;
     }
 
     function generateSuperheroName() {
