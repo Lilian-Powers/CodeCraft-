@@ -75,7 +75,21 @@
                     </div>
                 </div>
             </div>
-            <div class="project-item">2. Super-hero Name Generator</div>
+            <div class="project-item superhero-generator" onclick="toggleSuperheroGenerator(this)">
+                <div class="project-front">2. Super-hero Name Generator</div>
+                <div class="modal-overlay"></div>
+                <div class="superhero-content">
+                    <button class="close-btn">&times;</button>
+                    <h3>⚡ Superhero Identity Generator ⚡</h3>
+                    <p class="hero-subtitle">Discover your epic superhero name!</p>
+                    <div class="superhero-interactive">
+                        <input type="text" id="firstName" placeholder="Enter your first name" class="hero-input">
+                        <input type="text" id="favoriteColor" placeholder="What's your favorite color?" class="hero-input">
+                        <button onclick="generateSuperheroName()" class="generate-btn">Transform!</button>
+                        <div class="hero-result"></div>
+                    </div>
+                </div>
+            </div>
             <div class="project-item">3. Favorite Food</div>
             <div class="project-item">4. Dream Vacation</div>
             <div class="project-item">5. Compliment Machine</div>
@@ -268,13 +282,79 @@
         box-shadow: 0 6px 20px rgba(0,0,0,0.25);
     }
 
-    .age-result {
+    .age-result, .hero-result {
         font-weight: bold;
         margin-top: 1rem;
         padding: 1rem;
         background: rgba(255,255,255,0.1);
         border-radius: 15px;
         font-size: 1.2rem;
+    }
+
+    .superhero-generator .superhero-content {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 320px;
+        background: linear-gradient(145deg, #9c27b0, #673ab7);
+        border-radius: 20px;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        padding: 2rem;
+        z-index: 100000;
+        text-align: center;
+        color: white;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .superhero-generator.open .superhero-content {
+        display: block;
+        animation: popIn 0.3s ease-out forwards;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+        opacity: 0.9;
+        margin-bottom: 1.5rem;
+    }
+
+    .hero-input {
+        width: 100%;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border: 2px solid rgba(255,255,255,0.2);
+        border-radius: 15px;
+        background: rgba(255,255,255,0.1);
+        color: white;
+        font-size: 1.1rem;
+        text-align: center;
+    }
+
+    .hero-input::placeholder {
+        color: rgba(255,255,255,0.7);
+    }
+
+    .generate-btn {
+        width: 100%;
+        padding: 1rem;
+        background: #ff4081;
+        color: white;
+        border: none;
+        border-radius: 15px;
+        cursor: pointer;
+        font-size: 1.1rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.3s;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .generate-btn:hover {
+        background: #f50057;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.25);
     }
 
     .project-front {
@@ -430,6 +510,76 @@
         }
 
         button.nextElementSibling.textContent = message;
+    }
+
+    function toggleSuperheroGenerator(element) {
+        event.preventDefault();
+        event.stopPropagation();
+        
+        const heroContent = element.querySelector('.superhero-content');
+        
+        document.querySelectorAll('.superhero-generator').forEach(gen => {
+            if (gen !== element) {
+                gen.classList.remove('open');
+            }
+        });
+        
+        element.classList.toggle('open');
+        
+        if (element.classList.contains('open')) {
+            const closeBtn = element.querySelector('.close-btn');
+            const overlay = element.querySelector('.modal-overlay');
+            
+            heroContent.onclick = (e) => {
+                e.stopPropagation();
+            };
+            
+            closeBtn.onclick = (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                element.classList.remove('open');
+            };
+            
+            overlay.onclick = (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                element.classList.remove('open');
+            };
+        }
+    }
+
+    function generateSuperheroName() {
+        const firstName = document.getElementById('firstName').value;
+        const favoriteColor = document.getElementById('favoriteColor').value;
+        
+        if (!firstName || !favoriteColor) {
+            document.querySelector('.hero-result').textContent = "Please fill in both fields!";
+            return;
+        }
+
+        const superheroName = `${favoriteColor.charAt(0).toUpperCase() + favoriteColor.slice(1)} ${firstName.charAt(0).toUpperCase() + firstName.slice(1)}`;
+        
+        const compliments = [
+            "✨ Behold the mighty",
+            "⚡ All hail the powerful",
+            "🌟 Welcome to the world of heroes,",
+            "💫 With great power comes",
+            "🦸‍♂️ Stand in awe of the legendary"
+        ];
+        
+        const powers = [
+            "Master of the Elements",
+            "Defender of Justice",
+            "Champion of Light",
+            "Guardian of Peace",
+            "Protector of the Realms"
+        ];
+
+        const randomCompliment = compliments[Math.floor(Math.random() * compliments.length)];
+        const randomPower = powers[Math.floor(Math.random() * powers.length)];
+        
+        document.querySelector('.hero-result').innerHTML = 
+            `${randomCompliment}<br><span style="font-size: 1.4em; color: #fff176">${superheroName}</span><br>${randomPower}`;
     }
 </script>
 {% endblock %}
