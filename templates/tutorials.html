@@ -922,26 +922,27 @@
     }
 
     function positionModalAtClick(modalContent, event) {
-        const clickY = event.clientY + window.scrollY;
-        const clickX = event.clientX;
+        const rect = event.target.getBoundingClientRect();
         const viewportHeight = window.innerHeight;
         const viewportWidth = window.innerWidth;
         const modalHeight = modalContent.offsetHeight || 400;
         const modalWidth = 320;
 
-        let top = clickY - (modalHeight / 2);
-        let left = clickX - (modalWidth / 2);
+        // Calculate position relative to clicked element
+        let top = rect.top + window.scrollY - modalHeight/2 + rect.height/2;
+        let left = rect.left + rect.width/2 - modalWidth/2;
 
-        // Keep modal within viewport
-        if (top < window.scrollY) top = window.scrollY + 20;
-        if (top + modalHeight > window.scrollY + viewportHeight) {
-            top = window.scrollY + viewportHeight - modalHeight - 20;
-        }
-        if (left < 20) left = 20;
-        if (left + modalWidth > viewportWidth - 20) {
-            left = viewportWidth - modalWidth - 20;
-        }
+        // Keep modal within viewport boundaries
+        const minTop = window.scrollY + 20;
+        const maxTop = window.scrollY + viewportHeight - modalHeight - 20;
+        top = Math.min(Math.max(top, minTop), maxTop);
+        
+        // Ensure left position stays within viewport
+        const minLeft = 20;
+        const maxLeft = viewportWidth - modalWidth - 20;
+        left = Math.min(Math.max(left, minLeft), maxLeft);
 
+        modalContent.style.position = 'absolute';
         modalContent.style.top = `${top}px`;
         modalContent.style.left = `${left}px`;
     }
