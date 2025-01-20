@@ -922,43 +922,65 @@
     }
 
     function positionModalAtClick(modalContent, event) {
-        const rect = event.target.getBoundingClientRect();
+        const clickY = event.clientY + window.scrollY;
+        const clickX = event.clientX;
         const viewportHeight = window.innerHeight;
         const viewportWidth = window.innerWidth;
-        const modalHeight = 400; // Approximate modal height
-        const modalWidth = 320;  // Modal width from CSS
-        
-        let top = rect.top + window.scrollY;
-        let left = rect.left + window.scrollX;
-        
+        const modalHeight = modalContent.offsetHeight || 400;
+        const modalWidth = 320;
+
+        let top = clickY - (modalHeight / 2);
+        let left = clickX - (modalWidth / 2);
+
         // Keep modal within viewport
+        if (top < window.scrollY) top = window.scrollY + 20;
         if (top + modalHeight > window.scrollY + viewportHeight) {
             top = window.scrollY + viewportHeight - modalHeight - 20;
         }
-        if (left + modalWidth > window.scrollX + viewportWidth) {
-            left = window.scrollX + viewportWidth - modalWidth - 20;
+        if (left < 20) left = 20;
+        if (left + modalWidth > viewportWidth - 20) {
+            left = viewportWidth - modalWidth - 20;
         }
-        
-        modalContent.style.top = top + 'px';
-        modalContent.style.left = left + 'px';
+
+        modalContent.style.top = `${top}px`;
+        modalContent.style.left = `${left}px`;
     }
 
-    function toggleCalculator(element) {
+    function toggleModal(element, contentClass) {
         event.preventDefault();
         event.stopPropagation();
 
-        const calculatorContent = element.querySelector('.calculator-content');
-        positionModalAtClick(calculatorContent, event);
-
-        // Close all other modals first
+        const modalContent = element.querySelector('.' + contentClass);
         closeAllModals();
+        
+        element.classList.toggle('open');
+        if (element.classList.contains('open')) {
+            positionModalAtClick(modalContent, event);
+            
+            const closeBtn = element.querySelector('.close-btn');
+            const overlay = element.querySelector('.modal-overlay');
 
-        // Close all other modals
-        document.querySelectorAll('.project-item').forEach(item => {
-            if (item !== element) {
-                item.classList.remove('open');
-            }
-        });
+            modalContent.onclick = (e) => e.stopPropagation();
+            
+            closeBtn.onclick = (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                element.classList.remove('open');
+                document.body.classList.remove('modal-open');
+            };
+
+            overlay.onclick = (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                element.classList.remove('open');
+                document.body.classList.remove('modal-open');
+            };
+        }
+        document.body.classList.toggle('modal-open', element.classList.contains('open'));
+    }
+
+    function toggleCalculator(element) {
+        toggleModal(element, 'calculator-content');
 
         element.classList.toggle('open');
         document.body.classList.toggle('modal-open', element.classList.contains('open'));
@@ -1022,43 +1044,7 @@
     }
 
     function toggleSuperheroGenerator(element) {
-        event.preventDefault();
-        event.stopPropagation();
-
-        const heroContent = element.querySelector('.superhero-content');
-
-        // Close all other modals
-        document.querySelectorAll('.project-item').forEach(item => {
-            if (item !== element) {
-                item.classList.remove('open');
-            }
-        });
-
-        element.classList.toggle('open');
-        document.body.classList.toggle('modal-open', element.classList.contains('open'));
-
-        if (element.classList.contains('open')) {
-            const closeBtn = element.querySelector('.close-btn');
-            const overlay = element.querySelector('.modal-overlay');
-
-            heroContent.onclick = (e) => {
-                e.stopPropagation();
-            };
-
-            closeBtn.onclick = (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                element.classList.remove('open');
-                document.body.classList.remove('modal-open');
-            };
-
-            overlay.onclick = (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                element.classList.remove('open');
-                document.body.classList.remove('modal-open');
-            };
-        }
+        toggleModal(element, 'superhero-content');
     }
 
     function toggleFoodFavorites(element) {
