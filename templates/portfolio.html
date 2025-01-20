@@ -214,34 +214,88 @@
         #platformShowcase {
             background: rgba(67, 97, 238, 0.05);
             border-radius: 15px;
-            padding: 1rem;
+            padding: 2rem;
             margin-top: 2rem;
+            position: relative;
         }
         
+        .carousel-item {
+            background: #1a1a2e;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
         .carousel-item img {
             border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            max-height: 600px;
+            max-height: 450px;
             width: 100%;
-            object-fit: contain;
+            object-fit: cover;
+        }
+        
+        .carousel-caption {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9));
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem;
+            border-radius: 0 0 12px 12px;
+        }
+
+        .carousel-caption h5 {
+            color: #fff;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .carousel-caption p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.1rem;
+            margin-bottom: 0;
         }
         
         .carousel-control-prev,
         .carousel-control-next {
-            width: 5%;
+            width: 10%;
             opacity: 0.8;
+            background: linear-gradient(90deg, rgba(0,0,0,0.6), transparent);
+            border-radius: 12px;
+        }
+
+        .carousel-control-next {
+            background: linear-gradient(270deg, rgba(0,0,0,0.6), transparent);
         }
         
         .carousel-indicators {
-            bottom: -40px;
+            bottom: -50px;
         }
         
         .carousel-indicators button {
             background-color: #4361ee;
-            width: 10px;
-            height: 10px;
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
-            margin: 0 5px;
+            margin: 0 6px;
+            opacity: 0.5;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-indicators button.active {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+
+        @media (max-width: 768px) {
+            .carousel-item img {
+                max-height: 300px;
+            }
+            .carousel-caption h5 {
+                font-size: 1.2rem;
+            }
+            .carousel-caption p {
+                font-size: 1rem;
+            }
         }
 
         @media (max-width: 768px) {
