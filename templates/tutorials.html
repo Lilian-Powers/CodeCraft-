@@ -90,7 +90,20 @@
                     </div>
                 </div>
             </div>
-            <div class="project-item">3. Favorite Food</div>
+            <div class="project-item food-favorites" onclick="toggleFoodFavorites(this)">
+                <div class="project-front">3. Favorite Food Explorer</div>
+                <div class="modal-overlay"></div>
+                <div class="food-content">
+                    <button class="close-btn">&times;</button>
+                    <h3>🍕 Food Adventure Time! 🌮</h3>
+                    <p class="food-subtitle">Share your favorite food and discover why it makes you awesome!</p>
+                    <div class="food-interactive">
+                        <input type="text" id="favoriteFood" placeholder="What's your favorite food?" class="food-input">
+                        <button onclick="generateFoodResponse()" class="generate-btn food-btn">Let's Feast!</button>
+                        <div class="food-result"></div>
+                    </div>
+                </div>
+            </div>
             <div class="project-item">4. Dream Vacation</div>
             <div class="project-item">5. Compliment Machine</div>
             <div class="project-item">6. Temperature Converter</div>
@@ -357,6 +370,61 @@
         box-shadow: 0 6px 20px rgba(0,0,0,0.25);
     }
 
+    .food-favorites .food-content {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 320px;
+        background: linear-gradient(145deg, #ff9800, #ff5722);
+        border-radius: 20px;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        padding: 2rem;
+        z-index: 100000;
+        text-align: center;
+        color: white;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .food-favorites.open .food-content {
+        display: block;
+        animation: popIn 0.3s ease-out forwards;
+    }
+
+    .food-input {
+        width: 100%;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border: 2px solid rgba(255,255,255,0.2);
+        border-radius: 15px;
+        background: rgba(255,255,255,0.1);
+        color: white;
+        font-size: 1.1rem;
+        text-align: center;
+    }
+
+    .food-input::placeholder {
+        color: rgba(255,255,255,0.7);
+    }
+
+    .food-btn {
+        background: #4caf50;
+    }
+
+    .food-btn:hover {
+        background: #388e3c;
+    }
+
+    .food-result {
+        font-weight: bold;
+        margin-top: 1rem;
+        padding: 1rem;
+        background: rgba(255,255,255,0.1);
+        border-radius: 15px;
+        font-size: 1.2rem;
+    }
+
     .project-front {
         cursor: pointer;
     }
@@ -546,6 +614,73 @@
                 element.classList.remove('open');
             };
         }
+    }
+
+    function toggleFoodFavorites(element) {
+        event.preventDefault();
+        event.stopPropagation();
+        
+        const foodContent = element.querySelector('.food-content');
+        
+        document.querySelectorAll('.food-favorites').forEach(food => {
+            if (food !== element) {
+                food.classList.remove('open');
+            }
+        });
+        
+        element.classList.toggle('open');
+        
+        if (element.classList.contains('open')) {
+            const closeBtn = element.querySelector('.close-btn');
+            const overlay = element.querySelector('.modal-overlay');
+            
+            foodContent.onclick = (e) => {
+                e.stopPropagation();
+            };
+            
+            closeBtn.onclick = (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                element.classList.remove('open');
+            };
+            
+            overlay.onclick = (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                element.classList.remove('open');
+            };
+        }
+    }
+
+    function generateFoodResponse() {
+        const favoriteFood = document.getElementById('favoriteFood').value;
+        
+        if (!favoriteFood) {
+            document.querySelector('.food-result').textContent = "Please tell us your favorite food!";
+            return;
+        }
+
+        const compliments = [
+            "🌟 Fantastic choice! People who love",
+            "✨ Delicious! Your taste in",
+            "🎉 Amazing pick! Fans of",
+            "💫 Excellent! Enjoying",
+            "🌈 Wonderful! Your love for"
+        ];
+
+        const traits = [
+            "shows you're adventurous and fun!",
+            "means you have excellent taste!",
+            "reflects your vibrant personality!",
+            "proves you're a true food connoisseur!",
+            "demonstrates your refined palate!"
+        ];
+
+        const randomCompliment = compliments[Math.floor(Math.random() * compliments.length)];
+        const randomTrait = traits[Math.floor(Math.random() * traits.length)];
+        
+        document.querySelector('.food-result').innerHTML = 
+            `${randomCompliment}<br><span style="font-size: 1.4em; color: #ffeb3b">${favoriteFood}</span><br>${randomTrait}`;
     }
 
     function generateSuperheroName() {
