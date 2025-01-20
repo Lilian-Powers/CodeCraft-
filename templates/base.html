@@ -145,6 +145,20 @@
                 window.location.href = navLinks[currentIndex - 1];
             }
         }
+
+        // Handle floating nav visibility
+        window.addEventListener('scroll', function() {
+            const footer = document.querySelector('footer');
+            const floatingNav = document.querySelector('.floating-nav');
+            const footerRect = footer.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            
+            if (footerRect.top < windowHeight) {
+                floatingNav.style.display = 'none';
+            } else {
+                floatingNav.style.display = 'block';
+            }
+        });
     </script>
     <style>
         .floating-nav {
