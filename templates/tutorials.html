@@ -255,15 +255,17 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: rgba(0, 0, 0, 0.7);
+        background: rgba(0, 0, 0, 0.8);
         backdrop-filter: blur(5px);
         z-index: 2000000;
         opacity: 0;
         transition: opacity 0.3s ease-out;
+        pointer-events: none;
     }
 
     .project-item.open .modal-overlay {
         opacity: 1;
+        pointer-events: auto;
     }
 
     /* Common modal content styles */
@@ -889,23 +891,27 @@
     }
 
     function toggleModal(event, element, contentClass) {
-        if (event) {
-            event.preventDefault();
-            event.stopPropagation();
+        if (!event || !event.type === 'click') {
+            return; // Only proceed if this is a click event
         }
+        
+        event.preventDefault();
+        event.stopPropagation();
+        
+        closeAllModals(); // Close any open modals first
+        
+        const modalContent = element.querySelector('.' + contentClass);
+        if (!modalContent) return;
+        
+        element.classList.add('open');
+        modalContent.style.display = 'block';
+        element.querySelector('.modal-overlay').style.display = 'block';
+        document.body.classList.add('modal-open');
 
-        // Only proceed if this was triggered by a click event
-        if (event && event.type === 'click') {
-            closeAllModals(); // Close any open modals first
-
-            const modalContent = element.querySelector('.' + contentClass);
-            element.classList.add('open');
-            modalContent.style.display = 'block';
-            element.querySelector('.modal-overlay').style.display = 'block';
-            document.body.classList.add('modal-open');
-
-            // Handle close button
-            element.querySelector('.close-btn').onclick = (e) => {
+        // Handle close button
+        const closeBtn = element.querySelector('.close-btn');
+        if (closeBtn) {
+            closeBtn.onclick = (e) => {
                 e.preventDefault();
                 e.stopPropagation();
                 closeModal(element);
