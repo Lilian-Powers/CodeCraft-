@@ -919,29 +919,17 @@
 
     function positionModalAtClick(modalContent, event) {
         const rect = event.target.getBoundingClientRect();
-        const viewportHeight = window.innerHeight;
         const viewportWidth = window.innerWidth;
-        
-        // Position relative to clicked element's center
-        let top = rect.top + window.scrollY + (rect.height / 2);
-        let left = rect.left + (rect.width / 2);
         
         // Get modal dimensions after it's visible
         modalContent.style.display = 'block';
-        const modalHeight = modalContent.offsetHeight;
         const modalWidth = modalContent.offsetWidth;
         
-        // Center modal on click position
-        top -= modalHeight / 2;
-        left -= modalWidth / 2;
+        // Position just above the clicked element
+        let top = rect.top - 20; // 20px above the clicked element
+        let left = rect.left + (rect.width / 2) - (modalWidth / 2);
         
-        // Ensure modal stays within viewport
-        if (top < window.scrollY) {
-            top = window.scrollY + 20;
-        }
-        if (top + modalHeight > window.scrollY + viewportHeight) {
-            top = window.scrollY + viewportHeight - modalHeight - 20;
-        }
+        // Ensure left position stays within viewport
         if (left < 20) {
             left = 20;
         }
@@ -949,7 +937,15 @@
             left = viewportWidth - modalWidth - 20;
         }
         
-        modalContent.style.position = 'absolute';
+        // Ensure modal is always visible by scrolling if needed
+        if (top < window.scrollY) {
+            window.scrollTo({
+                top: Math.max(0, top - 20),
+                behavior: 'smooth'
+            });
+        }
+        
+        modalContent.style.position = 'fixed';
         modalContent.style.top = `${top}px`;
         modalContent.style.left = `${left}px`;
     }
