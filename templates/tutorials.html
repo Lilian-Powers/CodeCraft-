@@ -756,18 +756,13 @@
 
     .project-item:hover .project-front::after {
         opacity: 1;
-        animation: pulse 1.5s infinite;
+        animation: pulse 2s ease-in-out infinite;
     }
 
     @keyframes pulse {
         0% { transform: translate(-50%, -50%) scale(1); }
-        50% { transform: translate(-50%, -50%) scale(1.01); }
+        50% { transform: translate(-50%, -50%) scale(1.005); }
         100% { transform: translate(-50%, -50%) scale(1); }
-    }
-
-    .project-item:hover .project-front::after {
-        opacity: 1;
-        animation: pulse 2s ease-in-out infinite;
     }
 
     .tutorials-container {
@@ -886,11 +881,11 @@
             event.preventDefault();
             event.stopPropagation();
         }
-        
+
         // Only proceed if this was triggered by a click event
         if (event && event.type === 'click') {
             closeAllModals(); // Close any open modals first
-            
+
             const modalContent = element.querySelector('.' + contentClass);
             element.classList.add('open');
             modalContent.style.display = 'block';
