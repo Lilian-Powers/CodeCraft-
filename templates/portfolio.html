@@ -395,15 +395,18 @@
         </section>
 
         <!-- Certificate Modal -->
-        <div class="modal fade" id="certificateModal" tabindex="-1" aria-labelledby="certificateModalLabel" aria-hidden="true" style="z-index: 1050;">
+        <div class="modal fade" id="certificateModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="certificateModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl modal-dialog-scrollable">
                 <div class="modal-content bg-dark">
                     <div class="modal-header border-bottom border-secondary">
-                        <h5 class="modal-title" id="certificateModalLabel">Full Stack Software Development Certificate</h5>
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" style="opacity: 1;"></button>
+                        <h5 class="modal-title text-white" id="certificateModalLabel">Full Stack Software Development Certificate</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body text-center p-0" style="overflow-y: auto; max-height: 80vh;">
-                        <img src="/static/certificate.jpg" alt="TECH CAMP Certificate" style="max-width: 100%; height: auto; border-radius: 8px; object-fit: contain;">
+                    <div class="modal-body text-center p-0">
+                        <img src="/static/certificate.jpg" alt="TECH CAMP Certificate" style="max-width: 100%; height: auto; border-radius: 8px;">
+                    </div>
+                    <div class="modal-footer border-top border-secondary">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
