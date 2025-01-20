@@ -60,8 +60,8 @@
             <p class="tutor-message">With the skills you've learned so far, I'm confident you can tackle these exciting projects! Get creative and make them your own. If you'd like to see video tutorials for these projects, comment the word "projects" on any of our YouTube videos above.</p>
         </div>
         <div class="projects-grid">
-            <div class="project-item age-calculator" onclick="toggleCalculator(this)">
-                <div class="project-front">1. Age Calculator</div>
+            <div class="project-item age-calculator">
+                <div class="project-front" onclick="toggleCalculator(this.parentElement)">1. Age Calculator</div>
                 <div class="calculator-content">
                     <h3>Age Calculator</h3>
                     <div class="code-example">
@@ -151,12 +151,13 @@ print(f"You are {age} years old!")</code></pre>
         border-radius: 10px;
         box-shadow: 0 8px 16px rgba(0,0,0,0.15);
         padding: 1.5rem;
-        z-index: 100;
+        z-index: 1000;
         margin-top: 10px;
         text-align: left;
         transform: translateY(-10px);
         opacity: 0;
         transition: all 0.3s ease;
+        cursor: default;
     }
 
     .age-calculator.open .calculator-content {
