@@ -133,7 +133,8 @@ print(f"You are {age} years old!")</code></pre>
         font-size: 1.1rem;
         color: var(--text-color);
         text-align: center;
-        position: relative; /* Added for absolute positioning of calculator-content */
+        position: relative;
+        cursor: pointer;
     }
 
     .project-item:hover {
@@ -297,6 +298,9 @@ print(f"You are {age} years old!")</code></pre>
 
 <script>
     function toggleCalculator(element) {
+        const calculatorContent = element.querySelector('.calculator-content');
+        if (!calculatorContent) return;
+        
         // Close any other open calculators
         document.querySelectorAll('.age-calculator.open').forEach(calc => {
             if (calc !== element) calc.classList.remove('open');
@@ -305,13 +309,22 @@ print(f"You are {age} years old!")</code></pre>
         // Toggle current calculator
         element.classList.toggle('open');
         
-        // Close when clicking outside
-        document.addEventListener('click', function closeCalc(e) {
-            if (!element.contains(e.target)) {
-                element.classList.remove('open');
-                document.removeEventListener('click', closeCalc);
-            }
+        // Prevent clicks inside calculator from closing it
+        calculatorContent.addEventListener('click', (e) => {
+            e.stopPropagation();
         });
+        
+        // Close when clicking outside
+        if (element.classList.contains('open')) {
+            setTimeout(() => {
+                document.addEventListener('click', function closeCalc(e) {
+                    if (!calculatorContent.contains(e.target) && !element.contains(e.target)) {
+                        element.classList.remove('open');
+                        document.removeEventListener('click', closeCalc);
+                    }
+                });
+            }, 0);
+        }
     }
 
     function calculateAge(button) {
