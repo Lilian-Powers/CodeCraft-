@@ -761,7 +761,7 @@
 
     @keyframes pulse {
         0% { transform: translate(-50%, -50%) scale(1); }
-        50% { transform: translate(-50%, -50%) scale(1.05); }
+        50% { transform: translate(-50%, -50%) scale(1.02); }
         100% { transform: translate(-50%, -50%) scale(1); }
     }
 
@@ -879,16 +879,14 @@
     function toggleModal(event, element, contentClass) {
         event.preventDefault();
         event.stopPropagation();
-
+        
+        closeAllModals(); // Close any open modals first
+        
         const modalContent = element.querySelector('.' + contentClass);
-
-        if (!element.classList.contains('open')) {
-            closeAllModals();
-            element.classList.add('open');
-            modalContent.style.display ='block';
-            element.querySelector('.modal-overlay').style.display = 'block';
-            document.body.classList.add('modal-open');
-        }
+        element.classList.add('open');
+        modalContent.style.display = 'block';
+        element.querySelector('.modal-overlay').style.display = 'block';
+        document.body.classList.add('modal-open');
 
         // Handle close button
         element.querySelector('.close-btn').onclick = (e) => {
