@@ -773,8 +773,38 @@
 
     .project-front {
         cursor: pointer;
+        position: relative;
     }
 
+    .project-front::after {
+        content: "Click to play! 🎮";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: linear-gradient(145deg, #4361ee, #3f37c9);
+        color: white;
+        padding: 0.8rem 1.5rem;
+        border-radius: 10px;
+        font-size: 1.1rem;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+        white-space: nowrap;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        z-index: 2;
+    }
+
+    .project-item:hover .project-front::after {
+        opacity: 1;
+        animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+        0% { transform: translate(-50%, -50%) scale(1); }
+        50% { transform: translate(-50%, -50%) scale(1.05); }
+        100% { transform: translate(-50%, -50%) scale(1); }
+    }
 
     .tutorials-container {
         padding: 4rem 0;
@@ -859,39 +889,39 @@
     function toggleCalculator(element) {
         event.preventDefault();
         event.stopPropagation();
-        
+
         const calculatorContent = element.querySelector('.calculator-content');
-        
-        // Close all other calculators
-        document.querySelectorAll('.age-calculator').forEach(calc => {
-            if (calc !== element) {
-                calc.classList.remove('open');
+
+        // Close all other modals
+        document.querySelectorAll('.project-item').forEach(item => {
+            if (item !== element) {
+                item.classList.remove('open');
             }
         });
-        
+
         element.classList.toggle('open');
-        
+
         if (element.classList.contains('open')) {
             const closeBtn = element.querySelector('.close-btn');
             const overlay = element.querySelector('.modal-overlay');
-            
+
             // Prevent calculator from closing when clicking inside
             calculatorContent.onclick = (e) => {
                 e.stopPropagation();
             };
-            
+
             closeBtn.onclick = (e) => {
                 e.preventDefault();
                 e.stopPropagation();
                 element.classList.remove('open');
             };
-            
+
             overlay.onclick = (e) => {
                 e.preventDefault();
                 e.stopPropagation();
                 element.classList.remove('open');
             };
-            
+
             // Close calculator when clicking outside
             document.addEventListener('click', function closeOutside(e) {
                 if (!calculatorContent.contains(e.target) && !e.target.closest('.project-front')) {
@@ -929,31 +959,32 @@
     function toggleSuperheroGenerator(element) {
         event.preventDefault();
         event.stopPropagation();
-        
+
         const heroContent = element.querySelector('.superhero-content');
-        
-        document.querySelectorAll('.superhero-generator').forEach(gen => {
-            if (gen !== element) {
-                gen.classList.remove('open');
+
+        // Close all other modals
+        document.querySelectorAll('.project-item').forEach(item => {
+            if (item !== element) {
+                item.classList.remove('open');
             }
         });
-        
+
         element.classList.toggle('open');
-        
+
         if (element.classList.contains('open')) {
             const closeBtn = element.querySelector('.close-btn');
             const overlay = element.querySelector('.modal-overlay');
-            
+
             heroContent.onclick = (e) => {
                 e.stopPropagation();
             };
-            
+
             closeBtn.onclick = (e) => {
                 e.preventDefault();
                 e.stopPropagation();
                 element.classList.remove('open');
             };
-            
+
             overlay.onclick = (e) => {
                 e.preventDefault();
                 e.stopPropagation();
@@ -965,31 +996,32 @@
     function toggleFoodFavorites(element) {
         event.preventDefault();
         event.stopPropagation();
-        
+
         const foodContent = element.querySelector('.food-content');
-        
-        document.querySelectorAll('.food-favorites').forEach(food => {
-            if (food !== element) {
-                food.classList.remove('open');
+
+        // Close all other modals
+        document.querySelectorAll('.project-item').forEach(item => {
+            if (item !== element) {
+                item.classList.remove('open');
             }
         });
-        
+
         element.classList.toggle('open');
-        
+
         if (element.classList.contains('open')) {
             const closeBtn = element.querySelector('.close-btn');
             const overlay = element.querySelector('.modal-overlay');
-            
+
             foodContent.onclick = (e) => {
                 e.stopPropagation();
             };
-            
+
             closeBtn.onclick = (e) => {
                 e.preventDefault();
                 e.stopPropagation();
                 element.classList.remove('open');
             };
-            
+
             overlay.onclick = (e) => {
                 e.preventDefault();
                 e.stopPropagation();
@@ -1000,7 +1032,7 @@
 
     function generateFoodResponse() {
         const favoriteFood = document.getElementById('favoriteFood').value;
-        
+
         if (!favoriteFood) {
             document.querySelector('.food-result').textContent = "Please tell us your favorite food!";
             return;
@@ -1024,7 +1056,7 @@
 
         const randomCompliment = compliments[Math.floor(Math.random() * compliments.length)];
         const randomTrait = traits[Math.floor(Math.random() * traits.length)];
-        
+
         document.querySelector('.food-result').innerHTML = 
             `${randomCompliment}<br><span style="font-size: 1.4em; color: #ffeb3b">${favoriteFood}</span><br>${randomTrait}`;
     }
@@ -1032,31 +1064,32 @@
     function toggleVacationDreams(element) {
         event.preventDefault();
         event.stopPropagation();
-        
+
         const vacationContent = element.querySelector('.vacation-content');
-        
-        document.querySelectorAll('.vacation-dreams').forEach(vac => {
-            if (vac !== element) {
-                vac.classList.remove('open');
+
+        // Close all other modals
+        document.querySelectorAll('.project-item').forEach(item => {
+            if (item !== element) {
+                item.classList.remove('open');
             }
         });
-        
+
         element.classList.toggle('open');
-        
+
         if (element.classList.contains('open')) {
             const closeBtn = element.querySelector('.close-btn');
             const overlay = element.querySelector('.modal-overlay');
-            
+
             vacationContent.onclick = (e) => {
                 e.stopPropagation();
             };
-            
+
             closeBtn.onclick = (e) => {
                 e.preventDefault();
                 e.stopPropagation();
                 element.classList.remove('open');
             };
-            
+
             overlay.onclick = (e) => {
                 e.preventDefault();
                 e.stopPropagation();
@@ -1067,7 +1100,7 @@
 
     function generateVacationResponse() {
         const destination = document.getElementById('dreamDestination').value;
-        
+
         if (!destination) {
             document.querySelector('.vacation-result').textContent = "Please tell us your dream destination!";
             return;
@@ -1091,7 +1124,7 @@
 
         const randomCompliment = compliments[Math.floor(Math.random() * compliments.length)];
         const randomActivity = activities[Math.floor(Math.random() * activities.length)];
-        
+
         document.querySelector('.vacation-result').innerHTML = 
             `${randomCompliment}<br><span style="font-size: 1.4em; color: #e3f2fd">${destination}</span><br>${randomActivity}`;
     }
@@ -1099,31 +1132,32 @@
     function toggleComplimentMachine(element) {
         event.preventDefault();
         event.stopPropagation();
-        
+
         const complimentContent = element.querySelector('.compliment-content');
-        
-        document.querySelectorAll('.compliment-machine').forEach(comp => {
-            if (comp !== element) {
-                comp.classList.remove('open');
+
+        // Close all other modals
+        document.querySelectorAll('.project-item').forEach(item => {
+            if (item !== element) {
+                item.classList.remove('open');
             }
         });
-        
+
         element.classList.toggle('open');
-        
+
         if (element.classList.contains('open')) {
             const closeBtn = element.querySelector('.close-btn');
             const overlay = element.querySelector('.modal-overlay');
-            
+
             complimentContent.onclick = (e) => {
                 e.stopPropagation();
             };
-            
+
             closeBtn.onclick = (e) => {
                 e.preventDefault();
                 e.stopPropagation();
                 element.classList.remove('open');
             };
-            
+
             overlay.onclick = (e) => {
                 e.preventDefault();
                 e.stopPropagation();
@@ -1134,7 +1168,7 @@
 
     function generateCompliment() {
         const name = document.getElementById('userName').value;
-        
+
         if (!name) {
             document.querySelector('.compliment-result').textContent = "Please tell us your name!";
             return;
@@ -1158,7 +1192,7 @@
 
         const randomCompliment = compliments[Math.floor(Math.random() * compliments.length)];
         const randomAffirmation = affirmations[Math.floor(Math.random() * affirmations.length)];
-        
+
         document.querySelector('.compliment-result').innerHTML = 
             `${randomCompliment}<br><span style="font-size: 1.4em; color: #FFB6C1">${name}</span><br>${randomAffirmation}`;
     }
@@ -1166,14 +1200,14 @@
     function generateSuperheroName() {
         const firstName = document.getElementById('firstName').value;
         const favoriteColor = document.getElementById('favoriteColor').value;
-        
+
         if (!firstName || !favoriteColor) {
             document.querySelector('.hero-result').textContent = "Please fill in both fields!";
             return;
         }
 
         const superheroName = `${favoriteColor.charAt(0).toUpperCase() + favoriteColor.slice(1)} ${firstName.charAt(0).toUpperCase() + firstName.slice(1)}`;
-        
+
         const compliments = [
             "✨ Behold the mighty",
             "⚡ All hail the powerful",
@@ -1181,7 +1215,7 @@
             "💫 With great power comes",
             "🦸‍♂️ Stand in awe of the legendary"
         ];
-        
+
         const powers = [
             "Master of the Elements",
             "Defender of Justice",
@@ -1192,7 +1226,7 @@
 
         const randomCompliment = compliments[Math.floor(Math.random() * compliments.length)];
         const randomPower = powers[Math.floor(Math.random() * powers.length)];
-        
+
         document.querySelector('.hero-result').innerHTML = 
             `${randomCompliment}<br><span style="font-size: 1.4em; color: #fff176">${superheroName}</span><br>${randomPower}`;
     }
@@ -1200,31 +1234,32 @@
     function toggleTempConverter(element) {
         event.preventDefault();
         event.stopPropagation();
-        
+
         const tempContent = element.querySelector('.temp-content');
-        
-        document.querySelectorAll('.temp-converter').forEach(temp => {
-            if (temp !== element) {
-                temp.classList.remove('open');
+
+        // Close all other modals
+        document.querySelectorAll('.project-item').forEach(item => {
+            if (item !== element) {
+                item.classList.remove('open');
             }
         });
-        
+
         element.classList.toggle('open');
-        
+
         if (element.classList.contains('open')) {
             const closeBtn = element.querySelector('.close-btn');
             const overlay = element.querySelector('.modal-overlay');
-            
+
             tempContent.onclick = (e) => {
                 e.stopPropagation();
             };
-            
+
             closeBtn.onclick = (e) => {
                 e.preventDefault();
                 e.stopPropagation();
                 element.classList.remove('open');
             };
-            
+
             overlay.onclick = (e) => {
                 e.preventDefault();
                 e.stopPropagation();
@@ -1236,31 +1271,32 @@
     function toggleStoryMaker(element) {
         event.preventDefault();
         event.stopPropagation();
-        
+
         const storyContent = element.querySelector('.story-content');
-        
-        document.querySelectorAll('.story-maker').forEach(story => {
-            if (story !== element) {
-                story.classList.remove('open');
+
+        // Close all other modals
+        document.querySelectorAll('.project-item').forEach(item => {
+            if (item !== element) {
+                item.classList.remove('open');
             }
         });
-        
+
         element.classList.toggle('open');
-        
+
         if (element.classList.contains('open')) {
             const closeBtn = element.querySelector('.close-btn');
             const overlay = element.querySelector('.modal-overlay');
-            
+
             storyContent.onclick = (e) => {
                 e.stopPropagation();
             };
-            
+
             closeBtn.onclick = (e) => {
                 e.preventDefault();
                 e.stopPropagation();
                 element.classList.remove('open');
             };
-            
+
             overlay.onclick = (e) => {
                 e.preventDefault();
                 e.stopPropagation();
@@ -1273,7 +1309,7 @@
         const name = document.getElementById('characterName').value;
         const place = document.getElementById('storyPlace').value;
         const activity = document.getElementById('funActivity').value;
-        
+
         if (!name || !place || !activity) {
             document.querySelector('.story-result').textContent = "Please fill in all the story elements!";
             return;
@@ -1306,7 +1342,7 @@
         const randomIntro = intros[Math.floor(Math.random() * intros.length)];
         const randomEnding = endings[Math.floor(Math.random() * endings.length)];
         const randomCompliment = compliments[Math.floor(Math.random() * compliments.length)];
-        
+
         document.querySelector('.story-result').innerHTML = 
             `${randomIntro}<br><span style="font-size: 1.2em; color: #FFE0B2">${name} went to ${place} to ${activity}</span><br>${randomEnding}<br><br>✨ ${randomCompliment} ✨`;
     }
@@ -1314,31 +1350,32 @@
     function toggleTalkingComputer(element) {
         event.preventDefault();
         event.stopPropagation();
-        
+
         const talkingContent = element.querySelector('.talking-content');
-        
-        document.querySelectorAll('.talking-computer').forEach(comp => {
-            if (comp !== element) {
-                comp.classList.remove('open');
+
+        // Close all other modals
+        document.querySelectorAll('.project-item').forEach(item => {
+            if (item !== element) {
+                item.classList.remove('open');
             }
         });
-        
+
         element.classList.toggle('open');
-        
+
         if (element.classList.contains('open')) {
             const closeBtn = element.querySelector('.close-btn');
             const overlay = element.querySelector('.modal-overlay');
-            
+
             talkingContent.onclick = (e) => {
                 e.stopPropagation();
             };
-            
+
             closeBtn.onclick = (e) => {
                 e.preventDefault();
                 e.stopPropagation();
                 element.classList.remove('open');
             };
-            
+
             overlay.onclick = (e) => {
                 e.preventDefault();
                 e.stopPropagation();
@@ -1351,7 +1388,7 @@
         const name = document.getElementById('userName').value;
         const color = document.getElementById('favoriteColor').value;
         const animal = document.getElementById('favoriteAnimal').value;
-        
+
         if (!name || !color || !animal) {
             document.querySelector('.chat-result').textContent = "Please answer all the questions!";
             return;
@@ -1384,7 +1421,7 @@
         const randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
         const randomColorResponse = colorResponses[Math.floor(Math.random() * colorResponses.length)];
         const randomAnimalResponse = animalResponses[Math.floor(Math.random() * animalResponses.length)];
-        
+
         document.querySelector('.chat-result').innerHTML = 
             `${randomGreeting}<br><span style="font-size: 1.4em; color: #E0E7FF">${name}</span>!<br><br>
             ${color} ${randomColorResponse}<br><br>
@@ -1394,7 +1431,7 @@
 
     function convertTemperature() {
         const celsius = parseFloat(document.getElementById('celsiusInput').value);
-        
+
         if (isNaN(celsius)) {
             document.querySelector('.temp-result').textContent = "Please enter a valid temperature!";
             return;
@@ -1411,7 +1448,7 @@
         ];
 
         const randomCompliment = compliments[Math.floor(Math.random() * compliments.length)];
-        
+
         document.querySelector('.temp-result').innerHTML = 
             `${randomCompliment}<br><span style="font-size: 1.4em; color: #E8E8E8">${celsius}°C = ${fahrenheit.toFixed(1)}°F</span>`;
     }
