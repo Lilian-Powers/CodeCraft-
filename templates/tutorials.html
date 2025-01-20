@@ -146,7 +146,22 @@
                     </div>
                 </div>
             </div>
-            <div class="project-item">7. Funny Story Maker</div>
+            <div class="project-item story-maker" onclick="toggleStoryMaker(this)">
+                <div class="project-front">7. Funny Story Maker</div>
+                <div class="modal-overlay"></div>
+                <div class="story-content">
+                    <button class="close-btn">&times;</button>
+                    <h3>📖 Story Magic Creator ✨</h3>
+                    <p class="story-subtitle">Let's create an amazing story together!</p>
+                    <div class="story-interactive">
+                        <input type="text" id="characterName" placeholder="Enter a character name" class="story-input">
+                        <input type="text" id="storyPlace" placeholder="Enter a magical place" class="story-input">
+                        <input type="text" id="funActivity" placeholder="Enter a fun activity" class="story-input">
+                        <button onclick="generateStory()" class="generate-btn story-btn">Create Magic!</button>
+                        <div class="story-result"></div>
+                    </div>
+                </div>
+            </div>
             <div class="project-item">8. Talking Computer</div>
         </div>
     </div>
@@ -629,6 +644,62 @@
         font-size: 1.2rem;
     }
 
+    .story-maker .story-content {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 320px;
+        background: linear-gradient(145deg, #FF6B6B, #FF8E53);
+        border-radius: 20px;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        padding: 2rem;
+        z-index: 100000;
+        text-align: center;
+        color: white;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .story-maker.open .story-content {
+        display: block;
+        animation: popIn 0.3s ease-out forwards;
+    }
+
+    .story-input {
+        width: 100%;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border: 2px solid rgba(255,255,255,0.2);
+        border-radius: 15px;
+        background: rgba(255,255,255,0.1);
+        color: white;
+        font-size: 1.1rem;
+        text-align: center;
+    }
+
+    .story-input::placeholder {
+        color: rgba(255,255,255,0.7);
+    }
+
+    .story-btn {
+        background: #FF8E53;
+    }
+
+    .story-btn:hover {
+        background: #FF6B6B;
+    }
+
+    .story-result {
+        font-weight: bold;
+        margin-top: 1rem;
+        padding: 1rem;
+        background: rgba(255,255,255,0.1);
+        border-radius: 15px;
+        font-size: 1.2rem;
+        line-height: 1.6;
+    }
+
     .project-front {
         cursor: pointer;
     }
@@ -1089,6 +1160,84 @@
                 element.classList.remove('open');
             };
         }
+    }
+
+    function toggleStoryMaker(element) {
+        event.preventDefault();
+        event.stopPropagation();
+        
+        const storyContent = element.querySelector('.story-content');
+        
+        document.querySelectorAll('.story-maker').forEach(story => {
+            if (story !== element) {
+                story.classList.remove('open');
+            }
+        });
+        
+        element.classList.toggle('open');
+        
+        if (element.classList.contains('open')) {
+            const closeBtn = element.querySelector('.close-btn');
+            const overlay = element.querySelector('.modal-overlay');
+            
+            storyContent.onclick = (e) => {
+                e.stopPropagation();
+            };
+            
+            closeBtn.onclick = (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                element.classList.remove('open');
+            };
+            
+            overlay.onclick = (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                element.classList.remove('open');
+            };
+        }
+    }
+
+    function generateStory() {
+        const name = document.getElementById('characterName').value;
+        const place = document.getElementById('storyPlace').value;
+        const activity = document.getElementById('funActivity').value;
+        
+        if (!name || !place || !activity) {
+            document.querySelector('.story-result').textContent = "Please fill in all the story elements!";
+            return;
+        }
+
+        const intros = [
+            "🌟 In a magical adventure,",
+            "✨ On a wonderful day,",
+            "🎉 During an exciting journey,",
+            "💫 In an amazing twist of fate,",
+            "🌈 Through a delightful series of events,"
+        ];
+
+        const endings = [
+            "and created unforgettable memories!",
+            "and had the time of their life!",
+            "and discovered hidden talents!",
+            "and made everyone smile!",
+            "and became a local legend!"
+        ];
+
+        const compliments = [
+            "Your creativity is absolutely incredible!",
+            "What an amazing story you've crafted!",
+            "You're a natural storyteller!",
+            "Your imagination is truly inspiring!",
+            "This story shows your brilliant mind!"
+        ];
+
+        const randomIntro = intros[Math.floor(Math.random() * intros.length)];
+        const randomEnding = endings[Math.floor(Math.random() * endings.length)];
+        const randomCompliment = compliments[Math.floor(Math.random() * compliments.length)];
+        
+        document.querySelector('.story-result').innerHTML = 
+            `${randomIntro}<br><span style="font-size: 1.2em; color: #FFE0B2">${name} went to ${place} to ${activity}</span><br>${randomEnding}<br><br>✨ ${randomCompliment} ✨`;
     }
 
     function convertTemperature() {
