@@ -918,15 +918,17 @@
     }
 
     function positionModalAtClick(modalContent, event) {
-        const rect = event.target.getBoundingClientRect();
+        const projectItem = event.currentTarget;
+        const rect = projectItem.getBoundingClientRect();
         const viewportWidth = window.innerWidth;
         
         // Get modal dimensions after it's visible
         modalContent.style.display = 'block';
         const modalWidth = modalContent.offsetWidth;
+        const modalHeight = modalContent.offsetHeight;
         
-        // Position just above the clicked element
-        let top = rect.top - 20; // 20px above the clicked element
+        // Calculate position above the project item
+        let top = rect.top + window.scrollY - modalHeight - 20;
         let left = rect.left + (rect.width / 2) - (modalWidth / 2);
         
         // Ensure left position stays within viewport
@@ -937,17 +939,15 @@
             left = viewportWidth - modalWidth - 20;
         }
         
-        // Ensure modal is always visible by scrolling if needed
+        // If modal would appear above viewport, position it below the item instead
         if (top < window.scrollY) {
-            window.scrollTo({
-                top: Math.max(0, top - 20),
-                behavior: 'smooth'
-            });
+            top = rect.bottom + window.scrollY + 20;
         }
         
-        modalContent.style.position = 'fixed';
+        modalContent.style.position = 'absolute';
         modalContent.style.top = `${top}px`;
         modalContent.style.left = `${left}px`;
+        modalContent.style.zIndex = '2000000';
     }
 
     function toggleModal(event, element, contentClass) {
