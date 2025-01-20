@@ -284,10 +284,19 @@
         text-align: center;
         color: white;
         font-family: 'Poppins', sans-serif;
-        background-color: rgba(0, 0, 0, 0.9);
+        /* background-color: rgba(0, 0, 0, 0.9); */
         margin: 0;
         pointer-events: auto;
     }
+
+    /* Modal content backgrounds */
+    .food-content { background: linear-gradient(145deg, #ff9800, #ff5722); }
+    .vacation-content { background: linear-gradient(145deg, #2196f3, #03a9f4); }
+    .compliment-content { background: linear-gradient(145deg, #FF1493, #FF69B4); }
+    .temp-content { background: linear-gradient(145deg, #8E44AD, #9B59B6); }
+    .story-content { background: linear-gradient(145deg, #FF6B6B, #FF8E53); }
+    .talking-content { background: linear-gradient(145deg, #6C5CE7, #a55eea); }
+
 
     /* Ensure modals stay above all other content */
     .project-item.open .modal-overlay {
@@ -464,27 +473,6 @@
         box-shadow: 0 6px 20px rgba(0,0,0,0.25);
     }
 
-    .food-favorites .food-content {
-        display: none;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 320px;
-        background: linear-gradient(145deg, #ff9800, #ff5722);
-        border-radius: 20px;
-        box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-        padding: 2rem;
-        z-index: 100000;
-        text-align: center;
-        color: white;
-        font-family: 'Poppins', sans-serif;
-    }
-
-    .food-favorites.open .food-content {
-        display: block;
-        animation: popIn 0.3s ease-out forwards;
-    }
 
     .food-input {
         width: 100%;
@@ -519,27 +507,6 @@
         font-size: 1.2rem;
     }
 
-    .vacation-dreams .vacation-content {
-        display: none;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 320px;
-        background: linear-gradient(145deg, #2196f3, #03a9f4);
-        border-radius: 20px;
-        box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-        padding: 2rem;
-        z-index: 100000;
-        text-align: center;
-        color: white;
-        font-family: 'Poppins', sans-serif;
-    }
-
-    .vacation-dreams.open .vacation-content {
-        display: block;
-        animation: popIn 0.3s ease-out forwards;
-    }
 
     .vacation-input {
         width: 100%;
@@ -574,27 +541,6 @@
         font-size: 1.2rem;
     }
 
-    .compliment-machine .compliment-content {
-        display: none;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 320px;
-        background: linear-gradient(145deg, #FF1493, #FF69B4);
-        border-radius: 20px;
-        box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-        padding: 2rem;
-        z-index: 100000;
-        text-align: center;
-        color: white;
-        font-family: 'Poppins', sans-serif;
-    }
-
-    .compliment-machine.open .compliment-content {
-        display: block;
-        animation: popIn 0.3s ease-out forwards;
-    }
 
     .compliment-input {
         width: 100%;
@@ -629,27 +575,6 @@
         font-size: 1.2rem;
     }
 
-    .temp-converter .temp-content {
-        display: none;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 320px;
-        background: linear-gradient(145deg, #8E44AD, #9B59B6);
-        border-radius: 20px;
-        box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-        padding: 2rem;
-        z-index: 100000;
-        text-align: center;
-        color: white;
-        font-family: 'Poppins', sans-serif;
-    }
-
-    .temp-converter.open .temp-content {
-        display: block;
-        animation: popIn 0.3s ease-out forwards;
-    }
 
     .temp-input {
         width: 100%;
@@ -684,27 +609,6 @@
         font-size: 1.2rem;
     }
 
-    .story-maker .story-content {
-        display: none;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 320px;
-        background: linear-gradient(145deg, #FF6B6B, #FF8E53);
-        border-radius: 20px;
-        box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-        padding: 2rem;
-        z-index: 100000;
-        text-align: center;
-        color: white;
-        font-family: 'Poppins', sans-serif;
-    }
-
-    .story-maker.open .story-content {
-        display: block;
-        animation: popIn 0.3s ease-out forwards;
-    }
 
     .story-input {
         width: 100%;
@@ -740,27 +644,6 @@
         line-height: 1.6;
     }
 
-    .talking-computer .talking-content {
-        display: none;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 320px;
-        background: linear-gradient(145deg, #6C5CE7, #a55eea);
-        border-radius: 20px;
-        box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-        padding: 2rem;
-        z-index: 100000;
-        text-align: center;
-        color: white;
-        font-family: 'Poppins', sans-serif;
-    }
-
-    .talking-computer.open .talking-content {
-        display: block;
-        animation: popIn 0.3s ease-out forwards;
-    }
 
     .chat-input {
         width: 100%;
@@ -921,16 +804,16 @@
         const projectItem = event.currentTarget;
         const rect = projectItem.getBoundingClientRect();
         const viewportWidth = window.innerWidth;
-        
+
         // Get modal dimensions after it's visible
         modalContent.style.display = 'block';
         const modalWidth = modalContent.offsetWidth;
         const modalHeight = modalContent.offsetHeight;
-        
+
         // Calculate position above the project item
         let top = rect.top + window.scrollY - modalHeight - 20;
         let left = rect.left + (rect.width / 2) - (modalWidth / 2);
-        
+
         // Ensure left position stays within viewport
         if (left < 20) {
             left = 20;
@@ -938,12 +821,12 @@
         if (left + modalWidth > viewportWidth - 20) {
             left = viewportWidth - modalWidth - 20;
         }
-        
+
         // If modal would appear above viewport, position it below the item instead
         if (top < window.scrollY) {
             top = rect.bottom + window.scrollY + 20;
         }
-        
+
         modalContent.style.position = 'absolute';
         modalContent.style.top = `${top}px`;
         modalContent.style.left = `${left}px`;
