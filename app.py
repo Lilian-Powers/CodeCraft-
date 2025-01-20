@@ -30,6 +30,13 @@ def add_basic_security(response):
     response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
     response.headers['Pragma'] = 'no-cache'
     response.headers['Expires'] = '0'
+    
+    # Store last visited page
+    if request.endpoint and request.method == 'GET' and response.status_code == 200:
+        excluded_routes = ['login', 'register', 'logout', 'static']
+        if request.endpoint not in excluded_routes:
+            session['last_page'] = request.url
+            
     return response
 app.permanent_session_lifetime = timedelta(days=30)
 app.config['SESSION_TYPE'] = 'filesystem'
@@ -479,7 +486,7 @@ def login():
                         session['email'] = user[0]
                         session['first_name'] = user[2] if user[2] else email.split('@')[0]
                         flash('Login successful! Welcome back to CodeCraft Academy.', 'success')
-                        return redirect(url_for('home'))
+                        return redirect(session.get('last_page', url_for('home')))
                     else:
                         flash('Incorrect password. Please try again.', 'error')
                 else:
