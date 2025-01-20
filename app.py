@@ -13,8 +13,13 @@ import base64
 import sqlite3
 
 app = Flask(__name__)
-if not os.environ.get('SECRET_KEY'):
-    raise ValueError("SECRET_KEY must be set in Replit Secrets")
+
+# Verify all required environment variables
+required_env_vars = ['SECRET_KEY', 'MAIL_USERNAME', 'MAIL_PASSWORD']
+missing_vars = [var for var in required_env_vars if not os.environ.get(var)]
+if missing_vars:
+    raise ValueError(f"Missing required environment variables: {', '.join(missing_vars)}")
+
 app.secret_key = os.environ['SECRET_KEY']
 
 # Basic security settings
