@@ -298,7 +298,6 @@
         box-sizing: border-box;
         overscroll-behavior: contain;
         -webkit-overflow-scrolling: touch;
-        display: flex;
         flex-direction: column;
         gap: 1rem;
     }
@@ -891,7 +890,7 @@
     }
 
     function toggleModal(event, element, contentClass) {
-        if (!event || !event.type === 'click') {
+        if (!event || event.type !== 'click') {
             return; // Only proceed if this is a click event
         }
         
@@ -903,10 +902,12 @@
         const modalContent = element.querySelector('.' + contentClass);
         if (!modalContent) return;
         
-        element.classList.add('open');
-        modalContent.style.display = 'block';
-        element.querySelector('.modal-overlay').style.display = 'block';
-        document.body.classList.add('modal-open');
+        requestAnimationFrame(() => {
+            element.classList.add('open');
+            modalContent.style.display = 'block';
+            element.querySelector('.modal-overlay').style.display = 'block';
+            document.body.classList.add('modal-open');
+        });
 
         // Handle close button
         const closeBtn = element.querySelector('.close-btn');
