@@ -275,11 +275,11 @@
         left: 50%;
         transform: translate(-50%, -50%);
         width: min(90vw, 400px);
-        max-height: 85vh;
+        max-height: 90vh;
         overflow-y: auto;
         border-radius: 20px;
         box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-        padding: 1rem;
+        padding: 2rem;
         margin: 0;
         z-index: 2000001;
         text-align: center;
@@ -290,6 +290,9 @@
         box-sizing: border-box;
         overscroll-behavior: contain;
         -webkit-overflow-scrolling: touch;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
     }
 
     /* Ensure modal content is always visible on small screens */
