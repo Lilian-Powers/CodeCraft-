@@ -183,6 +183,13 @@
 </div>
 
 <style>
+    body.modal-open {
+        overflow: hidden;
+        padding-right: 17px; /* Compensate for scrollbar disappearance */
+        position: fixed;
+        width: 100%;
+    }
+    
     .practice-projects {
         max-width: 1200px;
         margin: 4rem auto;
@@ -254,7 +261,9 @@
         right: 0;
         bottom: 0;
         background: rgba(0, 0, 0, 0.7);
-        z-index: 99998;
+        z-index: 999998;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
     }
 
     /* Common modal content styles */
@@ -268,6 +277,9 @@
     .talking-content {
         display: none;
         position: fixed;
+        will-change: transform;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%) !important;
