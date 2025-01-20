@@ -160,11 +160,7 @@
     .age-calculator.open .calculator-content {
         display: block;
         animation: popIn 0.3s ease-out forwards;
-        pointer-events: auto;
-    }
-
-    .calculator-interactive * {
-        pointer-events: auto;
+        pointer-events: all;
     }
 
     .modal-overlay {
@@ -180,6 +176,11 @@
 
     .age-calculator.open .modal-overlay {
         display: block;
+        pointer-events: all;
+    }
+
+    .calculator-content {
+        pointer-events: all !important;
     }
 
     @keyframes popIn {
@@ -361,7 +362,17 @@
 
 <script>
     function toggleCalculator(element) {
+        event.preventDefault();
         event.stopPropagation();
+        
+        // Close any other open calculators first
+        const openCalculators = document.querySelectorAll('.age-calculator.open');
+        openCalculators.forEach(calc => {
+            if (calc !== element) {
+                calc.classList.remove('open');
+            }
+        });
+        
         element.classList.toggle('open');
         
         if (element.classList.contains('open')) {
@@ -369,17 +380,15 @@
             const overlay = element.querySelector('.modal-overlay');
             
             closeBtn.onclick = (e) => {
+                e.preventDefault();
                 e.stopPropagation();
                 element.classList.remove('open');
             };
             
             overlay.onclick = (e) => {
+                e.preventDefault();
                 e.stopPropagation();
                 element.classList.remove('open');
-            };
-            
-            element.querySelector('.calculator-content').onclick = (e) => {
-                e.stopPropagation();
             };
         }
     }
