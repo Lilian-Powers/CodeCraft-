@@ -923,8 +923,24 @@
 
     function positionModalAtClick(modalContent, event) {
         const rect = event.target.getBoundingClientRect();
-        modalContent.style.top = (rect.top + window.scrollY) + 'px';
-        modalContent.style.left = (rect.left + window.scrollX) + 'px';
+        const viewportHeight = window.innerHeight;
+        const viewportWidth = window.innerWidth;
+        const modalHeight = 400; // Approximate modal height
+        const modalWidth = 320;  // Modal width from CSS
+        
+        let top = rect.top + window.scrollY;
+        let left = rect.left + window.scrollX;
+        
+        // Keep modal within viewport
+        if (top + modalHeight > window.scrollY + viewportHeight) {
+            top = window.scrollY + viewportHeight - modalHeight - 20;
+        }
+        if (left + modalWidth > window.scrollX + viewportWidth) {
+            left = window.scrollX + viewportWidth - modalWidth - 20;
+        }
+        
+        modalContent.style.top = top + 'px';
+        modalContent.style.left = left + 'px';
     }
 
     function toggleCalculator(element) {
