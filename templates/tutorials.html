@@ -923,30 +923,37 @@
 
     function positionModalAtClick(modalContent, event) {
         const rect = event.target.getBoundingClientRect();
-        const modalHeight = 400; // Fixed height for consistency
-        const modalWidth = 320;  // Fixed width from CSS
-
-        // Position modal centered on click
-        let top = event.clientY - modalHeight/2;
-        let left = event.clientX - modalWidth/2;
-
-        // Keep modal within viewport
         const viewportHeight = window.innerHeight;
         const viewportWidth = window.innerWidth;
-
-        // Adjust vertical position
-        if (top < 0) top = 20;
-        if (top + modalHeight > viewportHeight) {
-            top = viewportHeight - modalHeight - 20;
+        
+        // Position relative to clicked element's center
+        let top = rect.top + window.scrollY + (rect.height / 2);
+        let left = rect.left + (rect.width / 2);
+        
+        // Get modal dimensions after it's visible
+        modalContent.style.display = 'block';
+        const modalHeight = modalContent.offsetHeight;
+        const modalWidth = modalContent.offsetWidth;
+        
+        // Center modal on click position
+        top -= modalHeight / 2;
+        left -= modalWidth / 2;
+        
+        // Ensure modal stays within viewport
+        if (top < window.scrollY) {
+            top = window.scrollY + 20;
         }
-
-        // Adjust horizontal position
-        if (left < 0) left = 20;
-        if (left + modalWidth > viewportWidth) {
+        if (top + modalHeight > window.scrollY + viewportHeight) {
+            top = window.scrollY + viewportHeight - modalHeight - 20;
+        }
+        if (left < 20) {
+            left = 20;
+        }
+        if (left + modalWidth > viewportWidth - 20) {
             left = viewportWidth - modalWidth - 20;
         }
-
-        modalContent.style.position = 'fixed';
+        
+        modalContent.style.position = 'absolute';
         modalContent.style.top = `${top}px`;
         modalContent.style.left = `${left}px`;
     }
