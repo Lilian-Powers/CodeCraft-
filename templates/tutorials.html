@@ -915,7 +915,7 @@
         event.stopPropagation();
 
         const calculatorContent = element.querySelector('.calculator-content');
-        
+
         // Close all other modals first
         closeAllModals();
 
@@ -927,6 +927,7 @@
         });
 
         element.classList.toggle('open');
+        document.body.classList.toggle('modal-open', element.classList.contains('open'));
 
         if (element.classList.contains('open')) {
             const closeBtn = element.querySelector('.close-btn');
@@ -997,6 +998,7 @@
         });
 
         element.classList.toggle('open');
+        document.body.classList.toggle('modal-open', element.classList.contains('open'));
 
         if (element.classList.contains('open')) {
             const closeBtn = element.querySelector('.close-btn');
@@ -1034,6 +1036,7 @@
         });
 
         element.classList.toggle('open');
+        document.body.classList.toggle('modal-open', element.classList.contains('open'));
 
         if (element.classList.contains('open')) {
             const closeBtn = element.querySelector('.close-btn');
@@ -1102,6 +1105,7 @@
         });
 
         element.classList.toggle('open');
+        document.body.classList.toggle('modal-open', element.classList.contains('open'));
 
         if (element.classList.contains('open')) {
             const closeBtn = element.querySelector('.close-btn');
@@ -1170,6 +1174,7 @@
         });
 
         element.classList.toggle('open');
+        document.body.classList.toggle('modal-open', element.classList.contains('open'));
 
         if (element.classList.contains('open')) {
             const closeBtn = element.querySelector('.close-btn');
@@ -1272,6 +1277,7 @@
         });
 
         element.classList.toggle('open');
+        document.body.classList.toggle('modal-open', element.classList.contains('open'));
 
         if (element.classList.contains('open')) {
             const closeBtn = element.querySelector('.close-btn');
@@ -1309,6 +1315,7 @@
         });
 
         element.classList.toggle('open');
+        document.body.classList.toggle('modal-open', element.classList.contains('open'));
 
         if (element.classList.contains('open')) {
             const closeBtn = element.querySelector('.close-btn');
@@ -1388,6 +1395,7 @@
         });
 
         element.classList.toggle('open');
+        document.body.classList.toggle('modal-open', element.classList.contains('open'));
 
         if (element.classList.contains('open')) {
             const closeBtn = element.querySelector('.close-btn');
