@@ -189,7 +189,7 @@
         position: fixed;
         width: 100%;
     }
-    
+
     .practice-projects {
         max-width: 1200px;
         margin: 4rem auto;
@@ -954,18 +954,21 @@
                 e.preventDefault();
                 e.stopPropagation();
                 element.classList.remove('open');
+                document.body.classList.remove('modal-open');
             };
 
             overlay.onclick = (e) => {
                 e.preventDefault();
                 e.stopPropagation();
                 element.classList.remove('open');
+                document.body.classList.remove('modal-open');
             };
 
             // Close calculator when clicking outside
             document.addEventListener('click', function closeOutside(e) {
                 if (!calculatorContent.contains(e.target) && !e.target.closest('.project-front')) {
                     element.classList.remove('open');
+                    document.body.classList.remove('modal-open');
                     document.removeEventListener('click', closeOutside);
                 }
             });
@@ -1024,12 +1027,14 @@
                 e.preventDefault();
                 e.stopPropagation();
                 element.classList.remove('open');
+                document.body.classList.remove('modal-open');
             };
 
             overlay.onclick = (e) => {
                 e.preventDefault();
                 e.stopPropagation();
                 element.classList.remove('open');
+                document.body.classList.remove('modal-open');
             };
         }
     }
@@ -1062,12 +1067,14 @@
                 e.preventDefault();
                 e.stopPropagation();
                 element.classList.remove('open');
+                document.body.classList.remove('modal-open');
             };
 
             overlay.onclick = (e) => {
                 e.preventDefault();
                 e.stopPropagation();
                 element.classList.remove('open');
+                document.body.classList.remove('modal-open');
             };
         }
     }
@@ -1131,12 +1138,14 @@
                 e.preventDefault();
                 e.stopPropagation();
                 element.classList.remove('open');
+                document.body.classList.remove('modal-open');
             };
 
             overlay.onclick = (e) => {
                 e.preventDefault();
                 e.stopPropagation();
                 element.classList.remove('open');
+                document.body.classList.remove('modal-open');
             };
         }
     }
@@ -1200,12 +1209,14 @@
                 e.preventDefault();
                 e.stopPropagation();
                 element.classList.remove('open');
+                document.body.classList.remove('modal-open');
             };
 
             overlay.onclick = (e) => {
                 e.preventDefault();
                 e.stopPropagation();
                 element.classList.remove('open');
+                document.body.classList.remove('modal-open');
             };
         }
     }
@@ -1303,12 +1314,14 @@
                 e.preventDefault();
                 e.stopPropagation();
                 element.classList.remove('open');
+                document.body.classList.remove('modal-open');
             };
 
             overlay.onclick = (e) => {
                 e.preventDefault();
                 e.stopPropagation();
                 element.classList.remove('open');
+                document.body.classList.remove('modal-open');
             };
         }
     }
@@ -1341,12 +1354,14 @@
                 e.preventDefault();
                 e.stopPropagation();
                 element.classList.remove('open');
+                document.body.classList.remove('modal-open');
             };
 
             overlay.onclick = (e) => {
                 e.preventDefault();
                 e.stopPropagation();
                 element.classList.remove('open');
+                document.body.classList.remove('modal-open');
             };
         }
     }
@@ -1421,12 +1436,14 @@
                 e.preventDefault();
                 e.stopPropagation();
                 element.classList.remove('open');
+                document.body.classList.remove('modal-open');
             };
 
             overlay.onclick = (e) => {
                 e.preventDefault();
                 e.stopPropagation();
                 element.classList.remove('open');
+                document.body.classList.remove('modal-open');
             };
         }
     }
