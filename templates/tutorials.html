@@ -260,11 +260,9 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: transparent;
+        background: rgba(0, 0, 0, 0.5);
         z-index: 999998;
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
-        pointer-events: none;
+        pointer-events: auto;
     }
 
     /* Common modal content styles */
@@ -277,11 +275,7 @@
     .story-content,
     .talking-content {
         display: none;
-        position: fixed;
-        will-change: transform;
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
-        transform: translate(-50%, -50%);
+        position: absolute;
         width: 320px;
         border-radius: 20px;
         box-shadow: 0 15px 30px rgba(0,0,0,0.3);
@@ -290,7 +284,8 @@
         text-align: center;
         color: white;
         font-family: 'Poppins', sans-serif;
-        margin: 0 !important;
+        background-color: rgba(0, 0, 0, 0.9);
+        margin: 0;
         pointer-events: auto;
     }
 
