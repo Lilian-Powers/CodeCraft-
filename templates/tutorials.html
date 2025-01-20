@@ -328,7 +328,7 @@
             margin: 0;
             border-radius: 15px;
         }
-        
+
         .calculator-interactive,
         .superhero-interactive,
         .food-interactive,
@@ -344,7 +344,7 @@
     /* Modal content backgrounds */
     .food-content { background: linear-gradient(145deg, #ff9800, #ff5722); }
     .vacation-content { background: linear-gradient(145deg, #2196f3, #03a9f4); }
-    .compliment-content { background: linear-gradient(145deg, #FF1493, #FF69B4); }
+    .compliment-content { background: linear-gradient(145deg, #FF1493, #FF69B4); position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); max-width: 90vw; width: 400px; padding: 2rem 1.5rem; border-radius: 20px; box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
     .temp-content { background: linear-gradient(145deg, #8E44AD, #9B59B6); }
     .story-content { background: linear-gradient(145deg, #FF6B6B, #FF8E53); }
     .talking-content { background: linear-gradient(145deg, #6C5CE7, #a55eea); }
@@ -599,6 +599,7 @@
         color: white;
         font-size: 1.1rem;
         text-align: center;
+        margin-top: 1rem;
     }
 
     .compliment-input::placeholder {
@@ -818,7 +819,7 @@
     .video-container {
         position: relative;
         padding-bottom: 56.25%;
-        height: 0;
+        height0;
         overflow: hidden;
     }
 
@@ -857,7 +858,7 @@
         if (openModal) {
             const modalContent = openModal.querySelector('.calculator-content, .superhero-content, .food-content, .vacation-content, .compliment-content, .temp-content, .story-content, .talking-content');
             const modalOverlay = openModal.querySelector('.modal-overlay');
-            
+
             if (e.target === modalOverlay) {
                 closeModal(openModal);
             }
