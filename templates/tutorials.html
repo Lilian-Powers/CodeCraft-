@@ -61,8 +61,8 @@
             <p>If you'd like to see video tutorials for these projects, comment the word "projects" on any of our YouTube videos above.</p>
         </div>
         <div class="projects-grid">
-            <div class="project-item age-calculator">
-                <div class="project-front" onclick="toggleCalculator(this.parentElement)">1. Age Calculator</div>
+            <div class="project-item age-calculator" onclick="toggleCalculator(this)">
+                <div class="project-front">1. Age Calculator</div>
                 <div class="calculator-content">
                     <h3>Age Calculator</h3>
                     <div class="code-example">
@@ -144,9 +144,8 @@ print(f"You are {age} years old!")</code></pre>
     }
 
     .age-calculator .calculator-content {
+        display: none;
         position: absolute;
-        visibility: hidden;
-        opacity: 0;
         top: 100%;
         left: 0;
         width: 300px;
@@ -162,8 +161,7 @@ print(f"You are {age} years old!")</code></pre>
     }
 
     .age-calculator.open .calculator-content {
-        visibility: visible;
-        opacity: 1;
+        display: block;
     }
 
     .code-example {
@@ -293,27 +291,17 @@ print(f"You are {age} years old!")</code></pre>
 
 <script>
     function toggleCalculator(element) {
-        const calculatorContent = element.querySelector('.calculator-content');
-        if (!calculatorContent) return;
+        // Stop event from bubbling up
+        event.stopPropagation();
         
-        // Close any other open calculators
-        document.querySelectorAll('.age-calculator.open').forEach(calc => {
-            if (calc !== element) calc.classList.remove('open');
-        });
-        
-        // Toggle current calculator
+        // Toggle the open class
         element.classList.toggle('open');
         
-        // Prevent clicks inside calculator from closing it
-        calculatorContent.addEventListener('click', (e) => {
-            e.stopPropagation();
-        });
-        
-        // Close when clicking outside
+        // If calculator is open, add click listener to close when clicking outside
         if (element.classList.contains('open')) {
             setTimeout(() => {
                 document.addEventListener('click', function closeCalc(e) {
-                    if (!calculatorContent.contains(e.target) && !element.contains(e.target)) {
+                    if (!element.contains(e.target)) {
                         element.classList.remove('open');
                         document.removeEventListener('click', closeCalc);
                     }
