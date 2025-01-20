@@ -151,10 +151,11 @@
         border-radius: 20px;
         box-shadow: 0 15px 30px rgba(0,0,0,0.3);
         padding: 2rem;
-        z-index: 99999;
+        z-index: 100000;
         text-align: center;
         color: white;
         font-family: 'Poppins', sans-serif;
+        pointer-events: auto;
     }
 
     .age-calculator.open .calculator-content {
@@ -365,9 +366,10 @@
         event.preventDefault();
         event.stopPropagation();
         
-        // Close any other open calculators first
-        const openCalculators = document.querySelectorAll('.age-calculator.open');
-        openCalculators.forEach(calc => {
+        const calculatorContent = element.querySelector('.calculator-content');
+        
+        // Close all other calculators
+        document.querySelectorAll('.age-calculator').forEach(calc => {
             if (calc !== element) {
                 calc.classList.remove('open');
             }
@@ -378,6 +380,11 @@
         if (element.classList.contains('open')) {
             const closeBtn = element.querySelector('.close-btn');
             const overlay = element.querySelector('.modal-overlay');
+            
+            // Prevent calculator from closing when clicking inside
+            calculatorContent.onclick = (e) => {
+                e.stopPropagation();
+            };
             
             closeBtn.onclick = (e) => {
                 e.preventDefault();
@@ -390,6 +397,14 @@
                 e.stopPropagation();
                 element.classList.remove('open');
             };
+            
+            // Close calculator when clicking outside
+            document.addEventListener('click', function closeOutside(e) {
+                if (!calculatorContent.contains(e.target) && !e.target.closest('.project-front')) {
+                    element.classList.remove('open');
+                    document.removeEventListener('click', closeOutside);
+                }
+            });
         }
     }
 
