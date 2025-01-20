@@ -13,7 +13,9 @@ import base64
 import sqlite3
 
 app = Flask(__name__)
-app.secret_key = os.environ['SECRET_KEY']  # Must be set in Replit Secrets
+if not os.environ.get('SECRET_KEY'):
+    raise ValueError("SECRET_KEY must be set in Replit Secrets")
+app.secret_key = os.environ['SECRET_KEY']
 
 # Basic security settings
 app.config.update(
