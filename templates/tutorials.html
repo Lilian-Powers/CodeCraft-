@@ -277,12 +277,10 @@
     .story-content,
     .talking-content {
         display: none;
-        position: absolute;
+        position: fixed;
         will-change: transform;
         -webkit-backface-visibility: hidden;
         backface-visibility: hidden;
-        top: 0;
-        left: 0;
         transform: translate(-50%, -50%);
         width: 320px;
         border-radius: 20px;
@@ -925,11 +923,8 @@
 
     function positionModalAtClick(modalContent, event) {
         const rect = event.target.getBoundingClientRect();
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
-        
-        modalContent.style.top = (rect.top + scrollTop) + 'px';
-        modalContent.style.left = (rect.left + scrollLeft) + 'px';
+        modalContent.style.top = (rect.top + window.scrollY) + 'px';
+        modalContent.style.left = (rect.left + window.scrollX) + 'px';
     }
 
     function toggleCalculator(element) {
