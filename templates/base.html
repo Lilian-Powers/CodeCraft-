@@ -134,6 +134,18 @@
         </button>
     </div>
     <script>
+        // Close navbar when clicking outside
+        document.addEventListener('click', function(event) {
+            const navbar = document.getElementById('navbarNav');
+            const navbarToggler = document.querySelector('.navbar-toggler');
+            
+            if (navbar.classList.contains('show') && 
+                !navbar.contains(event.target) && 
+                !navbarToggler.contains(event.target)) {
+                navbar.classList.remove('show');
+            }
+        });
+
         function navigatePage(direction) {
             const navLinks = ['/home', '/games', '/treasure_hunt', '/editors', '/tutorials'];
             const currentPath = window.location.pathname === '/' ? '/home' : window.location.pathname;
