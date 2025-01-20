@@ -61,7 +61,7 @@
             <p><i>If you'd like to see video tutorials for these projects, comment the word "projects" on any of our YouTube videos above.</i></p>
         </div>
         <div class="projects-grid">
-            <div class="project-item age-calculator" onclick="toggleCalculator(this)">
+            <div class="project-item age-calculator" onclick="toggleCalculator(event, this)">
                 <div class="project-front">1. Age Calculator</div>
                 <div class="modal-overlay"></div>
                 <div class="calculator-content">
@@ -75,7 +75,7 @@
                     </div>
                 </div>
             </div>
-            <div class="project-item superhero-generator" onclick="toggleSuperheroGenerator(this)">
+            <div class="project-item superhero-generator" onclick="toggleModal(event, this, 'superhero-content')">
                 <div class="project-front">2. Super-hero Name Generator</div>
                 <div class="modal-overlay"></div>
                 <div class="superhero-content">
@@ -90,7 +90,7 @@
                     </div>
                 </div>
             </div>
-            <div class="project-item food-favorites" onclick="toggleFoodFavorites(this)">
+            <div class="project-item food-favorites" onclick="toggleModal(event, this, 'food-content')">
                 <div class="project-front">3. Favorite Food Explorer</div>
                 <div class="modal-overlay"></div>
                 <div class="food-content">
@@ -104,7 +104,7 @@
                     </div>
                 </div>
             </div>
-            <div class="project-item vacation-dreams" onclick="toggleVacationDreams(this)">
+            <div class="project-item vacation-dreams" onclick="toggleModal(event, this, 'vacation-content')">
                 <div class="project-front">4. Dream Vacation Explorer</div>
                 <div class="modal-overlay"></div>
                 <div class="vacation-content">
@@ -118,7 +118,7 @@
                     </div>
                 </div>
             </div>
-            <div class="project-item compliment-machine" onclick="toggleComplimentMachine(this)">
+            <div class="project-item compliment-machine" onclick="toggleModal(event, this, 'compliment-content')">
                 <div class="project-front">5. Compliment Machine</div>
                 <div class="modal-overlay"></div>
                 <div class="compliment-content">
@@ -132,7 +132,7 @@
                     </div>
                 </div>
             </div>
-            <div class="project-item temp-converter" onclick="toggleTempConverter(this)">
+            <div class="project-item temp-converter" onclick="toggleModal(event, this, 'temp-content')">
                 <div class="project-front">6. Temperature Converter</div>
                 <div class="modal-overlay"></div>
                 <div class="temp-content">
@@ -146,7 +146,7 @@
                     </div>
                 </div>
             </div>
-            <div class="project-item story-maker" onclick="toggleStoryMaker(this)">
+            <div class="project-item story-maker" onclick="toggleModal(event, this, 'story-content')">
                 <div class="project-front">7. Funny Story Maker</div>
                 <div class="modal-overlay"></div>
                 <div class="story-content">
@@ -162,7 +162,7 @@
                     </div>
                 </div>
             </div>
-            <div class="project-item talking-computer" onclick="toggleTalkingComputer(this)">
+            <div class="project-item talking-computer" onclick="toggleModal(event, this, 'talking-content')">
                 <div class="project-front">8. Talking Computer</div>
                 <div class="modal-overlay"></div>
                 <div class="talking-content">
@@ -923,46 +923,50 @@
 
     function positionModalAtClick(modalContent, event) {
         const rect = event.target.getBoundingClientRect();
+        const modalHeight = 400; // Fixed height for consistency
+        const modalWidth = 320;  // Fixed width from CSS
+
+        // Position modal centered on click
+        let top = event.clientY - modalHeight/2;
+        let left = event.clientX - modalWidth/2;
+
+        // Keep modal within viewport
         const viewportHeight = window.innerHeight;
         const viewportWidth = window.innerWidth;
-        const modalHeight = modalContent.offsetHeight || 400;
-        const modalWidth = 320;
 
-        // Calculate position relative to clicked element
-        let top = rect.top + window.scrollY - modalHeight/2 + rect.height/2;
-        let left = rect.left + rect.width/2 - modalWidth/2;
+        // Adjust vertical position
+        if (top < 0) top = 20;
+        if (top + modalHeight > viewportHeight) {
+            top = viewportHeight - modalHeight - 20;
+        }
 
-        // Keep modal within viewport boundaries
-        const minTop = window.scrollY + 20;
-        const maxTop = window.scrollY + viewportHeight - modalHeight - 20;
-        top = Math.min(Math.max(top, minTop), maxTop);
-        
-        // Ensure left position stays within viewport
-        const minLeft = 20;
-        const maxLeft = viewportWidth - modalWidth - 20;
-        left = Math.min(Math.max(left, minLeft), maxLeft);
+        // Adjust horizontal position
+        if (left < 0) left = 20;
+        if (left + modalWidth > viewportWidth) {
+            left = viewportWidth - modalWidth - 20;
+        }
 
-        modalContent.style.position = 'absolute';
+        modalContent.style.position = 'fixed';
         modalContent.style.top = `${top}px`;
         modalContent.style.left = `${left}px`;
     }
 
-    function toggleModal(element, contentClass) {
+    function toggleModal(event, element, contentClass) {
         event.preventDefault();
         event.stopPropagation();
 
         const modalContent = element.querySelector('.' + contentClass);
         closeAllModals();
-        
+
         element.classList.toggle('open');
         if (element.classList.contains('open')) {
             positionModalAtClick(modalContent, event);
-            
+
             const closeBtn = element.querySelector('.close-btn');
             const overlay = element.querySelector('.modal-overlay');
 
             modalContent.onclick = (e) => e.stopPropagation();
-            
+
             closeBtn.onclick = (e) => {
                 e.preventDefault();
                 e.stopPropagation();
@@ -980,44 +984,8 @@
         document.body.classList.toggle('modal-open', element.classList.contains('open'));
     }
 
-    function toggleCalculator(element) {
-        toggleModal(element, 'calculator-content');
-
-        element.classList.toggle('open');
-        document.body.classList.toggle('modal-open', element.classList.contains('open'));
-
-        if (element.classList.contains('open')) {
-            const closeBtn = element.querySelector('.close-btn');
-            const overlay = element.querySelector('.modal-overlay');
-
-            // Prevent calculator from closing when clicking inside
-            calculatorContent.onclick = (e) => {
-                e.stopPropagation();
-            };
-
-            closeBtn.onclick = (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                element.classList.remove('open');
-                document.body.classList.remove('modal-open');
-            };
-
-            overlay.onclick = (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                element.classList.remove('open');
-                document.body.classList.remove('modal-open');
-            };
-
-            // Close calculator when clicking outside
-            document.addEventListener('click', function closeOutside(e) {
-                if (!calculatorContent.contains(e.target) && !e.target.closest('.project-front')) {
-                    element.classList.remove('open');
-                    document.body.classList.remove('modal-open');
-                    document.removeEventListener('click', closeOutside);
-                }
-            });
-        }
+    function toggleCalculator(event, element) {
+        toggleModal(event, element, 'calculator-content');
     }
 
     function calculateAge(button) {
@@ -1044,48 +1012,12 @@
         button.nextElementSibling.textContent = message;
     }
 
-    function toggleSuperheroGenerator(element) {
-        toggleModal(element, 'superhero-content');
+    function toggleSuperheroGenerator(event, element) {
+        toggleModal(event, element, 'superhero-content');
     }
 
-    function toggleFoodFavorites(element) {
-        event.preventDefault();
-        event.stopPropagation();
-
-        const foodContent = element.querySelector('.food-content');
-
-        // Close all other modals
-        document.querySelectorAll('.project-item').forEach(item => {
-            if (item !== element) {
-                item.classList.remove('open');
-            }
-        });
-
-        element.classList.toggle('open');
-        document.body.classList.toggle('modal-open', element.classList.contains('open'));
-
-        if (element.classList.contains('open')) {
-            const closeBtn = element.querySelector('.close-btn');
-            const overlay = element.querySelector('.modal-overlay');
-
-            foodContent.onclick = (e) => {
-                e.stopPropagation();
-            };
-
-            closeBtn.onclick = (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                element.classList.remove('open');
-                document.body.classList.remove('modal-open');
-            };
-
-            overlay.onclick = (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                element.classList.remove('open');
-                document.body.classList.remove('modal-open');
-            };
-        }
+    function toggleFoodFavorites(event, element) {
+        toggleModal(event, element, 'food-content');
     }
 
     function generateFoodResponse() {
@@ -1119,44 +1051,8 @@
             `${randomCompliment}<br><span style="font-size: 1.4em; color: #ffeb3b">${favoriteFood}</span><br>${randomTrait}`;
     }
 
-    function toggleVacationDreams(element) {
-        event.preventDefault();
-        event.stopPropagation();
-
-        const vacationContent = element.querySelector('.vacation-content');
-
-        // Close all other modals
-        document.querySelectorAll('.project-item').forEach(item => {
-            if (item !== element) {
-                item.classList.remove('open');
-            }
-        });
-
-        element.classList.toggle('open');
-        document.body.classList.toggle('modal-open', element.classList.contains('open'));
-
-        if (element.classList.contains('open')) {
-            const closeBtn = element.querySelector('.close-btn');
-            const overlay = element.querySelector('.modal-overlay');
-
-            vacationContent.onclick = (e) => {
-                e.stopPropagation();
-            };
-
-            closeBtn.onclick = (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                element.classList.remove('open');
-                document.body.classList.remove('modal-open');
-            };
-
-            overlay.onclick = (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                element.classList.remove('open');
-                document.body.classList.remove('modal-open');
-            };
-        }
+    function toggleVacationDreams(event, element) {
+        toggleModal(event, element, 'vacation-content');
     }
 
     function generateVacationResponse() {
@@ -1190,44 +1086,8 @@
             `${randomCompliment}<br><span style="font-size: 1.4em; color: #e3f2fd">${destination}</span><br>${randomActivity}`;
     }
 
-    function toggleComplimentMachine(element) {
-        event.preventDefault();
-        event.stopPropagation();
-
-        const complimentContent = element.querySelector('.compliment-content');
-
-        // Close all other modals
-        document.querySelectorAll('.project-item').forEach(item => {
-            if (item !== element) {
-                item.classList.remove('open');
-            }
-        });
-
-        element.classList.toggle('open');
-        document.body.classList.toggle('modal-open', element.classList.contains('open'));
-
-        if (element.classList.contains('open')) {
-            const closeBtn = element.querySelector('.close-btn');
-            const overlay = element.querySelector('.modal-overlay');
-
-            complimentContent.onclick = (e) => {
-                e.stopPropagation();
-            };
-
-            closeBtn.onclick = (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                element.classList.remove('open');
-                document.body.classList.remove('modal-open');
-            };
-
-            overlay.onclick = (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                element.classList.remove('open');
-                document.body.classList.remove('modal-open');
-            };
-        }
+    function toggleComplimentMachine(event, element) {
+        toggleModal(event, element, 'compliment-content');
     }
 
     function generateCompliment() {
@@ -1295,84 +1155,12 @@
             `${randomCompliment}<br><span style="font-size: 1.4em; color: #fff176">${superheroName}</span><br>${randomPower}`;
     }
 
-    function toggleTempConverter(element) {
-        event.preventDefault();
-        event.stopPropagation();
-
-        const tempContent = element.querySelector('.temp-content');
-
-        // Close all other modals
-        document.querySelectorAll('.project-item').forEach(item => {
-            if (item !== element) {
-                item.classList.remove('open');
-            }
-        });
-
-        element.classList.toggle('open');
-        document.body.classList.toggle('modal-open', element.classList.contains('open'));
-
-        if (element.classList.contains('open')) {
-            const closeBtn = element.querySelector('.close-btn');
-            const overlay = element.querySelector('.modal-overlay');
-
-            tempContent.onclick = (e) => {
-                e.stopPropagation();
-            };
-
-            closeBtn.onclick = (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                element.classList.remove('open');
-                document.body.classList.remove('modal-open');
-            };
-
-            overlay.onclick = (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                element.classList.remove('open');
-                document.body.classList.remove('modal-open');
-            };
-        }
+    function toggleTempConverter(event, element) {
+        toggleModal(event, element, 'temp-content');
     }
 
-    function toggleStoryMaker(element) {
-        event.preventDefault();
-        event.stopPropagation();
-
-        const storyContent = element.querySelector('.story-content');
-
-        // Close all other modals
-        document.querySelectorAll('.project-item').forEach(item => {
-            if (item !== element) {
-                item.classList.remove('open');
-            }
-        });
-
-        element.classList.toggle('open');
-        document.body.classList.toggle('modal-open', element.classList.contains('open'));
-
-        if (element.classList.contains('open')) {
-            const closeBtn = element.querySelector('.close-btn');
-            const overlay = element.querySelector('.modal-overlay');
-
-            storyContent.onclick = (e) => {
-                e.stopPropagation();
-            };
-
-            closeBtn.onclick = (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                element.classList.remove('open');
-                document.body.classList.remove('modal-open');
-            };
-
-            overlay.onclick = (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                element.classList.remove('open');
-                document.body.classList.remove('modal-open');
-            };
-        }
+    function toggleStoryMaker(event, element) {
+        toggleModal(event, element, 'story-content');
     }
 
     function generateStory() {
@@ -1417,44 +1205,8 @@
             `${randomIntro}<br><span style="font-size: 1.2em; color: #FFE0B2">${name} went to ${place} to ${activity}</span><br>${randomEnding}<br><br>✨ ${randomCompliment} ✨`;
     }
 
-    function toggleTalkingComputer(element) {
-        event.preventDefault();
-        event.stopPropagation();
-
-        const talkingContent = element.querySelector('.talking-content');
-
-        // Close all other modals
-        document.querySelectorAll('.project-item').forEach(item => {
-            if (item !== element) {
-                item.classList.remove('open');
-            }
-        });
-
-        element.classList.toggle('open');
-        document.body.classList.toggle('modal-open', element.classList.contains('open'));
-
-        if (element.classList.contains('open')) {
-            const closeBtn = element.querySelector('.close-btn');
-            const overlay = element.querySelector('.modal-overlay');
-
-            talkingContent.onclick = (e) => {
-                e.stopPropagation();
-            };
-
-            closeBtn.onclick = (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                element.classList.remove('open');
-                document.body.classList.remove('modal-open');
-            };
-
-            overlay.onclick = (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                element.classList.remove('open');
-                document.body.classList.remove('modal-open');
-            };
-        }
+    function toggleTalkingComputer(event, element) {
+        toggleModal(event, element, 'talking-content');
     }
 
     function generateChatResponse() {
