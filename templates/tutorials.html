@@ -260,10 +260,11 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: rgba(0, 0, 0, 0.7);
+        background: transparent;
         z-index: 999998;
         -webkit-backface-visibility: hidden;
         backface-visibility: hidden;
+        pointer-events: none;
     }
 
     /* Common modal content styles */
@@ -276,13 +277,13 @@
     .story-content,
     .talking-content {
         display: none;
-        position: fixed;
+        position: absolute;
         will-change: transform;
         -webkit-backface-visibility: hidden;
         backface-visibility: hidden;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%) !important;
+        top: 0;
+        left: 0;
+        transform: translate(-50%, -50%);
         width: 320px;
         border-radius: 20px;
         box-shadow: 0 15px 30px rgba(0,0,0,0.3);
@@ -922,11 +923,21 @@
         });
     }
 
+    function positionModalAtClick(modalContent, event) {
+        const rect = event.target.getBoundingClientRect();
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+        
+        modalContent.style.top = (rect.top + scrollTop) + 'px';
+        modalContent.style.left = (rect.left + scrollLeft) + 'px';
+    }
+
     function toggleCalculator(element) {
         event.preventDefault();
         event.stopPropagation();
 
         const calculatorContent = element.querySelector('.calculator-content');
+        positionModalAtClick(calculatorContent, event);
 
         // Close all other modals first
         closeAllModals();
