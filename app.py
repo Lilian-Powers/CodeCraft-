@@ -13,7 +13,7 @@ import base64
 import sqlite3
 
 app = Flask(__name__)
-app.secret_key = os.environ.get('SECRET_KEY', 'dev-key-not-for-production')
+app.secret_key = os.environ['SECRET_KEY']  # Must be set in Replit Secrets
 
 # Basic security settings
 app.config.update(
@@ -48,9 +48,9 @@ app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
-app.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME')
-app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')
-app.config['MAIL_DEFAULT_SENDER'] = os.environ.get('MAIL_USERNAME')
+app.config['MAIL_USERNAME'] = os.environ['MAIL_USERNAME']  # Must be set in Replit Secrets
+app.config['MAIL_PASSWORD'] = os.environ['MAIL_PASSWORD']  # Must be set in Replit Secrets
+app.config['MAIL_DEFAULT_SENDER'] = os.environ['MAIL_USERNAME']
 app.config['MAIL_MAX_EMAILS'] = None
 app.config['MAIL_SUPPRESS_SEND'] = False
 app.config['MAIL_ASCII_ATTACHMENTS'] = False
