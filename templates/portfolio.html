@@ -159,13 +159,15 @@
         }
 
         .project-card {
-            background: rgba(67, 97, 238, 0.05);
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.1), rgba(72, 149, 239, 0.1)), 
+                        repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(67, 97, 238, 0.03) 10px, rgba(67, 97, 238, 0.03) 20px);
             border-radius: 15px;
             padding: 2rem;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
+            border: 1px solid rgba(67, 97, 238, 0.1);
         }
 
         .project-card:hover {
