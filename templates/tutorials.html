@@ -142,16 +142,27 @@ print(f"You are {age} years old!")</code></pre>
     }
 
     .age-calculator .calculator-content {
-        display: none; /* Initially hidden */
+        display: none;
         position: absolute;
         top: 100%;
         left: 0;
-        width: 100%;
+        width: 300px;
         background-color: white;
         border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        padding: 1rem;
-        z-index: 1; /* Ensure it's above the project-item */
+        box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        padding: 1.5rem;
+        z-index: 100;
+        margin-top: 10px;
+        text-align: left;
+        transform: translateY(-10px);
+        opacity: 0;
+        transition: all 0.3s ease;
+    }
+
+    .age-calculator.open .calculator-content {
+        display: block;
+        transform: translateY(0);
+        opacity: 1;
     }
 
     .age-calculator.open .calculator-content {
@@ -285,7 +296,21 @@ print(f"You are {age} years old!")</code></pre>
 
 <script>
     function toggleCalculator(element) {
+        // Close any other open calculators
+        document.querySelectorAll('.age-calculator.open').forEach(calc => {
+            if (calc !== element) calc.classList.remove('open');
+        });
+        
+        // Toggle current calculator
         element.classList.toggle('open');
+        
+        // Close when clicking outside
+        document.addEventListener('click', function closeCalc(e) {
+            if (!element.contains(e.target)) {
+                element.classList.remove('open');
+                document.removeEventListener('click', closeCalc);
+            }
+        });
     }
 
     function calculateAge(button) {
