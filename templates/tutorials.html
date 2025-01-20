@@ -247,12 +247,6 @@
         background: linear-gradient(145deg, #2c3e50, #3498db);
     }
 
-    .age-calculator.open .calculator-content {
-        display: block;
-        animation: popIn 0.3s ease-out forwards;
-        pointer-events: all;
-    }
-
     .modal-overlay {
         display: none;
         position: fixed;
@@ -425,11 +419,6 @@
 
     .superhero-generator .superhero-content {
         background: linear-gradient(145deg, #9c27b0, #673ab7);
-    }
-
-    .superhero-generator.open .superhero-content {
-        display: block;
-        animation: popIn 0.3s ease-out forwards;
     }
 
     .hero-subtitle {
@@ -831,11 +820,11 @@
         event.stopPropagation();
 
         const modalContent = element.querySelector('.' + contentClass);
-        
+
         if (!element.classList.contains('open')) {
             closeAllModals();
             element.classList.add('open');
-            modalContent.style.display = 'block';
+            modalContent.style.display ='block';
             element.querySelector('.modal-overlay').style.display = 'block';
             document.body.classList.add('modal-open');
         }
