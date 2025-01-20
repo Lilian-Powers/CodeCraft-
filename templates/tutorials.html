@@ -64,16 +64,12 @@
             <div class="project-item age-calculator" onclick="toggleCalculator(this)">
                 <div class="project-front">1. Age Calculator</div>
                 <div class="calculator-content">
-                    <h3>Age Calculator</h3>
-                    <div class="code-example">
-                        <pre><code class="language-python">current_year = 2024
-birth_year = input("What year were you born? ")
-age = current_year - int(birth_year)
-print(f"You are {age} years old!")</code></pre>
-                    </div>
+                    <button class="close-btn">&times;</button>
+                    <h3>Time Machine</h3>
+                    <p class="calc-subtitle">Travel through time to discover your age journey!</p>
                     <div class="calculator-interactive">
                         <input type="number" id="birthYear" placeholder="Enter your birth year" class="birth-year-input">
-                        <button onclick="calculateAge(this)" class="calculate-btn">Calculate Age</button>
+                        <button onclick="calculateAge(this)" class="calculate-btn">Begin Journey</button>
                         <div class="age-result"></div>
                     </div>
                 </div>
@@ -145,64 +141,117 @@ print(f"You are {age} years old!")</code></pre>
 
     .age-calculator .calculator-content {
         display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 300px;
-        background-color: white;
-        border-radius: 10px;
-        box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-        padding: 1.5rem;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 320px;
+        background: linear-gradient(145deg, #2c3e50, #3498db);
+        border-radius: 20px;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        padding: 2rem;
         z-index: 1000;
-        margin-top: 10px;
-        text-align: left;
-        cursor: default;
-        transition: opacity 0.3s ease, visibility 0.3s ease;
+        text-align: center;
+        color: white;
+        font-family: 'Poppins', sans-serif;
     }
 
     .age-calculator.open .calculator-content {
         display: block;
+        animation: popIn 0.3s ease-out;
     }
 
-    .code-example {
-        background-color: #f0f0f0;
-        padding: 1rem;
-        border-radius: 5px;
-        margin-bottom: 1rem;
+    @keyframes popIn {
+        0% { transform: translate(-50%, -50%) scale(0.9); opacity: 0; }
+        100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
     }
 
-    .code-example pre {
-        margin: 0;
+    .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+        padding: 5px 10px;
+        border-radius: 50%;
+        transition: background-color 0.3s;
     }
 
-    .code-example code {
-        font-family: monospace;
+    .close-btn:hover {
+        background-color: rgba(255,255,255,0.1);
+    }
+
+    .calculator-content h3 {
+        font-size: 1.8rem;
+        margin-bottom: 0.5rem;
+        font-weight: 700;
+    }
+
+    .calc-subtitle {
+        font-size: 1rem;
+        opacity: 0.9;
+        margin-bottom: 1.5rem;
     }
 
 
     .calculator-interactive {
         display: flex;
         flex-direction: column;
-        gap: 0.5rem;
+        gap: 1rem;
     }
+
     .birth-year-input {
-        padding: 0.5rem;
-        border: 1px solid #ccc;
-        border-radius: 5px;
+        padding: 1rem;
+        border: 2px solid rgba(255,255,255,0.2);
+        border-radius: 15px;
+        background: rgba(255,255,255,0.1);
+        color: white;
+        font-size: 1.1rem;
+        text-align: center;
+        transition: all 0.3s;
+    }
+
+    .birth-year-input::placeholder {
+        color: rgba(255,255,255,0.7);
+    }
+
+    .birth-year-input:focus {
+        outline: none;
+        border-color: rgba(255,255,255,0.5);
+        background: rgba(255,255,255,0.15);
     }
 
     .calculate-btn {
-        padding: 0.5rem 1rem;
-        background-color: #4CAF50;
+        padding: 1rem;
+        background: #e74c3c;
         color: white;
         border: none;
-        border-radius: 5px;
+        border-radius: 15px;
         cursor: pointer;
+        font-size: 1.1rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.3s;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .calculate-btn:hover {
+        background: #c0392b;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.25);
     }
 
     .age-result {
         font-weight: bold;
-        margin-top: 0.5rem;
+        margin-top: 1rem;
+        padding: 1rem;
+        background: rgba(255,255,255,0.1);
+        border-radius: 15px;
+        font-size: 1.2rem;
     }
 
     .project-front {
@@ -291,17 +340,16 @@ print(f"You are {age} years old!")</code></pre>
 
 <script>
     function toggleCalculator(element) {
-        // Stop event from bubbling up
         event.stopPropagation();
-        
-        // Toggle the open class
         element.classList.toggle('open');
         
-        // If calculator is open, add click listener to close when clicking outside
         if (element.classList.contains('open')) {
+            const closeBtn = element.querySelector('.close-btn');
+            closeBtn.onclick = () => element.classList.remove('open');
+            
             setTimeout(() => {
                 document.addEventListener('click', function closeCalc(e) {
-                    if (!element.contains(e.target)) {
+                    if (!element.querySelector('.calculator-content').contains(e.target)) {
                         element.classList.remove('open');
                         document.removeEventListener('click', closeCalc);
                     }
