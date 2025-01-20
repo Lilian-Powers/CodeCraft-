@@ -274,7 +274,7 @@
         left: 50%;
         transform: translate(-50%, -50%);
         width: min(90vw, 400px);
-        max-height: 80vh;
+        max-height: 90vh;
         overflow-y: auto;
         border-radius: 20px;
         box-shadow: 0 15px 30px rgba(0,0,0,0.3);
@@ -285,6 +285,26 @@
         font-family: 'Poppins', sans-serif;
         margin: 0 auto;
         box-sizing: border-box;
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Ensure modal content is always visible on small screens */
+    @media (max-height: 700px) {
+        .calculator-content,
+        .superhero-content,
+        .food-content,
+        .vacation-content,
+        .compliment-content,
+        .temp-content,
+        .story-content,
+        .talking-content {
+            top: 0;
+            transform: translate(-50%, 0);
+            height: 100vh;
+            max-height: 100vh;
+            border-radius: 0;
+        }
     }
 
     @media (max-width: 768px) {
