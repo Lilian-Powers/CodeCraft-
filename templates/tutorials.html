@@ -836,18 +836,17 @@
     }
 
     // Global click handler for closing modals
-    window.addEventListener('click', function(e) {
+    document.addEventListener('click', function(e) {
         const openModal = document.querySelector('.project-item.open');
         if (openModal) {
             const modalContent = openModal.querySelector('.calculator-content, .superhero-content, .food-content, .vacation-content, .compliment-content, .temp-content, .story-content, .talking-content');
-            const projectFront = e.target.closest('.project-front');
-            const closeBtn = e.target.closest('.close-btn');
+            const modalOverlay = openModal.querySelector('.modal-overlay');
             
-            if (!modalContent.contains(e.target) && !projectFront && !closeBtn) {
+            if (e.target === modalOverlay) {
                 closeModal(openModal);
             }
         }
-    }, true);
+    });
 
     function closeModal(element) {
         const modalContent = element.querySelector('.calculator-content, .superhero-content, .food-content, .vacation-content, .compliment-content, .temp-content, .story-content, .talking-content');
