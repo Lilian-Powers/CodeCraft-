@@ -104,7 +104,20 @@
                     </div>
                 </div>
             </div>
-            <div class="project-item">4. Dream Vacation</div>
+            <div class="project-item vacation-dreams" onclick="toggleVacationDreams(this)">
+                <div class="project-front">4. Dream Vacation Explorer</div>
+                <div class="modal-overlay"></div>
+                <div class="vacation-content">
+                    <button class="close-btn">&times;</button>
+                    <h3>✈️ Dream Vacation Planner 🌴</h3>
+                    <p class="vacation-subtitle">Share your dream destination and let's imagine the possibilities!</p>
+                    <div class="vacation-interactive">
+                        <input type="text" id="dreamDestination" placeholder="Where would you love to visit?" class="vacation-input">
+                        <button onclick="generateVacationResponse()" class="generate-btn vacation-btn">Let's Dream!</button>
+                        <div class="vacation-result"></div>
+                    </div>
+                </div>
+            </div>
             <div class="project-item">5. Compliment Machine</div>
             <div class="project-item">6. Temperature Converter</div>
             <div class="project-item">7. Funny Story Maker</div>
@@ -425,6 +438,61 @@
         font-size: 1.2rem;
     }
 
+    .vacation-dreams .vacation-content {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 320px;
+        background: linear-gradient(145deg, #2196f3, #03a9f4);
+        border-radius: 20px;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        padding: 2rem;
+        z-index: 100000;
+        text-align: center;
+        color: white;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .vacation-dreams.open .vacation-content {
+        display: block;
+        animation: popIn 0.3s ease-out forwards;
+    }
+
+    .vacation-input {
+        width: 100%;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border: 2px solid rgba(255,255,255,0.2);
+        border-radius: 15px;
+        background: rgba(255,255,255,0.1);
+        color: white;
+        font-size: 1.1rem;
+        text-align: center;
+    }
+
+    .vacation-input::placeholder {
+        color: rgba(255,255,255,0.7);
+    }
+
+    .vacation-btn {
+        background: #00bcd4;
+    }
+
+    .vacation-btn:hover {
+        background: #0097a7;
+    }
+
+    .vacation-result {
+        font-weight: bold;
+        margin-top: 1rem;
+        padding: 1rem;
+        background: rgba(255,255,255,0.1);
+        border-radius: 15px;
+        font-size: 1.2rem;
+    }
+
     .project-front {
         cursor: pointer;
     }
@@ -681,6 +749,73 @@
         
         document.querySelector('.food-result').innerHTML = 
             `${randomCompliment}<br><span style="font-size: 1.4em; color: #ffeb3b">${favoriteFood}</span><br>${randomTrait}`;
+    }
+
+    function toggleVacationDreams(element) {
+        event.preventDefault();
+        event.stopPropagation();
+        
+        const vacationContent = element.querySelector('.vacation-content');
+        
+        document.querySelectorAll('.vacation-dreams').forEach(vac => {
+            if (vac !== element) {
+                vac.classList.remove('open');
+            }
+        });
+        
+        element.classList.toggle('open');
+        
+        if (element.classList.contains('open')) {
+            const closeBtn = element.querySelector('.close-btn');
+            const overlay = element.querySelector('.modal-overlay');
+            
+            vacationContent.onclick = (e) => {
+                e.stopPropagation();
+            };
+            
+            closeBtn.onclick = (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                element.classList.remove('open');
+            };
+            
+            overlay.onclick = (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                element.classList.remove('open');
+            };
+        }
+    }
+
+    function generateVacationResponse() {
+        const destination = document.getElementById('dreamDestination').value;
+        
+        if (!destination) {
+            document.querySelector('.vacation-result').textContent = "Please tell us your dream destination!";
+            return;
+        }
+
+        const compliments = [
+            "🌟 Amazing choice! A journey to",
+            "✨ Fantastic destination! Visiting",
+            "🎉 Wonderful pick! Traveling to",
+            "💫 Excellent taste! Exploring",
+            "🌈 Brilliant selection! An adventure in"
+        ];
+
+        const activities = [
+            "would be an unforgettable adventure!",
+            "sounds like the perfect getaway!",
+            "will create amazing memories!",
+            "is such an inspiring choice!",
+            "shows your adventurous spirit!"
+        ];
+
+        const randomCompliment = compliments[Math.floor(Math.random() * compliments.length)];
+        const randomActivity = activities[Math.floor(Math.random() * activities.length)];
+        
+        document.querySelector('.vacation-result').innerHTML = 
+            `${randomCompliment}<br><span style="font-size: 1.4em; color: #e3f2fd">${destination}</span><br>${randomActivity}`;
     }
 
     function generateSuperheroName() {
