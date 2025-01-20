@@ -468,32 +468,28 @@ def login():
         try:
             with sqlite3.connect('users.db', timeout=30) as conn:
                 c = conn.cursor()
-                print(f"Checking login for email: {email}")  # Debug log
-                c.execute('SELECT email, password FROM users WHERE email = ? COLLATE NOCASE', (email,))
+                c.execute('SELECT email, password, first_name FROM users WHERE email = ? COLLATE NOCASE', (email,))
                 user = c.fetchone()
+                
                 if user:
                     from werkzeug.security import check_password_hash
                     if check_password_hash(user[1], password):
                         session.permanent = True if remember else False
-                        c.execute('SELECT first_name FROM users WHERE email = ? COLLATE NOCASE', (email,))
-                        result = c.fetchone()
-                        first_name = result[0] if result else email.split('@')[0]
                         session['logged_in'] = True
-                        session['email'] = email
-                        session['first_name'] = first_name
+                        session['email'] = user[0]
+                        session['first_name'] = user[2] if user[2] else email.split('@')[0]
                         flash('Login successful! Welcome back to CodeCraft Academy.', 'success')
                         return redirect(url_for('home'))
                     else:
                         flash('Incorrect password. Please try again.', 'error')
                 else:
-                    print(f"No user found for email: {email}")  # Debug log
                     flash('Email not found. Please check your email or register if you haven\'t already.', 'error')
+                    return redirect(url_for('register'))
+                    
         except sqlite3.Error as e:
-            print(f"Database error during login: {e}")  # Debug log
-            flash('Unable to access user account. Please try again.', 'error') #Ensuring connection closure even if errors occur
-
-        return render_template('login.html')
-            
+            print(f"Database error during login: {e}")
+            flash('Unable to access user account. Please try again.', 'error')
+        
     return render_template('login.html')
 
 @app.route('/register', methods=['GET', 'POST'])
