@@ -270,11 +270,11 @@
     .talking-content {
         display: none;
         position: fixed;
-        top: 50%;
+        top: 50vh;
         left: 50%;
         transform: translate(-50%, -50%);
         width: min(90vw, 320px);
-        max-height: 90vh;
+        max-height: 80vh;
         overflow-y: auto;
         border-radius: 20px;
         box-shadow: 0 15px 30px rgba(0,0,0,0.3);
@@ -797,15 +797,18 @@
     }
 
     // Global click handler for closing modals
-    document.addEventListener('click', function(e) {
+    window.addEventListener('click', function(e) {
         const openModal = document.querySelector('.project-item.open');
         if (openModal) {
             const modalContent = openModal.querySelector('.calculator-content, .superhero-content, .food-content, .vacation-content, .compliment-content, .temp-content, .story-content, .talking-content');
-            if (!modalContent.contains(e.target) && !e.target.closest('.project-front')) {
+            const projectFront = e.target.closest('.project-front');
+            const closeBtn = e.target.closest('.close-btn');
+            
+            if (!modalContent.contains(e.target) && !projectFront && !closeBtn) {
                 closeModal(openModal);
             }
         }
-    });
+    }, true);
 
     function closeModal(element) {
         const modalContent = element.querySelector('.calculator-content, .superhero-content, .food-content, .vacation-content, .compliment-content, .temp-content, .story-content, .talking-content');
