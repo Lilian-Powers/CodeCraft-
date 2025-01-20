@@ -275,7 +275,10 @@
     .story-content,
     .talking-content {
         display: none;
-        position: absolute;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         width: 320px;
         border-radius: 20px;
         box-shadow: 0 15px 30px rgba(0,0,0,0.3);
@@ -284,7 +287,6 @@
         text-align: center;
         color: white;
         font-family: 'Poppins', sans-serif;
-        /* background-color: rgba(0, 0, 0, 0.9); */
         margin: 0;
         pointer-events: auto;
     }
@@ -800,37 +802,8 @@
         });
     }
 
-    function positionModalAtClick(modalContent, event) {
-        const projectItem = event.currentTarget;
-        const rect = projectItem.getBoundingClientRect();
-        const viewportWidth = window.innerWidth;
-
-        // Get modal dimensions after it's visible
+    function showModal(modalContent) {
         modalContent.style.display = 'block';
-        const modalWidth = modalContent.offsetWidth;
-        const modalHeight = modalContent.offsetHeight;
-
-        // Calculate position above the project item
-        let top = rect.top + window.scrollY - modalHeight - 20;
-        let left = rect.left + (rect.width / 2) - (modalWidth / 2);
-
-        // Ensure left position stays within viewport
-        if (left < 20) {
-            left = 20;
-        }
-        if (left + modalWidth > viewportWidth - 20) {
-            left = viewportWidth - modalWidth - 20;
-        }
-
-        // If modal would appear above viewport, position it below the item instead
-        if (top < window.scrollY) {
-            top = rect.bottom + window.scrollY + 20;
-        }
-
-        modalContent.style.position = 'absolute';
-        modalContent.style.top = `${top}px`;
-        modalContent.style.left = `${left}px`;
-        modalContent.style.zIndex = '2000000';
     }
 
     function toggleModal(event, element, contentClass) {
@@ -842,7 +815,7 @@
 
         element.classList.toggle('open');
         if (element.classList.contains('open')) {
-            positionModalAtClick(modalContent, event);
+            showModal(modalContent);
 
             const closeBtn = element.querySelector('.close-btn');
             const overlay = element.querySelector('.modal-overlay');
