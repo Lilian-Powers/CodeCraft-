@@ -1,0 +1,136 @@
+
+{% extends "base.html" %}
+{% block title %}Video Tutorials Part 2 - CodeCraft Academy{% endblock %}
+
+{% block content %}
+<div class="calculator-tutorial">
+    <div class="tutorial-header">
+        <h1>Python Calculator Tutorial</h1>
+        <p class="header-desc">Practice your Python skills with this interactive calculator!</p>
+    </div>
+
+    <div class="skills-section">
+        <h2>Skills You'll Practice:</h2>
+        <ul class="skills-list">
+            <li><code>input()</code> function - Getting user input</li>
+            <li><code>print()</code> function - Displaying output</li>
+            <li><code>.upper()</code> method - String manipulation</li>
+            <li>Basic arithmetic operators (+, -, *, /)</li>
+            <li>Conditional statements (if/elif/else)</li>
+            <li>Variable creation and management</li>
+        </ul>
+    </div>
+
+    <div class="code-demo">
+        <h3>Calculator Implementation</h3>
+        <div class="code-container">
+            <pre><code>
+text = "Let's do some Maths!"
+text_cap = text.upper()
+print(text_cap)
+
+num1 = int(input("Enter the first number: "))
+num2 = int(input("Enter the second number: "))
+
+print("Choose an Operation: +, -, *, / ")
+
+operation = input()
+if operation == "+":
+    print("The answer is: ", num1 + num2)
+elif operation == "-":
+    print("The result is: ", num1 - num2)
+elif operation == "*":
+    print("The answer is: ", num1 * num2)
+elif operation == "/":
+    print("The answer is: ", num1 / num2) 
+else:
+    print("Invalid operation")
+            </code></pre>
+        </div>
+    </div>
+</div>
+
+<style>
+    .calculator-tutorial {
+        max-width: 1000px;
+        margin: 4rem auto;
+        padding: 2rem;
+    }
+
+    .tutorial-header {
+        text-align: center;
+        margin-bottom: 3rem;
+        background: linear-gradient(135deg, #4361ee, #3f37c9);
+        padding: 2rem;
+        border-radius: 15px;
+        color: white;
+        box-shadow: 0 10px 30px rgba(67, 97, 238, 0.3);
+    }
+
+    .tutorial-header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        font-weight: 700;
+    }
+
+    .header-desc {
+        font-size: 1.2rem;
+        opacity: 0.9;
+    }
+
+    .skills-section {
+        background: white;
+        padding: 2rem;
+        border-radius: 15px;
+        margin-bottom: 2rem;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .skills-list {
+        list-style: none;
+        padding: 0;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+
+    .skills-list li {
+        padding: 1rem;
+        background: #f8f9fa;
+        border-radius: 8px;
+        border-left: 4px solid #4361ee;
+    }
+
+    .skills-list code {
+        background: #e9ecef;
+        padding: 0.2rem 0.4rem;
+        border-radius: 4px;
+        color: #4361ee;
+    }
+
+    .code-demo {
+        background: white;
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .code-container {
+        background: #1e1e1e;
+        padding: 1.5rem;
+        border-radius: 8px;
+        overflow-x: auto;
+    }
+
+    .code-container pre {
+        margin: 0;
+    }
+
+    .code-container code {
+        color: #d4d4d4;
+        font-family: 'Consolas', monospace;
+        line-height: 1.6;
+    }
+</style>
+{% endblock %}

@@ -623,6 +623,13 @@ def tutorials():
         return redirect(url_for('login'))
     return render_template('tutorials.html')
 
+@app.route('/tutorials_part2')
+def tutorials_part2():
+    if not session.get('logged_in'):
+        flash('Please login first to access the tutorials page', 'warning')
+        return redirect(url_for('login'))
+    return render_template('tutorials_part2.html')
+
 @app.errorhandler(500)
 def internal_error(error):
     return render_template('games.html'), 500
