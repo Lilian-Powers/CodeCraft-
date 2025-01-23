@@ -206,10 +206,9 @@
 
 <script>
     function calculate(operation) {
-        requestAnimationFrame(() => {
-            const num1 = parseFloat(document.getElementById('num1').value);
-            const num2 = parseFloat(document.getElementById('num2').value);
-            const resultDisplay = document.querySelector('.calc-result');
+        const num1 = parseFloat(document.getElementById('num1').value);
+        const num2 = parseFloat(document.getElementById('num2').value);
+        const resultDisplay = document.querySelector('.calc-result');
         
         if (isNaN(num1) || isNaN(num2)) {
             resultDisplay.textContent = 'Please enter both numbers';
