@@ -4,9 +4,16 @@
 {% block content %}
 <div class="tutorials-container">
     <div class="tutorials-header">
-        <h1>Video Tutorials Part 1</h1>
-        <p class="welcome-text">Welcome to our structured learning path!</p>
+        <h1>Learning Hub</h1>
+        <p class="welcome-text">Your Journey to Coding Excellence Starts Here</p>
     </div>
+
+    <div class="section-navigator">
+        <button class="section-btn active" onclick="showSection(1)">Section 1: Fundamentals</button>
+        <button class="section-btn" onclick="showSection(2)">Section 2: Coming Soon</button>
+    </div>
+
+    <div class="section-content" id="section1">
 
     <div class="tutorials-grid">
         <div class="tutorial-card">
@@ -440,6 +447,114 @@
         max-width: 90vw;
         width: 400px;
         padding: 2rem 1.5rem;
+
+    </div>
+    <div class="section-content" id="section2" style="display: none;">
+        <div class="coming-soon-container">
+            <h2>🚀 Section 2: Advanced Topics</h2>
+            <p>We're preparing exciting new content for you! This section will cover advanced Python concepts, real-world projects, and more.</p>
+            <div class="features-preview">
+                <div class="feature">
+                    <i class="fas fa-code"></i>
+                    <h3>Advanced Python</h3>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-project-diagram"></i>
+                    <h3>Real Projects</h3>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-database"></i>
+                    <h3>Data Handling</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<style>
+.section-navigator {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+    padding: 0 1rem;
+}
+
+.section-btn {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 10px;
+    background: rgba(67, 97, 238, 0.1);
+    color: #4361ee;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.section-btn.active {
+    background: #4361ee;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(67, 97, 238, 0.2);
+}
+
+.coming-soon-container {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, rgba(67, 97, 238, 0.1), rgba(72, 149, 239, 0.1));
+    border-radius: 20px;
+    margin: 2rem auto;
+    max-width: 800px;
+}
+
+.features-preview {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.feature {
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    transition: transform 0.3s ease;
+}
+
+.feature:hover {
+    transform: translateY(-5px);
+}
+
+.feature i {
+    font-size: 2.5rem;
+    color: #4361ee;
+    margin-bottom: 1rem;
+}
+
+.feature h3 {
+    color: #2b2d42;
+    font-size: 1.2rem;
+    margin: 0;
+}
+</style>
+
+<script>
+function showSection(sectionNum) {
+    // Hide all sections
+    document.querySelectorAll('.section-content').forEach(section => {
+        section.style.display = 'none';
+    });
+    
+    // Show selected section
+    document.getElementById(`section${sectionNum}`).style.display = 'block';
+    
+    // Update buttons
+    document.querySelectorAll('.section-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    document.querySelectorAll('.section-btn')[sectionNum-1].classList.add('active');
+}
+</script>
+
         border-radius: 20px;
         box-shadow: 0 15px 30px rgba(0,0,0,0.3);
     }
