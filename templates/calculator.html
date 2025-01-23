@@ -1,0 +1,160 @@
+
+{% extends "base.html" %}
+{% block title %}Interactive Python Calculator - CodeCraft Academy{% endblock %}
+
+{% block content %}
+<div class="calculator-page">
+    <div class="calculator-wrapper">
+        <div class="calculator">
+            <div class="calc-display">
+                <div class="calc-message">LET'S DO SOME MATHS!</div>
+                <div class="calc-result">0</div>
+            </div>
+            <div class="calc-inputs">
+                <input type="number" id="num1" placeholder="Enter first number" class="calc-number">
+                <input type="number" id="num2" placeholder="Enter second number" class="calc-number">
+            </div>
+            <div class="calc-operations">
+                <button onclick="calculate('+')" class="calc-btn">+</button>
+                <button onclick="calculate('-')" class="calc-btn">-</button>
+                <button onclick="calculate('*')" class="calc-btn">×</button>
+                <button onclick="calculate('/')" class="calc-btn">÷</button>
+            </div>
+            <button onclick="clearCalc()" class="calc-clear">Clear</button>
+        </div>
+    </div>
+</div>
+
+<style>
+.calculator-page {
+    max-width: 1000px;
+    margin: 4rem auto;
+    padding: 2rem;
+}
+
+.calculator-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3rem;
+}
+
+.calculator {
+    background: linear-gradient(145deg, #2c3e50, #34495e);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    width: 100%;
+    max-width: 400px;
+}
+
+.calc-display {
+    background: #1a2634;
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    text-align: right;
+}
+
+.calc-message {
+    color: #3498db;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    font-family: monospace;
+}
+
+.calc-result {
+    color: #fff;
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: 'Digital', monospace;
+}
+
+.calc-inputs {
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.calc-number {
+    padding: 1rem;
+    border: none;
+    border-radius: 8px;
+    background: #fff;
+    font-size: 1.1rem;
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.calc-operations {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+}
+
+.calc-btn {
+    padding: 1rem;
+    border: none;
+    border-radius: 8px;
+    background: #3498db;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.calc-clear {
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    border-radius: 8px;
+    background: #e74c3c;
+    color: white;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+</style>
+
+<script>
+function calculate(operation) {
+    const num1 = parseFloat(document.getElementById('num1').value);
+    const num2 = parseFloat(document.getElementById('num2').value);
+    const resultDisplay = document.querySelector('.calc-result');
+    
+    if (isNaN(num1) || isNaN(num2)) {
+        resultDisplay.textContent = 'Please enter both numbers';
+        return;
+    }
+
+    let result;
+    switch(operation) {
+        case '+':
+            result = num1 + num2;
+            break;
+        case '-':
+            result = num1 - num2;
+            break;
+        case '*':
+            result = num1 * num2;
+            break;
+        case '/':
+            if (num2 === 0) {
+                resultDisplay.textContent = 'Cannot divide by zero';
+                return;
+            }
+            result = num1 / num2;
+            break;
+    }
+
+    resultDisplay.textContent = result.toFixed(2);
+}
+
+function clearCalc() {
+    document.getElementById('num1').value = '';
+    document.getElementById('num2').value = '';
+    document.querySelector('.calc-result').textContent = '0';
+}
+</script>
+{% endblock %}

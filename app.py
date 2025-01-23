@@ -629,7 +629,7 @@ def calculator():
     if not session.get('logged_in'):
         flash('Please login first to access the calculator page', 'warning')
         return redirect(url_for('login'))
-    return render_template('tutorials_part2.html')
+    return render_template('calculator.html')
 
 @app.errorhandler(500)
 def internal_error(error):
