@@ -34,28 +34,53 @@
     </div>
 
     <div class="practice-projects">
-        <h2>Practice Projects</h2>
-        <div class="tutorials-grid">
-            <div class="tutorial-card">
-                <h2>Python Practicals - For Lesson 1</h2>
-                <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/0sYm_0cLlmM" 
-                            title="Python Practicals Part 1" 
-                            frameborder="0" 
-                            allowfullscreen></iframe>
+        <div class="projects-header">
+            <h2>Practice Projects</h2>
+            <p class="tutor-message">With the skills you've learned so far, be confident you can tackle these exciting projects! Get creative and make them your own.</p>
+        </div>
+        <div class="projects-grid">
+            <div class="project-item age-calculator" onclick="toggleCalculator(event, this)">
+                <div class="project-front">1. Age Calculator</div>
+                <div class="modal-overlay"></div>
+                <div class="calculator-content">
+                    <button class="close-btn">&times;</button>
+                    <h3>Time Machine</h3>
+                    <p class="calc-subtitle">Travel through time to discover your age journey!</p>
+                    <div class="calculator-interactive">
+                        <input type="number" id="birthYear" placeholder="Enter your birth year" class="birth-year-input">
+                        <button onclick="calculateAge(this)" class="calculate-btn">Begin Journey</button>
+                        <div class="age-result"></div>
+                    </div>
                 </div>
-                <p class="tutorial-description">Practice implementing the concepts learned in Lesson 1.</p>
             </div>
-
-            <div class="tutorial-card">
-                <h2>Python Practicals - For Lesson 2</h2>
-                <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/s_DcypOykmg" 
-                            title="Python Practicals Part 2" 
-                            frameborder="0" 
-                            allowfullscreen></iframe>
+            <div class="project-item superhero-generator" onclick="toggleModal(event, this, 'superhero-content')">
+                <div class="project-front">2. Super-hero Name Generator</div>
+                <div class="modal-overlay"></div>
+                <div class="superhero-content">
+                    <button class="close-btn">&times;</button>
+                    <h3>⚡ Superhero Identity Generator ⚡</h3>
+                    <p class="hero-subtitle">Discover your epic superhero name!</p>
+                    <div class="superhero-interactive">
+                        <input type="text" id="firstName" placeholder="Enter your first name" class="hero-input">
+                        <input type="text" id="favoriteColor" placeholder="What's your favorite color?" class="hero-input">
+                        <button onclick="generateSuperheroName()" class="generate-btn">Transform!</button>
+                        <div class="hero-result"></div>
+                    </div>
                 </div>
-                <p class="tutorial-description">Practice implementing the concepts learned in theory Lesson 2.</p>
+            </div>
+            <div class="project-item temp-converter" onclick="toggleModal(event, this, 'temp-content')">
+                <div class="project-front">3. Temperature Converter</div>
+                <div class="modal-overlay"></div>
+                <div class="temp-content">
+                    <button class="close-btn">&times;</button>
+                    <h3>🌡️ Temperature Wizard 🔮</h3>
+                    <p class="temp-subtitle">Transform temperatures with a touch of magic!</p>
+                    <div class="temp-interactive">
+                        <input type="number" id="celsiusInput" placeholder="Enter temperature in Celsius" class="temp-input" step="0.1">
+                        <button onclick="convertTemperature()" class="generate-btn temp-btn">Convert!</button>
+                        <div class="temp-result"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
