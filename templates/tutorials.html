@@ -1,516 +1,84 @@
 {% extends "base.html" %}
-{% block title %}Video Tutorials - CodeCraft Academy{% endblock %}
-
 {% block content %}
+
 <div class="tutorials-container">
     <div class="tutorials-header">
         <h1>Learning Hub</h1>
-        <p class="welcome-text">Your Journey to Coding Excellence Starts Here</p>
+        <p class="welcome-text">Welcome to your coding journey! Start with the fundamentals.</p>
     </div>
 
     <div class="section-navigator">
-        <button class="section-btn active" onclick="showSection(1)">
-            <i class="fas fa-code"></i> Fundamentals
-        </button>
-        <button class="section-btn" onclick="showSection(2)">
-            <i class="fas fa-rocket"></i> Advanced
-        </button>
+        <button class="section-btn active" onclick="showSection(1)">Section 1: Fundamentals</button>
+        <button class="section-btn" onclick="showSection(2)">Section 2: Coming Soon</button>
     </div>
 
     <div class="section-content" id="section1">
+        <div class="tutorials-grid">
+            <div class="tutorial-card">
+                <h2>Introduction to Python</h2>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/kqtD5dpn9C8" allowfullscreen></iframe>
+                </div>
+                <p class="tutorial-description">
+                    Start your Python journey with this comprehensive introduction.
+                    Learn about variables, data types, and basic operations.
+                </p>
+            </div>
 
-    <div class="tutorials-grid">
-        <div class="tutorial-card">
-            <h2>Lesson 1: Introduction to Coding</h2>
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/P-R3ORxbu_M" 
-                        title="Introduction to Programming" 
-                        frameborder="0" 
-                        allowfullscreen></iframe>
+            <div class="tutorial-card">
+                <h2>Python Functions</h2>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/u-OmVr_fT4s" allowfullscreen></iframe>
+                </div>
+                <p class="tutorial-description">
+                    Understand how to create and use functions in Python.
+                    Master parameters, return values, and function scope.
+                </p>
             </div>
-            <p class="tutorial-description">Start your programming journey with this comprehensive first lesson.</p>
-        </div>
 
-        <div class="tutorial-card">
-            <h2>Python Practicals - For Lesson 1</h2>
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/0sYm_0cLlmM" 
-                        title="Python Practicals Part 1" 
-                        frameborder="0" 
-                        allowfullscreen></iframe>
-            </div>
-            <p class="tutorial-description">Practice implementing the concepts learned in Lesson 1.</p>
-        </div>
-
-        <div class="tutorial-card">
-            <h2>Lesson 2: Coding Theory</h2>
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/W8kSbJ7Nrzg" 
-                        title="Programming Theory Lesson 2" 
-                        frameborder="0" 
-                        allowfullscreen></iframe>
-            </div>
-            <p class="tutorial-description">Learn the theoretical concepts in our second coding lesson.</p>
-        </div>
-
-        <div class="tutorial-card">
-            <h2>Python Practicals - For Lesson 2</h2>
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/s_DcypOykmg" 
-                        title="Python Practicals Part 2" 
-                        frameborder="0" 
-                        allowfullscreen></iframe>
-            </div>
-            <p class="tutorial-description">Practice implementing the concepts learned in theory Lesson 2.</p>
-        </div>
-    </div>
-
-    <div class="practice-projects">
-        <div class="projects-header">
-            <h2>Practice Projects</h2>
-            <p class="tutor-message">With the skills you've learned so far, be confident you can tackle these exciting projects! Get creative and make them your own.</p>
-            <p><i>If you'd like to see video tutorials for these projects, comment the word "projects" on any of our YouTube videos above.</i></p>
-        </div>
-        <div class="projects-grid">
-            <div class="project-item age-calculator" onclick="toggleCalculator(event, this)">
-                <div class="project-front">1. Age Calculator</div>
-                <div class="modal-overlay"></div>
-                <div class="calculator-content">
-                    <button class="close-btn">&times;</button>
-                    <h3>Time Machine</h3>
-                    <p class="calc-subtitle">Travel through time to discover your age journey!</p>
-                    <div class="calculator-interactive">
-                        <input type="number" id="birthYear" placeholder="Enter your birth year" class="birth-year-input">
-                        <button onclick="calculateAge(this)" class="calculate-btn">Begin Journey</button>
-                        <div class="age-result"></div>
-                    </div>
+            <div class="tutorial-card">
+                <h2>Python Lists</h2>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/ohCDWZgNIU0" allowfullscreen></iframe>
                 </div>
-            </div>
-            <div class="project-item superhero-generator" onclick="toggleModal(event, this, 'superhero-content')">
-                <div class="project-front">2. Super-hero Name Generator</div>
-                <div class="modal-overlay"></div>
-                <div class="superhero-content">
-                    <button class="close-btn">&times;</button>
-                    <h3>⚡ Superhero Identity Generator ⚡</h3>
-                    <p class="hero-subtitle">Discover your epic superhero name!</p>
-                    <div class="superhero-interactive">
-                        <input type="text" id="firstName" placeholder="Enter your first name" class="hero-input">
-                        <input type="text" id="favoriteColor" placeholder="What's your favorite color?" class="hero-input">
-                        <button onclick="generateSuperheroName()" class="generate-btn">Transform!</button>
-                        <div class="hero-result"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="project-item food-favorites" onclick="toggleModal(event, this, 'food-content')">
-                <div class="project-front">3. Favorite Food Explorer</div>
-                <div class="modal-overlay"></div>
-                <div class="food-content">
-                    <button class="close-btn">&times;</button>
-                    <h3>🍕 Food Adventure Time! 🌮</h3>
-                    <p class="food-subtitle">Share your favorite food and discover why it makes you awesome!</p>
-                    <div class="food-interactive">
-                        <input type="text" id="favoriteFood" placeholder="What's your favorite food?" class="food-input">
-                        <button onclick="generateFoodResponse()" class="generate-btn food-btn">Let's Feast!</button>
-                        <div class="food-result"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="project-item vacation-dreams" onclick="toggleModal(event, this, 'vacation-content')">
-                <div class="project-front">4. Dream Vacation Explorer</div>
-                <div class="modal-overlay"></div>
-                <div class="vacation-content">
-                    <button class="close-btn">&times;</button>
-                    <h3>✈️ Dream Vacation Planner 🌴</h3>
-                    <p class="vacation-subtitle">Share your dream destination and let's imagine the possibilities!</p>
-                    <div class="vacation-interactive">
-                        <input type="text" id="dreamDestination" placeholder="Where would you love to visit?" class="vacation-input">
-                        <button onclick="generateVacationResponse()" class="generate-btn vacation-btn">Let's Dream!</button>
-                        <div class="vacation-result"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="project-item compliment-machine" onclick="toggleModal(event, this, 'compliment-content')">
-                <div class="project-front">5. Compliment Machine</div>
-                <div class="modal-overlay"></div>
-                <div class="compliment-content">
-                    <button class="close-btn">&times;</button>
-                    <h3>✨ Compliment Generator ✨</h3>
-                    <p class="compliment-subtitle">Let's brighten your day with some positivity!</p>
-                    <div class="compliment-interactive">
-                        <input type="text" id="userName" placeholder="What's your name?" class="compliment-input">
-                        <button onclick="generateCompliment()" class="generate-btn compliment-btn">Get Compliment</button>
-                        <div class="compliment-result"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="project-item temp-converter" onclick="toggleModal(event, this, 'temp-content')">
-                <div class="project-front">6. Temperature Converter</div>
-                <div class="modal-overlay"></div>
-                <div class="temp-content">
-                    <button class="close-btn">&times;</button>
-                    <h3>🌡️ Temperature Wizard 🔮</h3>
-                    <p class="temp-subtitle">Transform temperatures with a touch of magic!</p>
-                    <div class="temp-interactive">
-                        <input type="number" id="celsiusInput" placeholder="Enter temperature in Celsius" class="temp-input" step="0.1">
-                        <button onclick="convertTemperature()" class="generate-btn temp-btn">Convert!</button>
-                        <div class="temp-result"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="project-item story-maker" onclick="toggleModal(event, this, 'story-content')">
-                <div class="project-front">7. Funny Story Maker</div>
-                <div class="modal-overlay"></div>
-                <div class="story-content">
-                    <button class="close-btn">&times;</button>
-                    <h3>📖 Story Magic Creator ✨</h3>
-                    <p class="story-subtitle">Let's create an amazing story together!</p>
-                    <div class="story-interactive">
-                        <input type="text" id="characterName" placeholder="Enter a character name" class="story-input">
-                        <input type="text" id="storyPlace" placeholder="Enter a magical place" class="story-input">
-                        <input type="text" id="funActivity" placeholder="Enter a fun activity" class="story-input">
-                        <button onclick="generateStory()" class="generate-btn story-btn">Create Magic!</button>
-                        <div class="story-result"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="project-item talking-computer" onclick="toggleModal(event, this, 'talking-content')">
-                <div class="project-front">8. Talking Computer</div>
-                <div class="modal-overlay"></div>
-                <div class="talking-content">
-                    <button class="close-btn">&times;</button>
-                    <h3>🤖 Friendly Chat Bot ✨</h3>
-                    <p class="chat-subtitle">Let's have a fun conversation!</p>
-                    <div class="chat-interactive">
-                        <input type="text" id="chatUserName" placeholder="What's your name?" class="chat-input">
-                        <input type="text" id="chatFavoriteColor" placeholder="What's your favorite color?" class="chat-input">
-                        <input type="text" id="chatFavoriteAnimal" placeholder="What's your favorite animal?" class="chat-input">
-                        <button onclick="generateChatResponse()" class="generate-btn chat-btn">Let's Chat!</button>
-                        <div class="chat-result"></div>
-                    </div>
-                </div>
+                <p class="tutorial-description">
+                    Explore Python lists and list operations.
+                    Learn about indexing, slicing, and list methods.
+                </p>
             </div>
         </div>
-    </div>
-    <div class="note-container">
-        <p class="improvement-note"><i>Note: Some compliments generated in the above games may appear grammatically imperfect or contextually mismatched. This is because our current implementation uses a simple random selection from fixed responses. While this represents significant progress from our initial games, the responses will become more sophisticated and contextually appropriate as we advance into Part 2 of our tutorials, where we'll explore more advanced Python concepts for natural language processing and dynamic response generation.</i></p>
-    </div>
-</div>
-
-<style>
-    .note-container {
-        max-width: 800px;
-        margin: 2rem auto;
-        padding: 0 1rem;
-    }
-    
-    .improvement-note {
-        color: #666;
-        font-size: 0.95rem;
-        line-height: 1.6;
-        background: rgba(67, 97, 238, 0.05);
-        padding: 1.5rem;
-        border-left: 4px solid #4361ee;
-        border-radius: 0 8px 8px 0;
-    }
-    body.modal-open {
-        overflow: hidden;
-        padding-right: 17px; /* Compensate for scrollbar disappearance */
-        position: fixed;
-        width: 100%;
-    }
-
-    .practice-projects {
-        max-width: 1200px;
-        margin: 4rem auto;
-        padding: 0;
-        position: relative;
-    }
-
-    .projects-header {
-        text-align: center;
-        margin-bottom: 2rem;
-    }
-
-    .projects-header h2 {
-        color: var(--primary-color);
-        font-size: 2rem;
-        margin-bottom: 1rem;
-    }
-
-    .tutor-message {
-        color: var(--text-color);
-        font-size: 1.1rem;
-        line-height: 1.6;
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 1rem;
-        background-color: rgba(67, 97, 238, 0.1);
-        border-radius: 10px;
-    }
-
-    .projects-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1.5rem;
-        margin-top: 2rem;
-    }
-
-    .project-item {
-        background: white;
-        padding: 1.5rem;
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        transition: transform 0.3s ease;
-        font-size: 1.1rem;
-        color: var(--text-color);
-        text-align: center;
-        position: relative;
-        cursor: pointer;
-    }
-
-    .project-item:not(.open):hover {
-        transform: translateY(-5px);
-        background: linear-gradient(135deg, rgba(67, 97, 238, 0.1), rgba(72, 149, 239, 0.1));
-    }
-
-    .age-calculator .calculator-content {
-        background: linear-gradient(145deg, #2c3e50, #3498db);
-    }
-
-    .modal-overlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.8);
-        backdrop-filter: blur(5px);
-        z-index: 2000000;
-        opacity: 0;
-        transition: opacity 0.3s ease-out;
-        pointer-events: none;
-    }
-
-    .project-item.open .modal-overlay {
-        opacity: 1;
-        pointer-events: auto;
-    }
-
-    /* Common modal content styles */
-    .calculator-content,
-    .superhero-content,
-    .food-content,
-    .vacation-content,
-    .compliment-content,
-    .temp-content,
-    .story-content,
-    .talking-content {
-        display: none;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: min(90vw, 400px);
-        max-height: calc(100vh - 120px);
-        margin-top: 30px;
-        overflow-y: auto;
-        border-radius: 20px;
-        box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-        padding: 2rem;
-        margin: 0;
-        z-index: 2000001;
-        text-align: center;
-        right: auto;
-        bottom: auto;
-        color: white;
-        font-family: 'Poppins', sans-serif;
-        box-sizing: border-box;
-        overscroll-behavior: contain;
-        -webkit-overflow-scrolling: touch;
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    /* Ensure modal content is always visible on small screens */
-    @media (max-height: 700px) {
-        .calculator-content,
-        .superhero-content,
-        .food-content,
-        .vacation-content,
-        .compliment-content,
-        .temp-content,
-        .story-content,
-        .talking-content {
-            top: 0;
-            transform: translate(-50%, 0);
-            height: 100vh;
-            max-height: 100vh;
-            border-radius: 0;
-        }
-    }
-
-    @media (max-width: 768px) {
-        .calculator-content,
-        .superhero-content,
-        .food-content,
-        .vacation-content,
-        .compliment-content,
-        .temp-content,
-        .story-content,
-        .talking-content {
-            width: 95vw;
-            padding: 0.75rem;
-            max-height: 90vh;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            margin: 0;
-            border-radius: 15px;
-        }
-
-        .calculator-interactive,
-        .superhero-interactive,
-        .food-interactive,
-        .vacation-interactive,
-        .compliment-interactive,
-        .temp-interactive,
-        .story-interactive,
-        .chat-interactive {
-            padding: 0.5rem;
-        }
-    }
-
-    /* Modal content backgrounds and positioning */
-    .calculator-content { 
-        background: linear-gradient(145deg, #2c3e50, #3498db);
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        max-width: 90vw;
-        width: 400px;
-        padding: 2rem 1.5rem;
-        border-radius: 20px;
-        box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-    }
-    .superhero-content {
-        background: linear-gradient(145deg, #9c27b0, #673ab7);
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        max-width: 90vw;
-        width: 400px;
-        padding: 2rem 1.5rem;
-        border-radius: 20px;
-        box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-    }
-    .food-content { 
-        background: linear-gradient(145deg, #ff9800, #ff5722);
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        max-width: 90vw;
-        width: 400px;
-        padding: 2rem 1.5rem;
-        border-radius: 20px;
-        box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-    }
-    .vacation-content { 
-        background: linear-gradient(145deg, #2196f3, #03a9f4);
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        max-width: 90vw;
-        width: 400px;
-        padding: 2rem 1.5rem;
-        border-radius: 20px;
-        box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-    }
-    .compliment-content { 
-        background: linear-gradient(145deg, #FF1493, #FF69B4);
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        max-width: 90vw;
-        width: 400px;
-        padding: 2rem 1.5rem;
-        border-radius: 20px;
-        box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-    }
-    .temp-content { 
-        background: linear-gradient(145deg, #8E44AD, #9B59B6);
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        max-width: 90vw;
-        width: 400px;
-        padding: 2rem 1.5rem;
-
     </div>
     <div class="section-content" id="section2" style="display: none;">
         <div class="coming-soon-container">
-            <h2><i class="fas fa-rocket"></i> Advanced Topics</h2>
-            <p>Coming soon! Get ready for advanced programming concepts and real-world projects.</p>
+            <h2>🚀 Section 2: Advanced Topics</h2>
+            <p>We're preparing exciting new content for you! This section will cover advanced Python concepts, real-world projects, and more.</p>
             <div class="features-preview">
                 <div class="feature">
                     <i class="fas fa-code"></i>
                     <h3>Advanced Python</h3>
-                    <p>Master advanced programming concepts</p>
                 </div>
                 <div class="feature">
                     <i class="fas fa-project-diagram"></i>
                     <h3>Real Projects</h3>
-                    <p>Build professional applications</p>
                 </div>
                 <div class="feature">
                     <i class="fas fa-database"></i>
                     <h3>Data Handling</h3>
-                    <p>Learn database management</p>
                 </div>
             </div>
         </div>
     </div>
 
 <style>
-:root {
-    --primary-color: #4361ee;
-    --secondary-color: #3f37c9;
-    --accent-color: #4895ef;
-    --text-color: #2b2d42;
-    --bg-color: #f8f9fa;
-}
-
 .tutorials-container {
-    padding: 2rem 1rem;
+    padding: 2rem;
     max-width: 1200px;
     margin: 0 auto;
-    background: var(--bg-color);
 }
 
 .tutorials-header {
     text-align: center;
-    padding: 3rem 1rem;
-    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-    border-radius: 15px;
     margin-bottom: 3rem;
-    color: white;
-}
-
-.tutorials-header h1 {
-    font-size: clamp(2rem, 5vw, 3rem);
-    font-weight: 700;
-    margin-bottom: 1rem;
-}
-
-.welcome-text {
-    font-size: clamp(1rem, 3vw, 1.2rem);
-    opacity: 0.9;
 }
 
 .section-navigator {
@@ -519,33 +87,20 @@
     gap: 1rem;
     margin: 2rem 0;
     padding: 0 1rem;
-    flex-wrap: wrap;
 }
 
 .section-btn {
-    padding: 1rem 2rem;
+    padding: 0.8rem 1.5rem;
     border: none;
-    border-radius: 10px;
-    background: rgba(67, 97, 238, 0.1);
-    color: var(--primary-color);
-    font-weight: 600;
+    border-radius: 8px;
+    background: #f8f9fa;
     cursor: pointer;
     transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 1rem;
-}
-
-.section-btn i {
-    font-size: 1.2rem;
 }
 
 .section-btn.active {
-    background: var(--primary-color);
+    background: #4361ee;
     color: white;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(67, 97, 238, 0.2);
 }
 
 .tutorials-grid {
@@ -557,22 +112,15 @@
 
 .tutorial-card {
     background: white;
-    border-radius: 15px;
+    border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
-}
-
-.tutorial-card:hover {
-    transform: translateY(-5px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .tutorial-card h2 {
-    padding: 1.5rem;
+    padding: 1rem;
     margin: 0;
-    font-size: 1.3rem;
-    color: var(--text-color);
-    border-bottom: 1px solid rgba(0,0,0,0.1);
+    font-size: 1.2rem;
 }
 
 .video-container {
@@ -580,7 +128,6 @@
     padding-bottom: 56.25%;
     height: 0;
     overflow: hidden;
-    margin: 1rem 0;
 }
 
 .video-container iframe {
@@ -593,131 +140,46 @@
 }
 
 .tutorial-description {
-    padding: 1.5rem;
-    color: var(--text-color);
-    font-size: 1rem;
-    line-height: 1.6;
-}
-
-.coming-soon-container {
-    text-align: center;
-    padding: 3rem 1rem;
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-
-.features-preview {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
     padding: 1rem;
-}
-
-.feature {
-    padding: 2rem;
-    background: var(--bg-color);
-    border-radius: 15px;
-    transition: transform 0.3s ease;
-}
-
-.feature:hover {
-    transform: translateY(-5px);
-}
-
-.feature i {
-    font-size: 2rem;
-    color: var(--primary-color);
-    margin-bottom: 1rem;
-}
-
-.feature h3 {
-    color: var(--text-color);
-    font-size: 1.2rem;
-    margin: 1rem 0;
-}
-
-.feature p {
-    color: var(--text-color);
-    opacity: 0.8;
-    font-size: 0.95rem;
-}
-
-@media (max-width: 768px) {
-    .tutorials-container {
-        padding: 1rem;
-    }
-    
-    .tutorials-header {
-        padding: 2rem 1rem;
-    }
-    
-    .section-btn {
-        width: 100%;
-        justify-content: center;
-    }
-    
-    .features-preview {
-        grid-template-columns: 1fr;
-    }
-}
-
-.section-btn {
-    padding: 1rem 2rem;
-    border: none;
-    border-radius: 10px;
-    background: rgba(67, 97, 238, 0.1);
-    color: #4361ee;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.section-btn.active {
-    background: #4361ee;
-    color: white;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(67, 97, 238, 0.2);
+    color: #666;
 }
 
 .coming-soon-container {
     text-align: center;
-    padding: 4rem 2rem;
-    background: linear-gradient(135deg, rgba(67, 97, 238, 0.1), rgba(72, 149, 239, 0.1));
-    border-radius: 20px;
-    margin: 2rem auto;
-    max-width: 800px;
+    padding: 2rem;
 }
 
 .features-preview {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 2rem;
-    margin-top: 3rem;
+    margin-top: 2rem;
 }
 
 .feature {
-    padding: 2rem;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 15px;
-    transition: transform 0.3s ease;
-}
-
-.feature:hover {
-    transform: translateY(-5px);
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 10px;
 }
 
 .feature i {
-    font-size: 2.5rem;
+    font-size: 2rem;
     color: #4361ee;
     margin-bottom: 1rem;
 }
 
-.feature h3 {
-    color: #2b2d42;
-    font-size: 1.2rem;
-    margin: 0;
+@media (max-width: 768px) {
+    .tutorials-container {
+        padding: 1rem;
+    }
+
+    .section-navigator {
+        flex-direction: column;
+    }
+
+    .section-btn {
+        width: 100%;
+    }
 }
 </style>
 
@@ -727,899 +189,18 @@ function showSection(sectionNum) {
     document.querySelectorAll('.section-content').forEach(section => {
         section.style.display = 'none';
     });
-    
-    // Show selected section
-    document.getElementById(`section${sectionNum}`).style.display = 'block';
-    
-    // Update buttons
+
+    // Remove active class from all buttons
     document.querySelectorAll('.section-btn').forEach(btn => {
         btn.classList.remove('active');
     });
-    document.querySelectorAll('.section-btn')[sectionNum-1].classList.add('active');
+
+    // Show selected section
+    document.getElementById('section' + sectionNum).style.display = 'block';
+
+    // Add active class to clicked button
+    document.querySelectorAll('.section-btn')[sectionNum - 1].classList.add('active');
 }
 </script>
 
-        border-radius: 20px;
-        box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-    }
-    .story-content { 
-        background: linear-gradient(145deg, #FF6B6B, #FF8E53);
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        max-width: 90vw;
-        width: 400px;
-        padding: 2rem 1.5rem;
-        border-radius: 20px;
-        box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-    }
-    .talking-content { 
-        background: linear-gradient(145deg, #6C5CE7, #a55eea);
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        max-width: 90vw;
-        width: 400px;
-        padding: 2rem 1.5rem;
-        border-radius: 20px;
-        box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-    }
-
-
-    /* Ensure modals stay above all other content */
-    .project-item.open .modal-overlay {
-        display: block;
-        pointer-events: all;
-    }
-
-    .project-item.open .calculator-content,
-    .project-item.open .superhero-content,
-    .project-item.open .food-content,
-    .project-item.open .vacation-content,
-    .project-item.open .compliment-content,
-    .project-item.open .temp-content,
-    .project-item.open .story-content,
-    .project-item.open .talking-content {
-        display: block;
-        animation: popIn 0.3s ease-out forwards;
-        pointer-events: all;
-        z-index: 2000000;
-    }
-
-    .age-calculator.open .modal-overlay {
-        display: block;
-        pointer-events: all;
-    }
-
-    .calculator-content {
-        pointer-events: all !important;
-    }
-
-    @keyframes popIn {
-        0% { 
-            opacity: 0; 
-            transform: translate(-50%, -50%) scale(0.95);
-        }
-        100% { 
-            opacity: 1; 
-            transform: translate(-50%, -50%) scale(1);
-        }
-    }
-
-    .close-btn {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        background: none;
-        border: none;
-        color: white;
-        font-size: 24px;
-        cursor: pointer;
-        padding: 5px 10px;
-        border-radius: 50%;
-        transition: background-color 0.3s;
-    }
-
-    .close-btn:hover {
-        background-color: rgba(255,255,255,0.1);
-    }
-
-    .calculator-content h3 {
-        font-size: 1.8rem;
-        margin-bottom: 0.5rem;
-        font-weight: 700;
-    }
-
-    .calc-subtitle {
-        font-size: 1rem;
-        opacity: 0.9;
-        margin-bottom: 1.5rem;
-    }
-
-
-    .calculator-interactive {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    .birth-year-input {
-        padding: 1rem;
-        border: 2px solid rgba(255,255,255,0.2);
-        border-radius: 15px;
-        background: rgba(255,255,255,0.1);
-        color: white;
-        font-size: 1.1rem;
-        text-align: center;
-        transition: all 0.3s;
-    }
-
-    .birth-year-input::placeholder {
-        color: rgba(255,255,255,0.7);
-    }
-
-    .birth-year-input:focus {
-        outline: none;
-        border-color: rgba(255,255,255,0.5);
-        background: rgba(255,255,255,0.15);
-    }
-
-    .calculate-btn {
-        padding: 1rem;
-        background: #e74c3c;
-        color: white;
-        border: none;
-        border-radius: 15px;
-        cursor: pointer;
-        font-size: 1.1rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        transition: all 0.3s;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    }
-
-    .calculate-btn:hover {
-        background: #c0392b;
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(0,0,0,0.25);
-    }
-
-    .age-result, .hero-result {
-        font-weight: bold;
-        margin-top: 1rem;
-        padding: 1rem;
-        background: rgba(255,255,255,0.1);
-        border-radius: 15px;
-        font-size: 1.2rem;
-    }
-
-    .superhero-generator .superhero-content {
-        background: linear-gradient(145deg, #9c27b0, #673ab7);
-    }
-
-    .hero-subtitle {
-        font-size: 1rem;
-        opacity: 0.9;
-        margin-bottom: 1.5rem;
-    }
-
-    .hero-input {
-        width: 100%;
-        padding: 1rem;
-        margin-bottom: 1rem;
-        border: 2px solid rgba(255,255,255,0.2);
-        border-radius: 15px;
-        background: rgba(255,255,255,0.1);
-        color: white;
-        font-size: 1.1rem;
-        text-align: center;
-    }
-
-    .hero-input::placeholder {
-        color: rgba(255,255,255,0.7);
-    }
-
-    .generate-btn {
-        width: 100%;
-        padding: 1rem;
-        background: #ff4081;
-        color: white;
-        border: none;
-        border-radius: 15px;
-        cursor: pointer;
-        font-size: 1.1rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        transition: all 0.3s;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    }
-
-    .generate-btn:hover {
-        background: #f50057;
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(0,0,0,0.25);
-    }
-
-
-    .food-input {
-        width: 100%;
-        padding: 1rem;
-        margin-bottom: 1rem;
-        border: 2px solid rgba(255,255,255,0.2);
-        border-radius: 15px;
-        background: rgba(255,255,255,0.1);
-        color: white;
-        font-size: 1.1rem;
-        text-align: center;
-    }
-
-    .food-input::placeholder {
-        color: rgba(255,255,255,0.7);
-    }
-
-    .food-btn {
-        background: #4caf50;
-    }
-
-    .food-btn:hover {
-        background: #388e3c;
-    }
-
-    .food-result {
-        font-weight: bold;
-        margin-top: 1rem;
-        padding: 1rem;
-        background: rgba(255,255,255,0.1);
-        border-radius: 15px;
-        font-size: 1.2rem;
-    }
-
-
-    .vacation-input {
-        width: 100%;
-        padding: 1rem;
-        margin-bottom: 1rem;
-        border: 2px solid rgba(255,255,255,0.2);
-        border-radius: 15px;
-        background: rgba(255,255,255,0.1);
-        color: white;
-        font-size: 1.1rem;
-        text-align: center;
-    }
-
-    .vacation-input::placeholder {
-        color: rgba(255,255,255,0.7);
-    }
-
-    .vacation-btn {
-        background: #00bcd4;
-    }
-
-    .vacation-btn:hover {
-        background: #0097a7;
-    }
-
-    .vacation-result {
-        font-weight: bold;
-        margin-top: 1rem;
-        padding: 1rem;
-        background: rgba(255,255,255,0.1);
-        border-radius: 15px;
-        font-size: 1.2rem;
-    }
-
-
-    .compliment-input {
-        width: 100%;
-        padding: 1rem;
-        margin-bottom: 1rem;
-        border: 2px solid rgba(255,255,255,0.2);
-        border-radius: 15px;
-        background: rgba(255,255,255,0.1);
-        color: white;
-        font-size: 1.1rem;
-        text-align: center;
-        margin-top: 1rem;
-    }
-
-    .compliment-input::placeholder {
-        color: rgba(255,255,255,0.7);
-    }
-
-    .compliment-btn {
-        background: #FF69B4;
-    }
-
-    .compliment-btn:hover {
-        background: #FF1493;
-    }
-
-    .compliment-result {
-        font-weight: bold;
-        margin-top: 1rem;
-        padding: 1rem;
-        background: rgba(255,255,255,0.1);
-        border-radius: 15px;
-        font-size: 1.2rem;
-    }
-
-
-    .temp-input {
-        width: 100%;
-        padding: 1rem;
-        margin-bottom: 1rem;
-        border: 2px solid rgba(255,255,255,0.2);
-        border-radius: 15px;
-        background: rgba(255,255,255,0.1);
-        color: white;
-        font-size: 1.1rem;
-        text-align: center;
-    }
-
-    .temp-input::placeholder {
-        color: rgba(255,255,255,0.7);
-    }
-
-    .temp-btn {
-        background: #9B59B6;
-    }
-
-    .temp-btn:hover {
-        background: #8E44AD;
-    }
-
-    .temp-result {
-        font-weight: bold;
-        margin-top: 1rem;
-        padding: 1rem;
-        background: rgba(255,255,255,0.1);
-        border-radius: 15px;
-        font-size: 1.2rem;
-    }
-
-
-    .story-input {
-        width: 100%;
-        padding: 1rem;
-        margin-bottom: 1rem;
-        border: 2px solid rgba(255,255,255,0.2);
-        border-radius: 15px;
-        background: rgba(255,255,255,0.1);
-        color: white;
-        font-size: 1.1rem;
-        text-align: center;
-    }
-
-    .story-input::placeholder {
-        color: rgba(255,255,255,0.7);
-    }
-
-    .story-btn {
-        background: #FF8E53;
-    }
-
-    .story-btn:hover {
-        background: #FF6B6B;
-    }
-
-    .story-result {
-        font-weight: bold;
-        margin-top: 1rem;
-        padding: 1rem;
-        background: rgba(255,255,255,0.1);
-        border-radius: 15px;
-        font-size: 1.2rem;
-        line-height: 1.6;
-    }
-
-
-    .chat-input {
-        width: 100%;
-        padding: 1rem;
-        margin-bottom: 1rem;
-        border: 2px solid rgba(255,255,255,0.2);
-        border-radius: 15px;
-        background: rgba(255,255,255,0.1);
-        color: white;
-        font-size: 1.1rem;
-        text-align: center;
-    }
-
-    .chat-input::placeholder {
-        color: rgba(255,255,255,0.7);
-    }
-
-    .chat-btn {
-        background: #a55eea;
-    }
-
-    .chat-btn:hover {
-        background: #8854d0;
-    }
-
-    .chat-result {
-        font-weight: bold;
-        margin-top: 1rem;
-        padding: 1rem;
-        background: rgba(255,255,255,0.1);
-        border-radius: 15px;
-        font-size: 1.2rem;
-        line-height: 1.6;
-    }
-
-    .project-front {
-        cursor: pointer;
-        position: relative;
-    }
-
-    .project-front::after {
-        content: "Click to play! 🎮";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: linear-gradient(145deg, #4361ee, #3f37c9);
-        color: white;
-        padding: 0.8rem 1.5rem;
-        border-radius: 10px;
-        font-size: 1.1rem;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-        pointer-events: none;
-        white-space: nowrap;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        z-index: 2;
-    }
-
-    .project-item:hover .project-front::after {
-        opacity: 1;
-        animation: pulse 2s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-        0% { transform: translate(-50%, -50%) scale(1); }
-        50% { transform: translate(-50%, -50%) scale(1.005); }
-        100% { transform: translate(-50%, -50%) scale(1); }
-    }
-
-    .tutorials-container {
-        padding: 4rem 0;
-        background: linear-gradient(135deg, rgba(67, 97, 238, 0.1), rgba(72, 149, 239, 0.1));
-        min-height: 100vh;
-    }
-
-    .tutorials-header {
-        text-align: center;
-        max-width: 800px;
-        margin: 0 auto 3rem auto;
-        padding: 2rem;
-    }
-
-    .tutorials-header h1 {
-        color: var(--primary-color);
-        font-size: 2.5rem;
-        margin-bottom: 1rem;
-        font-weight: 700;
-    }
-
-    .welcome-text {
-        font-size: 1.2rem;
-        color: var(--text-color);
-        margin-bottom: 2rem;
-    }
-
-    .tutorials-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-        padding: 0 2rem;
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-
-    .tutorial-card {
-        background: white;
-        border-radius: 15px;
-        overflow: hidden;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        transition: transform 0.3s ease;
-    }
-
-    .tutorial-card:hover {
-        transform: translateY(-5px);
-    }
-
-    .tutorial-card h2 {
-        color: var(--primary-color);
-        font-size: 1.5rem;
-        padding: 1.5rem;
-        margin: 0;
-    }
-
-    .video-container {
-        position: relative;
-        padding-bottom: 56.25%;
-        height0;
-        overflow: hidden;
-    }
-
-    .video-container iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: none;
-    }
-
-    .tutorial-description {
-        padding: 1.5rem;
-        color: var(--text-color);
-        font-size: 1.1rem;
-        line-height: 1.6;
-        margin: 0;
-    }
-</style>
-
-<script>
-    function closeAllModals() {
-        document.querySelectorAll('.project-item').forEach(item => {
-            item.classList.remove('open');
-        });
-    }
-
-    function showModal(modalContent) {
-        modalContent.style.display = 'block';
-    }
-
-    // Global click handler for closing modals
-    document.addEventListener('click', function(e) {
-        const openModal = document.querySelector('.project-item.open');
-        if (openModal) {
-            const modalContent = openModal.querySelector('.calculator-content, .superhero-content, .food-content, .vacation-content, .compliment-content, .temp-content, .story-content, .talking-content');
-            const modalOverlay = openModal.querySelector('.modal-overlay');
-
-            if (e.target === modalOverlay) {
-                closeModal(openModal);
-            }
-        }
-    });
-
-    function closeModal(element) {
-        const modalContent = element.querySelector('.calculator-content, .superhero-content, .food-content, .vacation-content, .compliment-content, .temp-content, .story-content, .talking-content');
-        element.classList.remove('open');
-        modalContent.style.display = 'none';
-        element.querySelector('.modal-overlay').style.display = 'none';
-        document.body.classList.remove('modal-open');
-    }
-
-    function toggleModal(event, element, contentClass) {
-        if (!event || event.type !== 'click') {
-            return; // Only proceed if this is a click event
-        }
-        
-        event.preventDefault();
-        event.stopPropagation();
-        
-        closeAllModals(); // Close any open modals first
-        
-        const modalContent = element.querySelector('.' + contentClass);
-        if (!modalContent) return;
-        
-        requestAnimationFrame(() => {
-            element.classList.add('open');
-            modalContent.style.display = 'block';
-            element.querySelector('.modal-overlay').style.display = 'block';
-            document.body.classList.add('modal-open');
-        });
-
-        // Handle close button
-        const closeBtn = element.querySelector('.close-btn');
-        if (closeBtn) {
-            closeBtn.onclick = (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                closeModal(element);
-            };
-        }
-    }
-
-    function toggleCalculator(event, element) {
-        toggleModal(event, element, 'calculator-content');
-    }
-
-    function calculateAge(button) {
-        const birthYear = document.getElementById('birthYear').value;
-        const currentYear = 2024;
-        const age = currentYear - birthYear;
-
-        if (age < 0 || isNaN(age)) {
-            button.nextElementSibling.textContent = "Invalid input!";
-            return;
-        }
-
-        let message = `You are ${age} years old!`;
-        if (age < 18) {
-            message += "  Wow, you're still young and full of energy!";
-        } else if (age < 30) {
-            message += "  Entering the prime of your life. Amazing!";
-        } else if (age < 60) {
-            message += "  You've accomplished so much already!";
-        } else {
-            message += "  Wisdom and experience shine from within. Keep going!";
-        }
-
-        button.nextElementSibling.textContent = message;
-    }
-
-    function toggleSuperheroGenerator(event, element) {
-        toggleModal(event, element, 'superhero-content');
-    }
-
-    function toggleFoodFavorites(event, element) {
-        toggleModal(event, element, 'food-content');
-    }
-
-    function generateFoodResponse() {
-        const favoriteFood = document.getElementById('favoriteFood').value;
-
-        if (!favoriteFood) {
-            document.querySelector('.food-result').textContent = "Please tell us your favorite food!";
-            return;
-        }
-
-        const compliments = [
-            "🌟 Fantastic choice! People who love",
-            "✨ Delicious! Your taste in",
-            "🎉 Amazing pick! Fans of",
-            "💫 Excellent! Enjoying",
-            "🌈 Wonderful! Your love for"
-        ];
-
-        const traits = [
-            "shows you're adventurous and fun!",
-            "means you have excellent taste!",
-            "reflects your vibrant personality!",
-            "proves you're a true food connoisseur!",
-            "demonstrates your refined palate!"
-        ];
-
-        const randomCompliment = compliments[Math.floor(Math.random() * compliments.length)];
-        const randomTrait = traits[Math.floor(Math.random() * traits.length)];
-
-        document.querySelector('.food-result').innerHTML = 
-            `${randomCompliment}<br><span style="font-size: 1.4em; color: #ffeb3b">${favoriteFood}</span><br>${randomTrait}`;
-    }
-
-    function toggleVacationDreams(event, element) {
-        toggleModal(event, element, 'vacation-content');
-    }
-
-    function generateVacationResponse() {
-        const destination = document.getElementById('dreamDestination').value;
-
-        if (!destination) {
-            document.querySelector('.vacation-result').textContent = "Please tell us your dream destination!";
-            return;
-        }
-
-        const compliments = [
-            "🌟 Amazing choice! A journey to",
-            "✨ Fantastic destination! Visiting",
-            "🎉 Wonderful pick! Traveling to",
-            "💫 Excellent taste! Exploring",
-            "🌈 Brilliant selection! An adventure in"
-        ];
-
-        const activities = [
-            "would be an unforgettable adventure!",
-            "sounds like the perfect getaway!",
-            "will create amazing memories!",
-            "is such an inspiring choice!",
-            "shows your adventurous spirit!"
-        ];
-
-        const randomCompliment = compliments[Math.floor(Math.random() * compliments.length)];
-        const randomActivity = activities[Math.floor(Math.random() * activities.length)];
-
-        document.querySelector('.vacation-result').innerHTML = 
-            `${randomCompliment}<br><span style="font-size: 1.4em; color: #e3f2fd">${destination}</span><br>${randomActivity}`;
-    }
-
-    function toggleComplimentMachine(event, element) {
-        toggleModal(event, element, 'compliment-content');
-    }
-
-    function generateCompliment() {
-        const name = document.getElementById('userName').value;
-
-        if (!name) {
-            document.querySelector('.compliment-result').textContent = "Please tell us your name!";
-            return;
-        }
-
-        const compliments = [
-            "🌟 You are absolutely amazing,",
-            "✨ You light up every room you enter,",
-            "💫 Your potential is limitless,",
-            "⭐ You make the world a better place,",
-            "🌈 Your positive energy is contagious,"
-        ];
-
-        const affirmations = [
-            "Keep shining bright!",
-            "You're capable of incredible things!",
-            "Your future is so bright!",
-            "You inspire others every day!",
-            "Success follows wherever you go!"
-        ];
-
-        const randomCompliment = compliments[Math.floor(Math.random() * compliments.length)];
-        const randomAffirmation = affirmations[Math.floor(Math.random() * affirmations.length)];
-
-        document.querySelector('.compliment-result').innerHTML = 
-            `${randomCompliment}<br><span style="font-size: 1.4em; color: #FFB6C1">${name}</span><br>${randomAffirmation}`;
-    }
-
-    function generateSuperheroName() {
-        const firstName = document.getElementById('firstName').value;
-        const favoriteColor = document.getElementById('favoriteColor').value;
-
-        if (!firstName || !favoriteColor) {
-            document.querySelector('.hero-result').textContent = "Please fill in both fields!";
-            return;
-        }
-
-        const superheroName = `${favoriteColor.charAt(0).toUpperCase() + favoriteColor.slice(1)} ${firstName.charAt(0).toUpperCase() + firstName.slice(1)}`;
-
-        const compliments = [
-            "✨ Behold the mighty",
-            "⚡ All hail the powerful",
-            "🌟 Welcome to the world of heroes,",
-            "💫 With great power comes",
-            "🦸‍♂️ Stand in awe of the legendary"
-        ];
-
-        const powers = [
-            "Master of the Elements",
-            "Defender of Justice",
-            "Champion of Light",
-            "Guardian of Peace",
-            "Protector of the Realms"
-        ];
-
-        const randomCompliment = compliments[Math.floor(Math.random() * compliments.length)];
-        const randomPower = powers[Math.floor(Math.random() * powers.length)];
-
-        document.querySelector('.hero-result').innerHTML = 
-            `${randomCompliment}<br><span style="font-size: 1.4em; color: #fff176">${superheroName}</span><br>${randomPower}`;
-    }
-
-    function toggleTempConverter(event, element) {
-        toggleModal(event, element, 'temp-content');
-    }
-
-    function toggleStoryMaker(event, element) {
-        toggleModal(event, element, 'story-content');
-    }
-
-    function generateStory() {
-        const name = document.getElementById('characterName').value;
-        const place = document.getElementById('storyPlace').value;
-        const activity = document.getElementById('funActivity').value;
-
-        if (!name || !place || !activity) {
-            document.querySelector('.story-result').textContent = "Please fill in all the story elements!";
-            return;
-        }
-
-        const intros = [
-            "🌟 In a magical adventure,",
-            "✨ On a wonderful day,",
-            "🎉 During an exciting journey,",
-            "💫 In an amazing twist of fate,",
-            "🌈 Through a delightful series of events,"
-        ];
-
-        const endings = [
-            "and created unforgettable memories!",
-            "and had the time of their life!",
-            "and discovered hidden talents!",
-            "and made everyone smile!",
-            "and became a local legend!"
-        ];
-
-        const compliments = [
-            "Your creativity is absolutely incredible!",
-            "What an amazing story you've crafted!",
-            "You're a natural storyteller!",
-            "Your imagination is truly inspiring!",
-            "This story shows your brilliant mind!"
-        ];
-
-        const randomIntro = intros[Math.floor(Math.random() * intros.length)];
-        const randomEnding = endings[Math.floor(Math.random() * endings.length)];
-        const randomCompliment = compliments[Math.floor(Math.random() * compliments.length)];
-
-        document.querySelector('.story-result').innerHTML = 
-            `${randomIntro}<br><span style="font-size: 1.2em; color: #FFE0B2">${name} went to ${place} to ${activity}</span><br>${randomEnding}<br><br>✨ ${randomCompliment} ✨`;
-    }
-
-    function toggleTalkingComputer(event, element) {
-        toggleModal(event, element, 'talking-content');
-    }
-
-    function generateChatResponse() {
-        const name = document.getElementById('chatUserName').value;
-        const color = document.getElementById('chatFavoriteColor').value;
-        const animal = document.getElementById('chatFavoriteAnimal').value;
-
-        if (!name || !color || !animal) {
-            document.querySelector('.chat-result').textContent = "Please answer all the questions!";
-            return;
-        }
-
-        const greetings = [
-            "🌟 Wonderful to meet you,",
-            "✨ It's a pleasure to chat with you,",
-            "💫 How delightful to know you,",
-            "🎉 I'm so happy to meet you,",
-            "🌈 What a joy to talk with you,"
-        ];
-
-        const colorResponses = [
-            "is such a beautiful and vibrant color!",
-            "really shows your amazing taste!",
-            "is a perfect reflection of your personality!",
-            "is such an inspiring choice!",
-            "makes the world more beautiful!"
-        ];
-
-        const animalResponses = [
-            "are known for being so special and amazing!",
-            "are such magnificent creatures!",
-            "show what a wonderful soul you have!",
-            "are truly remarkable, just like you!",
-            "represent such beautiful qualities!"
-        ];
-
-        const randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
-        const randomColorResponse = colorResponses[Math.floor(Math.random() * colorResponses.length)];
-        const randomAnimalResponse = animalResponses[Math.floor(Math.random() * animalResponses.length)];
-
-        document.querySelector('.chat-result').innerHTML = 
-            `${randomGreeting}<br><span style="font-size: 1.4em; color: #E0E7FF">${name}</span>!<br><br>
-            ${color} ${randomColorResponse}<br><br>
-            And ${animal}s ${randomAnimalResponse}<br><br>
-            ✨ You're truly one of a kind! ✨`;
-    }
-
-    function convertTemperature() {
-        const celsius = parseFloat(document.getElementById('celsiusInput').value);
-
-        if (isNaN(celsius)) {
-            document.querySelector('.temp-result').textContent = "Please enter a valid temperature!";
-            return;
-        }
-
-        const fahrenheit = (celsius * 9/5) + 32;
-
-        const compliments = [
-            "🌟 Amazing! You've mastered temperature conversion!",
-            "✨ Brilliant work! You're becoming a temperature wizard!",
-            "🎉 Fantastic job! Keep exploring the world of science!",
-            "💫 Excellent! You're getting better at this!",
-            "🌈 Wonderful! Your curiosity is inspiring!"
-        ];
-
-        const randomCompliment = compliments[Math.floor(Math.random() * compliments.length)];
-
-        document.querySelector('.temp-result').innerHTML = 
-            `${randomCompliment}<br><span style="font-size: 1.4em; color: #E8E8E8">${celsius}°C = ${fahrenheit.toFixed(1)}°F</span>`;
-    }
-</script>
 {% endblock %}

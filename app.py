@@ -37,13 +37,13 @@ def add_basic_security(response):
     response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
     response.headers['Pragma'] = 'no-cache'
     response.headers['Expires'] = '0'
-    
+
     # Store last visited page
     if request.endpoint and request.method == 'GET' and response.status_code == 200:
         excluded_routes = ['login', 'register', 'logout', 'static']
         if request.endpoint not in excluded_routes:
             session['last_page'] = request.url
-            
+
     return response
 app.permanent_session_lifetime = timedelta(days=30)
 app.config['SESSION_TYPE'] = 'filesystem'
@@ -104,25 +104,25 @@ def init_db():
 def check_and_send_analytics():
     conn = sqlite3.connect('users.db')
     c = conn.cursor()
-    
+
     # Count unnotified visits
     c.execute('SELECT COUNT(*) FROM visits WHERE notified = 0')
     unnotified_count = c.fetchone()[0]
-    
+
     if unnotified_count >= 20:
         # Get analytics data
         c.execute('SELECT COUNT(DISTINCT email) FROM users')
         total_users = c.fetchone()[0]
-        
+
         c.execute('SELECT COUNT(*) FROM visits')
         total_visits = c.fetchone()[0]
-        
+
         c.execute('''SELECT page, COUNT(*) as count 
                      FROM visits 
                      GROUP BY page 
                      ORDER BY count DESC''')
         page_views = c.fetchall()
-        
+
         # Prepare email content
         email_content = f'''
         <h2>CodeCraft Academy Analytics Update</h2>
@@ -134,18 +134,18 @@ def check_and_send_analytics():
         for page, count in page_views:
             email_content += f'<li>{page}: {count} views</li>'
         email_content += '</ul>'
-        
+
         # Send email
         msg = Message('CodeCraft Academy Analytics Update',
                      sender=app.config['MAIL_USERNAME'],
                      recipients=['lilianjeripowers@gmail.com'])
         msg.html = email_content
         mail.send(msg)
-        
+
         # Mark visits as notified
         c.execute('UPDATE visits SET notified = 1 WHERE notified = 0')
         conn.commit()
-    
+
     conn.close()
 
 init_db()
@@ -158,14 +158,14 @@ def home():
             c = conn.cursor()
             c.execute('SELECT * FROM users WHERE email = ?', (session['email'],))
             user = c.fetchone()
-            
+
             if user:
                 c.execute('INSERT INTO visits (email, page) VALUES (?, ?)', 
                          (session['email'], 'home'))
                 conn.commit()
                 check_and_send_analytics()
             conn.close()
-            
+
         return render_template('home.html')
     except Exception as e:
         flash(str(e), 'error')
@@ -176,27 +176,27 @@ def analytics():
     # Only allow admin access
     if not session.get('logged_in') or session.get('email') != 'lilianjeripowers@gmail.com':
         return redirect(url_for('home'))
-        
+
     conn = sqlite3.connect('users.db')
     c = conn.cursor()
-    
+
     # Get total users
     c.execute('SELECT COUNT(*) FROM users')
     total_users = c.fetchone()[0]
-    
+
     # Get total visits
     c.execute('SELECT COUNT(*) FROM visits')
     total_visits = c.fetchone()[0]
-    
+
     # Get page views
     c.execute('''SELECT page, COUNT(*) as count 
                  FROM visits 
                  GROUP BY page 
                  ORDER BY count DESC''')
     page_views = c.fetchall()
-    
+
     conn.close()
-    
+
     return render_template('analytics.html', 
                          total_users=total_users,
                          total_visits=total_visits,
@@ -213,30 +213,30 @@ def editors():
 def treasure_hunt():
     if not session.get('logged_in'):
         return redirect(url_for('login'))
-    
+
     if 'treasure_level' not in session:
         session['treasure_level'] = 0
     if 'treasures' not in session:
         session['treasures'] = 0
     level = session.get('treasure_level', 0)
-    
+
     if request.method == 'POST':
         code = request.form.get('code')
         treasures = int(session.get('treasures', 0))
-        
+
         if code:
             session.permanent = True
             if 'completed_questions' not in session:
                 session['completed_questions'] = []
-            
+
             try:
                 stripped_code = code.strip()
                 level = session.get('treasure_level', 0)
                 is_correct = False
-                
+
                 def normalize_code(code):
                     return ' '.join(code.split()).lower()
-                
+
                 normalized_code = normalize_code(stripped_code)
                 level_validations = {
                     0: lambda c: "print('hello python!')" in c or 'print("hello python!")' in c,
@@ -250,13 +250,13 @@ def treasure_hunt():
                     8: lambda c: any(x in c.replace(" ", "") for x in ["int('123')", 'text="123"\ninteger_value=int(text)']),
                     9: lambda c: any(x in c.replace(" ", "") for x in ["float(10)", "number=10\nfloat_value=float(number)"])
                 }
-                
+
                 if level in level_validations and level_validations[level](normalized_code):
                     is_correct = True
                     session['treasure_level'] = level + 1
                 else:
                     is_correct = False
-                    
+
                 if is_correct and level not in session['completed_questions']:
                     treasures += 1
                     session['completed_questions'].append(level)
@@ -279,16 +279,16 @@ def treasure_hunt():
                 response = "There was an error in your code. Try again!"
         else:
             response = "Please enter your code solution."
-            
+
         return jsonify({"response": response})
-        
+
     return render_template('treasure_hunt.html', level=level)
 
 @app.route('/games', methods=['GET', 'POST'])
 def games():
     if not session.get('logged_in'):
         return redirect(url_for('login'))
-    
+
     # Initialize session variables if they don't exist
     if 'treasure_level' not in session:
         session['treasure_level'] = 0
@@ -300,13 +300,13 @@ def games():
     if 'rps_streak' not in session:
         session['rps_streak'] = 0
     session.permanent = True
-        
+
     if request.method == 'POST':
         game = request.form.get('game')
         if game == "conversation":
             name = request.form.get('name')
             response = f"Hello, {name}! Welcome to CodeCraft Academy. Let's start learning!"
-            
+
         elif game == "guessing":
             number = random.randint(1, 10)
             guess = int(request.form.get('guess', 0))
@@ -314,7 +314,7 @@ def games():
                 response = f"🎉 Congratulations! You guessed {number} correctly!"
             else:
                 response = f"The number was {number}. Try again!"
-                
+
         elif game == "math":
             num1 = int(request.form.get('num1', 0))
             num2 = int(request.form.get('num2', 0))
@@ -324,15 +324,15 @@ def games():
                 response = f"✨ Correct! {num1} + {num2} = {correct}"
             else:
                 response = f"The correct answer was {correct}. Keep practicing!"
-                
+
         elif game == "rock_paper_scissors":
             choices = ['rock', 'paper', 'scissors']
             player_choice = request.form.get('player_choice')
             computer_choice = random.choice(choices)
-            
+
             score = session.get('rps_score', 0)
             streak = session.get('rps_streak', 0)
-            
+
             if player_choice == computer_choice:
                 response = f"It's a tie! Computer also chose {computer_choice}"
                 streak = 0
@@ -349,19 +349,19 @@ def games():
             else:
                 response = f"Computer wins with {computer_choice}!"
                 streak = 0
-                
+
             session['rps_score'] = score
             session['rps_streak'] = streak
-                
+
         elif game == "shapes":
             shape = request.form.get('shape')
             color = request.form.get('color')
-            
+
             plt.figure(figsize=(6, 6))
             ax = plt.gca()
             ax.set_xlim(-2, 2)
             ax.set_ylim(-2, 2)
-            
+
             if shape == 'square':
                 patch = Rectangle((-1, -1), 2, 2, color=color)
             elif shape == 'triangle':
@@ -377,24 +377,24 @@ def games():
                 angles = np.linspace(0, 2*np.pi, 7)[:-1]
                 vertices = [[np.cos(angle), np.sin(angle)] for angle in angles]
                 patch = Polygon(vertices, color=color)
-            
+
             ax.add_patch(patch)
             ax.set_aspect('equal')
             ax.axis('off')
-            
+
             buf = io.BytesIO()
             plt.savefig(buf, format='png', bbox_inches='tight')
             buf.seek(0)
             plt.close()
-            
+
             image = base64.b64encode(buf.getvalue()).decode('utf-8')
             response = f'<img src="data:image/png;base64,{image}" alt="{color} {shape}">'
-            
+
         elif game == "treasure_hunt":
             code = request.form.get('code')
             treasures = int(session.get('treasures', 0))
             completed_questions = session.get('completed_questions', [])
-            
+
             if code:
                 session.permanent = True
                 if 'completed_questions' not in session:
@@ -411,15 +411,15 @@ def games():
                     8: "123",
                     9: "10.0"
                 }
-                
+
                 try:
                     stripped_code = code.strip()
                     level = int(request.form.get('level', 0))
                     is_correct = False
-                    
+
                     def normalize_code(code):
                         return ' '.join(code.split()).lower()
-                    
+
                     normalized_code = normalize_code(stripped_code)
                     level_validations = {
                         0: lambda c: "print('hello python!')" in c or 'print("hello python!")' in c,
@@ -433,13 +433,13 @@ def games():
                         8: lambda c: any(x in c.replace(" ", "") for x in ["int('123')", 'text="123"\ninteger_value=int(text)']),
                         9: lambda c: any(x in c.replace(" ", "") for x in ["float(10)", "number=10\nfloat_value=float(number)"])
                     }
-                    
+
                     if level in level_validations and level_validations[level](normalized_code):
                         is_correct = True
                         session['treasure_level'] = level + 1
                     else:
                         is_correct = False
-                        
+
                     if is_correct and level not in session['completed_questions']:
                         treasures += 1
                         session['completed_questions'].append(level)
@@ -462,29 +462,29 @@ def games():
                     response = "There was an error in your code. Try again!"
             else:
                 response = "Please enter your code solution."
-                
+
         return jsonify({"response": response})
-        
+
     return render_template('games.html', random=random, level=level)
-    
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if session.get('logged_in'):
         flash('You are already logged in!', 'info')
         return redirect(url_for('home'))
-        
+
     if request.method == 'POST':
         email = request.form.get('mail')
         password = request.form.get('password')
         remember = request.form.get('remember')
-        
+
         try:
             with sqlite3.connect('users.db', timeout=30) as conn:
                 c = conn.cursor()
                 c.execute('SELECT email, password, first_name FROM users WHERE email = ? COLLATE NOCASE', (email,))
                 user = c.fetchone()
-                
+
                 if user:
                     from werkzeug.security import check_password_hash
                     if check_password_hash(user[1], password):
@@ -501,11 +501,11 @@ def login():
                     # Store email in session for pre-filling registration form
                     session['temp_email'] = email
                     return redirect(url_for('register'))
-                    
+
         except sqlite3.Error as e:
             print(f"Database error during login: {e}")
             flash('Unable to access user account. Please try again.', 'error')
-        
+
     return render_template('login.html')
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -513,18 +513,18 @@ def register():
     if session.get('logged_in'):
         flash('You already have an account and are logged in!', 'info')
         return redirect(url_for('home'))
-        
+
     if request.method == 'POST':
         email = request.form.get('mail')
         password = request.form.get('password')
-        
+
         if '@' not in email or '.' not in email:
             flash('Please enter a valid existing email address that you actively use.', 'error')
             return render_template('register.html')
 
         from werkzeug.security import generate_password_hash
         hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
-        
+
         try:
             with sqlite3.connect('users.db', timeout=20) as conn:
                 c = conn.cursor()
@@ -532,7 +532,7 @@ def register():
                 if c.fetchone():
                     flash('This email is already registered. Please login to your existing account.', 'warning')
                     return redirect(url_for('login'))
-                    
+
                 first_name = request.form.get('fname')
                 last_name = request.form.get('lname')
                 c.execute('INSERT INTO users (email, password, first_name, last_name) VALUES (?, ?, ?, ?)', 
@@ -543,7 +543,7 @@ def register():
         except Exception as e:
             flash(f'Error during registration: {str(e)}', 'error')
             return redirect(url_for('register'))
-        
+
     return render_template('register.html')
 
 @app.route('/logout')
@@ -557,13 +557,13 @@ def logout():
 def forgot_password():
     if request.method == 'POST':
         email = request.form.get('email')
-        
+
         conn = sqlite3.connect('users.db')
         c = conn.cursor()
         c.execute('SELECT * FROM users WHERE email = ?', (email,))
         user = c.fetchone()
         conn.close()
-        
+
         if user:
             # For demo purposes, we'll just redirect to reset password
             # In production, you would send an email with reset link
@@ -572,7 +572,7 @@ def forgot_password():
             return redirect(url_for('reset_password'))
         else:
             flash('Email not found in our records.', 'error')
-    
+
     return render_template('forgot_password.html')
 
 @app.route('/reset-password', methods=['GET', 'POST'])
@@ -580,14 +580,14 @@ def reset_password():
     if request.method == 'POST':
         password = request.form.get('password')
         confirm_password = request.form.get('confirm_password')
-        
+
         if password != confirm_password:
             flash('Passwords do not match!', 'error')
             return redirect(url_for('reset_password'))
-            
+
         from werkzeug.security import generate_password_hash
         hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
-        
+
         email = session.get('reset_email')
         if email:
             conn = sqlite3.connect('users.db')
@@ -601,7 +601,7 @@ def reset_password():
             return redirect(url_for('login'))
         else:
             flash('Error resetting password. Please try again.', 'error')
-    
+
     return render_template('reset_password.html')
 
 @app.route('/terms')
@@ -638,16 +638,16 @@ def internal_error(error):
 def verify_email(token):
     conn = sqlite3.connect('users.db')
     c = conn.cursor()
-    
+
     # Get user email for this token
     c.execute('SELECT email FROM users WHERE verification_token = ?', (token,))
     user = c.fetchone()
-    
+
     if user:
         email = user[0]
         c.execute('UPDATE users SET verified = 1 WHERE verification_token = ?', (token,))
         conn.commit()
-        
+
         # Send confirmation email to notify all devices
         confirm_msg = Message('Email Verification Successful - CodeCraft Academy',
                             sender=('CodeCraft Academy', app.config['MAIL_DEFAULT_SENDER']),
@@ -669,7 +669,7 @@ def verify_email(token):
         flash('Email verified successfully! You can now login from any device.', 'success')
     else:
         flash('Invalid or expired verification link.', 'error')
-    
+
     conn.close()
     return redirect(url_for('login'))
 
