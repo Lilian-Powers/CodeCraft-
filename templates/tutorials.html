@@ -30,7 +30,6 @@
             </div>
             <p class="tutorial-description">Learn the theoretical concepts in our second coding lesson.</p>
         </div>
-
     </div>
 
     <div class="practice-projects">
@@ -39,6 +38,7 @@
             <p class="tutor-message">With the skills you've learned so far, be confident you can tackle these exciting projects! Get creative and make them your own.</p>
         </div>
         <div class="projects-grid">
+            <!-- Age Calculator -->
             <div class="project-item age-calculator" onclick="toggleCalculator(event, this)">
                 <div class="project-front">1. Age Calculator</div>
                 <div class="modal-overlay"></div>
@@ -53,6 +53,8 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Superhero Generator -->
             <div class="project-item superhero-generator" onclick="toggleModal(event, this, 'superhero-content')">
                 <div class="project-front">2. Super-hero Name Generator</div>
                 <div class="modal-overlay"></div>
@@ -68,8 +70,58 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Food Explorer -->
+            <div class="project-item food-favorites" onclick="toggleModal(event, this, 'food-content')">
+                <div class="project-front">3. Favorite Food Explorer</div>
+                <div class="modal-overlay"></div>
+                <div class="food-content">
+                    <button class="close-btn">&times;</button>
+                    <h3>🍕 Food Adventure Time! 🌮</h3>
+                    <p class="food-subtitle">Share your favorite food and discover why it makes you awesome!</p>
+                    <div class="food-interactive">
+                        <input type="text" id="favoriteFood" placeholder="What's your favorite food?" class="food-input">
+                        <button onclick="generateFoodResponse()" class="generate-btn food-btn">Let's Feast!</button>
+                        <div class="food-result"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vacation Explorer -->
+            <div class="project-item vacation-dreams" onclick="toggleModal(event, this, 'vacation-content')">
+                <div class="project-front">4. Dream Vacation Explorer</div>
+                <div class="modal-overlay"></div>
+                <div class="vacation-content">
+                    <button class="close-btn">&times;</button>
+                    <h3>✈️ Dream Vacation Planner 🌴</h3>
+                    <p class="vacation-subtitle">Share your dream destination and let's imagine the possibilities!</p>
+                    <div class="vacation-interactive">
+                        <input type="text" id="dreamDestination" placeholder="Where would you love to visit?" class="vacation-input">
+                        <button onclick="generateVacationResponse()" class="generate-btn vacation-btn">Let's Dream!</button>
+                        <div class="vacation-result"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Compliment Machine -->
+            <div class="project-item compliment-machine" onclick="toggleModal(event, this, 'compliment-content')">
+                <div class="project-front">5. Compliment Machine</div>
+                <div class="modal-overlay"></div>
+                <div class="compliment-content">
+                    <button class="close-btn">&times;</button>
+                    <h3>✨ Compliment Generator ✨</h3>
+                    <p class="compliment-subtitle">Let's brighten your day with some positivity!</p>
+                    <div class="compliment-interactive">
+                        <input type="text" id="userName" placeholder="What's your name?" class="compliment-input">
+                        <button onclick="generateCompliment()" class="generate-btn compliment-btn">Get Compliment</button>
+                        <div class="compliment-result"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Temperature Converter -->
             <div class="project-item temp-converter" onclick="toggleModal(event, this, 'temp-content')">
-                <div class="project-front">3. Temperature Converter</div>
+                <div class="project-front">6. Temperature Converter</div>
                 <div class="modal-overlay"></div>
                 <div class="temp-content">
                     <button class="close-btn">&times;</button>
@@ -82,37 +134,41 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <div class="tutorials-section-2">
-        <div class="section-header">
-            <h2>Video Tutorials Part 2</h2>
-            <p class="section-desc">Time to Level Up Your Python Skills! 🚀</p>
-            <p class="section-desc">Now that you've mastered the basics, let's explore how to make your programs smarter with conditional statements (if, elif, else). These powerful tools will help you create more interactive and dynamic programs!</p>
-        </div>
-
-        <div class="tutorials-grid">
-            <div class="tutorial-card">
-                <h2>Mastering Conditional Statements</h2>
-                <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/hginwuW4Lw0" 
-                            title="Introduction to Conditional Statements" 
-                            frameborder="0" 
-                            allowfullscreen></iframe>
+            <!-- Story Maker -->
+            <div class="project-item story-maker" onclick="toggleModal(event, this, 'story-content')">
+                <div class="project-front">7. Funny Story Maker</div>
+                <div class="modal-overlay"></div>
+                <div class="story-content">
+                    <button class="close-btn">&times;</button>
+                    <h3>📖 Story Magic Creator ✨</h3>
+                    <p class="story-subtitle">Let's create an amazing story together!</p>
+                    <div class="story-interactive">
+                        <input type="text" id="characterName" placeholder="Enter a character name" class="story-input">
+                        <input type="text" id="storyPlace" placeholder="Enter a magical place" class="story-input">
+                        <input type="text" id="funActivity" placeholder="Enter a fun activity" class="story-input">
+                        <button onclick="generateStory()" class="generate-btn story-btn">Create Magic!</button>
+                        <div class="story-result"></div>
+                    </div>
                 </div>
-                <p class="tutorial-description">Discover how to make your programs think! Learn the fundamentals of if, elif, and else statements and unlock the power of decision-making in your code.</p>
             </div>
 
-            <div class="tutorial-card">
-                <h2>Real-World Applications</h2>
-                <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/XivtThGig-Q" 
-                            title="Practical Examples with Conditionals" 
-                            frameborder="0" 
-                            allowfullscreen></iframe>
+            <!-- Talking Computer -->
+            <div class="project-item talking-computer" onclick="toggleModal(event, this, 'talking-content')">
+                <div class="project-front">8. Talking Computer</div>
+                <div class="modal-overlay"></div>
+                <div class="talking-content">
+                    <button class="close-btn">&times;</button>
+                    <h3>🤖 Friendly Chat Bot ✨</h3>
+                    <p class="chat-subtitle">Let's have a fun conversation!</p>
+                    <div class="chat-interactive">
+                        <input type="text" id="chatUserName" placeholder="What's your name?" class="chat-input">
+                        <input type="text" id="chatFavoriteColor" placeholder="What's your favorite color?" class="chat-input">
+                        <input type="text" id="chatFavoriteAnimal" placeholder="What's your favorite animal?" class="chat-input">
+                        <button onclick="generateChatResponse()" class="generate-btn chat-btn">Let's Chat!</button>
+                        <div class="chat-result"></div>
+                    </div>
                 </div>
-                <p class="tutorial-description">See conditional statements in action! Through practical examples, you'll learn how to solve real programming challenges and create more sophisticated programs.</p>
             </div>
         </div>
     </div>
@@ -476,6 +532,134 @@
         }
     }
 </style>
+
 <script>
+function closeAllModals() {
+    document.querySelectorAll('.project-item').forEach(item => {
+        item.classList.remove('open');
+        const modalContent = item.querySelector('.calculator-content, .superhero-content, .food-content, .vacation-content, .compliment-content, .temp-content, .story-content, .talking-content');
+        if (modalContent) {
+            modalContent.style.display = 'none';
+        }
+        const modalOverlay = item.querySelector('.modal-overlay');
+        if (modalOverlay) {
+            modalOverlay.style.display = 'none';
+        }
+    });
+    document.body.classList.remove('modal-open');
+}
+
+function toggleCalculator(event, element) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    closeAllModals();
+
+    element.classList.add('open');
+    const content = element.querySelector('.calculator-content');
+    const overlay = element.querySelector('.modal-overlay');
+
+    if (content && overlay) {
+        content.style.display = 'block';
+        overlay.style.display = 'block';
+        document.body.classList.add('modal-open');
+    }
+}
+
+function toggleModal(event, element, contentClass) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    closeAllModals();
+
+    element.classList.add('open');
+    const content = element.querySelector('.' + contentClass);
+    const overlay = element.querySelector('.modal-overlay');
+
+    if (content && overlay) {
+        content.style.display = 'block';
+        overlay.style.display = 'block';
+        document.body.classList.add('modal-open');
+    }
+}
+
+// Close modal when clicking outside
+document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('modal-overlay')) {
+        closeAllModals();
+    }
+});
+
+// Close modal when clicking close button
+document.querySelectorAll('.close-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        closeAllModals();
+    });
+});
+
+
+function calculateAge(element) {
+    const birthYear = document.getElementById('birthYear').value;
+    const currentYear = new Date().getFullYear();
+    const age = currentYear - birthYear;
+    const ageResult = element.parentNode.querySelector('.age-result');
+    ageResult.textContent = `You are approximately ${age} years old!`;
+}
+
+function generateSuperheroName() {
+    const firstName = document.getElementById('firstName').value.toLowerCase();
+    const favoriteColor = document.getElementById('favoriteColor').value.toLowerCase();
+    const superheroName = `${firstName}${favoriteColor}Hero`;
+    const heroResult = document.querySelector('.hero-result');
+    heroResult.textContent = `Your superhero name is: ${superheroName}`;
+}
+
+
+function generateFoodResponse() {
+    const favoriteFood = document.getElementById('favoriteFood').value;
+    const foodResult = document.querySelector('.food-result');
+    foodResult.textContent = `Your favorite food is ${favoriteFood}.  That's awesome!`;
+}
+
+function generateVacationResponse() {
+    const dreamDestination = document.getElementById('dreamDestination').value;
+    const vacationResult = document.querySelector('.vacation-result');
+    vacationResult.textContent = `Your dream vacation destination is ${dreamDestination}. Sounds amazing!`;
+}
+
+function generateCompliment() {
+    const userName = document.getElementById('userName').value;
+    const compliment = `Hey ${userName}, you're awesome and incredibly talented! Keep shining!`;
+    const complimentResult = document.querySelector('.compliment-result');
+    complimentResult.textContent = compliment;
+}
+
+function convertTemperature() {
+    const celsiusInput = parseFloat(document.getElementById('celsiusInput').value);
+    const fahrenheit = (celsiusInput * 9/5) + 32;
+    const tempResult = document.querySelector('.temp-result');
+    tempResult.textContent = `${celsiusInput}°C is equal to ${fahrenheit.toFixed(2)}°F`;
+}
+
+
+function generateStory() {
+    const characterName = document.getElementById('characterName').value;
+    const storyPlace = document.getElementById('storyPlace').value;
+    const funActivity = document.getElementById('funActivity').value;
+    const story = `Once upon a time, in the magical land of ${storyPlace}, there lived a brave adventurer named ${characterName}. One day, ${characterName} decided to go on a fun adventure and ${funActivity}! The end.`;
+    const storyResult = document.querySelector('.story-result');
+    storyResult.textContent = story;
+}
+
+function generateChatResponse() {
+    const chatUserName = document.getElementById('chatUserName').value;
+    const chatFavoriteColor = document.getElementById('chatFavoriteColor').value;
+    const chatFavoriteAnimal = document.getElementById('chatFavoriteAnimal').value;
+    const chatResponse = `Hello ${chatUserName}! I hear your favorite color is ${chatFavoriteColor} and your favorite animal is ${chatFavoriteAnimal}. That's cool!`;
+    const chatResult = document.querySelector('.chat-result');
+    chatResult.textContent = chatResponse;
+}
 </script>
 {% endblock %}
