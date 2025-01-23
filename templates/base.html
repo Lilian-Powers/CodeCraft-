@@ -136,6 +136,16 @@
             <i class="fas fa-arrow-right"></i>
         </button>
     </div>
+    
+    <script>
+        function navigatePage(direction) {
+            if (direction === 'prev') {
+                window.history.back();
+            } else if (direction === 'next') {
+                window.history.forward();
+            }
+        }
+    </script>>
     <script>
         // Close navbar when clicking outside
         document.addEventListener('click', function(event) {
