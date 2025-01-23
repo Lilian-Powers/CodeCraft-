@@ -151,10 +151,18 @@
         });
 
         function navigatePage(direction) {
-            if (direction === 'prev') {
-                window.history.back();
-            } else if (direction === 'next') {
-                window.history.forward();
+            const navLinks = ['/', '/games', '/treasure_hunt', '/editors', '/tutorials', '/calculator'];
+            const currentPath = window.location.pathname;
+            let currentIndex = navLinks.indexOf(currentPath);
+            
+            if (currentIndex === -1) {
+                currentIndex = 0;
+            }
+            
+            if (direction === 'next' && currentIndex < navLinks.length - 1) {
+                window.location.href = navLinks[currentIndex + 1];
+            } else if (direction === 'prev' && currentIndex > 0) {
+                window.location.href = navLinks[currentIndex - 1];
             }
         }
 
