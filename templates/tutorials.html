@@ -647,10 +647,15 @@
 
 
 
+    <div class="note-container">
+        <p class="improvement-note"><i>Note: Some compliments generated in the above games may appear grammatically imperfect or contextually mismatched. This is because our current implementation uses a simple random selection from fixed responses. While this represents significant progress from our initial games, the responses will become more sophisticated and contextually appropriate as we advance into Part 2 of our tutorials, where we'll explore more advanced Python concepts for natural language processing and dynamic response generation.</i></p>
+    </div>
+
     <div class="tutorials-section-2">
         <div class="section-header">
             <h2>Video Tutorials Part 2</h2>
-            <p class="section-desc">Continue your learning journey with conditional statements in Python!</p>
+            <p class="section-desc">Ready to level up? Let's dive into Python conditional statements!</p>
+            <p class="section-desc">In this section, you'll apply your knowledge and learn how to make decisions in your code using if, elif, and else statements.</p>
         </div>
 
         <div class="tutorials-grid">
@@ -662,7 +667,7 @@
                             frameborder="0" 
                             allowfullscreen></iframe>
                 </div>
-                <p class="tutorial-description">Learn the fundamentals of if, elif, and else statements in Python.</p>
+                <p class="tutorial-description">Master the fundamentals of if, elif, and else statements in Python. Learn how to make your programs smarter by adding decision-making capabilities.</p>
             </div>
 
             <div class="tutorial-card">
@@ -673,7 +678,7 @@
                             frameborder="0" 
                             allowfullscreen></iframe>
                 </div>
-                <p class="tutorial-description">Practice using conditional statements with real-world examples.</p>
+                <p class="tutorial-description">Put your knowledge into practice with real-world examples. See how conditional statements are used to solve everyday programming challenges.</p>
             </div>
         </div>
     </div>
@@ -683,27 +688,44 @@
             max-width: 1200px;
             margin: 4rem auto;
             padding: 2rem;
-            background: linear-gradient(135deg, rgba(67, 97, 238, 0.05), rgba(72, 149, 239, 0.05));
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.08), rgba(72, 149, 239, 0.08));
             border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(67, 97, 238, 0.1);
         }
 
-        .section-header {
+        .tutorials-section-2 .section-header {
             text-align: center;
             margin-bottom: 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, #4361ee, #3f37c9);
+            border-radius: 15px;
+            color: white;
         }
 
-        .section-header h2 {
-            color: #4361ee;
-            font-size: 2.5rem;
+        .tutorials-section-2 .section-header h2 {
+            color: white;
+            font-size: 2.8rem;
             font-weight: 700;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
         }
 
-        .section-desc {
-            color: #666;
+        .tutorials-section-2 .section-desc {
+            color: rgba(255, 255, 255, 0.9);
             font-size: 1.2rem;
             max-width: 800px;
-            margin: 0 auto;
+            margin: 0.5rem auto;
+            line-height: 1.6;
+        }
+
+        .tutorials-section-2 .tutorial-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(67, 97, 238, 0.1);
+        }
+
+        .tutorials-section-2 .tutorial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(67, 97, 238, 0.2);
         }
 
         .food-input {
