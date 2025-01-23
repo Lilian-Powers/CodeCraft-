@@ -160,11 +160,37 @@
             }
             
             if (direction === 'next' && currentIndex < navLinks.length - 1) {
+                document.body.style.cursor = 'wait';
                 window.location.href = navLinks[currentIndex + 1];
             } else if (direction === 'prev' && currentIndex > 0) {
+                document.body.style.cursor = 'wait';
                 window.location.href = navLinks[currentIndex - 1];
             }
         }
+
+        // Preload adjacent pages
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = ['/', '/games', '/treasure_hunt', '/editors', '/tutorials', '/calculator'];
+            const currentPath = window.location.pathname;
+            const currentIndex = navLinks.indexOf(currentPath);
+            
+            if (currentIndex !== -1) {
+                if (currentIndex < navLinks.length - 1) {
+                    const nextLink = navLinks[currentIndex + 1];
+                    const preloadNext = document.createElement('link');
+                    preloadNext.rel = 'prefetch';
+                    preloadNext.href = nextLink;
+                    document.head.appendChild(preloadNext);
+                }
+                if (currentIndex > 0) {
+                    const prevLink = navLinks[currentIndex - 1];
+                    const preloadPrev = document.createElement('link');
+                    preloadPrev.rel = 'prefetch';
+                    preloadPrev.href = prevLink;
+                    document.head.appendChild(preloadPrev);
+                }
+            }
+        });
 
         // Handle floating nav visibility
         window.addEventListener('scroll', function() {
@@ -181,6 +207,15 @@
         });
     </script>
     <style>
+        * {
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        button, a {
+            cursor: pointer;
+            touch-action: manipulation;
+        }
+        
         .floating-nav {
             position: fixed;
             bottom: 100px;
