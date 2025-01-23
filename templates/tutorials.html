@@ -1,126 +1,118 @@
+
 {% extends "base.html" %}
 {% block content %}
 
-<div class="tutorials-container">
-    <div class="tutorials-header">
-        <h1>Learning Hub</h1>
-        <p class="welcome-text">Welcome to your coding journey! Start with the fundamentals.</p>
-    </div>
-
-    <div class="section-navigator">
-        <button class="section-btn active" onclick="showSection(1)">Section 1: Fundamentals</button>
-        <button class="section-btn" onclick="showSection(2)">Section 2: Coming Soon</button>
-    </div>
-
-    <div class="section-content" id="section1">
-        <div class="tutorials-grid">
-            <div class="tutorial-card">
-                <h2>Introduction to Python</h2>
-                <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/kqtD5dpn9C8" allowfullscreen></iframe>
-                </div>
-                <p class="tutorial-description">
-                    Start your Python journey with this comprehensive introduction.
-                    Learn about variables, data types, and basic operations.
-                </p>
+<div class="container py-5">
+    <h1 class="text-center mb-4">Learning Hub</h1>
+    
+    <div class="tutorials-grid">
+        <!-- Python Introduction Card -->
+        <div class="tutorial-card">
+            <div class="card-header">
+                <h2>Python Introduction</h2>
+                <p>Start your coding journey with Python basics</p>
             </div>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/kqtD5dpn9C8" allowfullscreen></iframe>
+            </div>
+            <div class="card-content">
+                <h3>What you'll learn:</h3>
+                <ul>
+                    <li>Basic Python syntax</li>
+                    <li>Variables and data types</li>
+                    <li>Simple operations</li>
+                </ul>
+                <a href="/tutorials_part2" class="btn btn-primary mt-3">Try It Yourself</a>
+            </div>
+        </div>
 
-            <div class="tutorial-card">
+        <!-- Python Calculator Card -->
+        <div class="tutorial-card interactive">
+            <div class="card-header">
+                <h2>Interactive Calculator</h2>
+                <p>Practice Python with a simple calculator</p>
+            </div>
+            <div class="calculator">
+                <div class="calc-display">
+                    <input type="number" id="num1" placeholder="First number">
+                    <select id="operator">
+                        <option value="+">+</option>
+                        <option value="-">-</option>
+                        <option value="*">×</option>
+                        <option value="/">÷</option>
+                    </select>
+                    <input type="number" id="num2" placeholder="Second number">
+                </div>
+                <button onclick="calculate()" class="calc-btn">=</button>
+                <div id="result" class="calc-result">Result: </div>
+            </div>
+            <div class="card-content">
+                <h3>Skills practiced:</h3>
+                <ul>
+                    <li>Basic arithmetic</li>
+                    <li>User input handling</li>
+                    <li>Conditional statements</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Python Functions Card -->
+        <div class="tutorial-card">
+            <div class="card-header">
                 <h2>Python Functions</h2>
-                <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/u-OmVr_fT4s" allowfullscreen></iframe>
-                </div>
-                <p class="tutorial-description">
-                    Understand how to create and use functions in Python.
-                    Master parameters, return values, and function scope.
-                </p>
+                <p>Learn how to create and use functions</p>
             </div>
-
-            <div class="tutorial-card">
-                <h2>Python Lists</h2>
-                <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/ohCDWZgNIU0" allowfullscreen></iframe>
-                </div>
-                <p class="tutorial-description">
-                    Explore Python lists and list operations.
-                    Learn about indexing, slicing, and list methods.
-                </p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/u-OmVr_fT4s" allowfullscreen></iframe>
+            </div>
+            <div class="card-content">
+                <h3>Topics covered:</h3>
+                <ul>
+                    <li>Function definition</li>
+                    <li>Parameters and arguments</li>
+                    <li>Return values</li>
+                </ul>
             </div>
         </div>
     </div>
-    <div class="section-content" id="section2" style="display: none;">
-        <div class="coming-soon-container">
-            <h2>🚀 Section 2: Advanced Topics</h2>
-            <p>We're preparing exciting new content for you! This section will cover advanced Python concepts, real-world projects, and more.</p>
-            <div class="features-preview">
-                <div class="feature">
-                    <i class="fas fa-code"></i>
-                    <h3>Advanced Python</h3>
-                </div>
-                <div class="feature">
-                    <i class="fas fa-project-diagram"></i>
-                    <h3>Real Projects</h3>
-                </div>
-                <div class="feature">
-                    <i class="fas fa-database"></i>
-                    <h3>Data Handling</h3>
-                </div>
-            </div>
-        </div>
-    </div>
+</div>
 
 <style>
-.tutorials-container {
-    padding: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.tutorials-header {
-    text-align: center;
-    margin-bottom: 3rem;
-}
-
-.section-navigator {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin: 2rem 0;
-    padding: 0 1rem;
-}
-
-.section-btn {
-    padding: 0.8rem 1.5rem;
-    border: none;
-    border-radius: 8px;
-    background: #f8f9fa;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.section-btn.active {
-    background: #4361ee;
-    color: white;
-}
-
 .tutorials-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
     padding: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .tutorial-card {
     background: white;
-    border-radius: 10px;
+    border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
 }
 
-.tutorial-card h2 {
-    padding: 1rem;
+.tutorial-card:hover {
+    transform: translateY(-5px);
+}
+
+.card-header {
+    background: linear-gradient(135deg, #4361ee, #3b82f6);
+    color: white;
+    padding: 1.5rem;
+}
+
+.card-header h2 {
     margin: 0;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
+}
+
+.card-header p {
+    margin: 0.5rem 0 0;
+    opacity: 0.9;
 }
 
 .video-container {
@@ -139,67 +131,116 @@
     border: none;
 }
 
-.tutorial-description {
-    padding: 1rem;
-    color: #666;
-}
-
-.coming-soon-container {
-    text-align: center;
-    padding: 2rem;
-}
-
-.features-preview {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-.feature {
+.card-content {
     padding: 1.5rem;
-    background: #f8f9fa;
-    border-radius: 10px;
 }
 
-.feature i {
-    font-size: 2rem;
-    color: #4361ee;
+.card-content h3 {
+    font-size: 1.2rem;
     margin-bottom: 1rem;
 }
 
+.card-content ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.card-content li {
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.card-content li:before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: #4361ee;
+}
+
+.calculator {
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 10px;
+    margin: 1rem;
+}
+
+.calc-display {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.calc-display input {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+}
+
+.calc-display select {
+    padding: 0.5rem;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    background: white;
+}
+
+.calc-btn {
+    width: 100%;
+    padding: 0.5rem;
+    background: #4361ee;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 1rem;
+}
+
+.calc-result {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
 @media (max-width: 768px) {
-    .tutorials-container {
-        padding: 1rem;
-    }
-
-    .section-navigator {
-        flex-direction: column;
-    }
-
-    .section-btn {
-        width: 100%;
+    .tutorials-grid {
+        grid-template-columns: 1fr;
     }
 }
 </style>
 
 <script>
-function showSection(sectionNum) {
-    // Hide all sections
-    document.querySelectorAll('.section-content').forEach(section => {
-        section.style.display = 'none';
-    });
+function calculate() {
+    const num1 = parseFloat(document.getElementById('num1').value);
+    const num2 = parseFloat(document.getElementById('num2').value);
+    const operator = document.getElementById('operator').value;
+    let result;
 
-    // Remove active class from all buttons
-    document.querySelectorAll('.section-btn').forEach(btn => {
-        btn.classList.remove('active');
-    });
+    if (isNaN(num1) || isNaN(num2)) {
+        document.getElementById('result').textContent = 'Please enter valid numbers';
+        return;
+    }
 
-    // Show selected section
-    document.getElementById('section' + sectionNum).style.display = 'block';
+    switch(operator) {
+        case '+':
+            result = num1 + num2;
+            break;
+        case '-':
+            result = num1 - num2;
+            break;
+        case '*':
+            result = num1 * num2;
+            break;
+        case '/':
+            if (num2 === 0) {
+                document.getElementById('result').textContent = 'Cannot divide by zero';
+                return;
+            }
+            result = num1 / num2;
+            break;
+    }
 
-    // Add active class to clicked button
-    document.querySelectorAll('.section-btn')[sectionNum - 1].classList.add('active');
+    document.getElementById('result').textContent = `Result: ${result}`;
 }
 </script>
 
