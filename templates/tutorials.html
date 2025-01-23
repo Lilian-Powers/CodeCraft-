@@ -1,71 +1,66 @@
-
 {% extends "base.html" %}
+{% block title %}Video Tutorials - CodeCraft Academy{% endblock %}
+
 {% block content %}
+<div class="tutorials-container">
+    <div class="tutorials-header">
+        <h1>Video Tutorials Part 1</h1>
+        <p class="welcome-text">Welcome to our structured learning path!</p>
+    </div>
 
-<div class="container py-5">
-    <h1 cla{% extends "base.html" %}
-        {% block title %}Video Tutorials - CodeCraft Academy{% endblock %}
-
-        {% block content %}
-        <div class="tutorials-container">
-            <div class="tutorials-header">
-                <h1>Video Tutorials Part 1</h1>
-                <p class="welcome-text">Welcome to our structured learning path!</p>
+    <div class="tutorials-grid">
+        <div class="tutorial-card">
+            <h2>Lesson 1: Introduction to Coding</h2>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/P-R3ORxbu_M" 
+                        title="Introduction to Programming" 
+                        frameborder="0" 
+                        allowfullscreen></iframe>
             </div>
+            <p class="tutorial-description">Start your programming journey with this comprehensive first lesson.</p>
+        </div>
 
-            <div class="tutorials-grid">
-                <div class="tutorial-card">
-                    <h2>Lesson 1: Introduction to Coding</h2>
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/P-R3ORxbu_M" 
-                                title="Introduction to Programming" 
-                                frameborder="0" 
-                                allowfullscreen></iframe>
-                    </div>
-                    <p class="tutorial-description">Start your programming journey with this comprehensive first lesson.</p>
-                </div>
-
-                <div class="tutorial-card">
-                    <h2>Python Practicals - For Lesson 1</h2>
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/0sYm_0cLlmM" 
-                                title="Python Practicals Part 1" 
-                                frameborder="0" 
-                                allowfullscreen></iframe>
-                    </div>
-                    <p class="tutorial-description">Practice implementing the concepts learned in Lesson 1.</p>
-                </div>
-
-                <div class="tutorial-card">
-                    <h2>Lesson 2: Coding Theory</h2>
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/W8kSbJ7Nrzg" 
-                                title="Programming Theory Lesson 2" 
-                                frameborder="0" 
-                                allowfullscreen></iframe>
-                    </div>
-                    <p class="tutorial-description">Learn the theoretical concepts in our second coding lesson.</p>
-                </div>
-
-                <div class="tutorial-card">
-                    <h2>Python Practicals - For Lesson 2</h2>
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/s_DcypOykmg" 
-                                title="Python Practicals Part 2" 
-                                frameborder="0" 
-                                allowfullscreen></iframe>
-                    </div>
-                    <p class="tutorial-description">Practice implementing the concepts learned in theory Lesson 2.</p>
-                </div>
+        <div class="tutorial-card">
+            <h2>Python Practicals - For Lesson 1</h2>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/0sYm_0cLlmM" 
+                        title="Python Practicals Part 1" 
+                        frameborder="0" 
+                        allowfullscreen></iframe>
             </div>
+            <p class="tutorial-description">Practice implementing the concepts learned in Lesson 1.</p>
+        </div>
 
-            <div class="practice-projects">
-                <div class="projects-header">
-                    <h2>Practice Projects</h2>
-                    <p class="tutor-message">With the skills you've learned so far, be confident you can tackle these exciting projects! Get creative and make them your own.</p>
-                    <p><i>If you'd like to see video tutorials for these projects, comment the word "projects" on any of our YouTube videos above.</i></p>
-                </div>
-                <div class="projects-grid">
+        <div class="tutorial-card">
+            <h2>Lesson 2: Coding Theory</h2>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/W8kSbJ7Nrzg" 
+                        title="Programming Theory Lesson 2" 
+                        frameborder="0" 
+                        allowfullscreen></iframe>
+            </div>
+            <p class="tutorial-description">Learn the theoretical concepts in our second coding lesson.</p>
+        </div>
+
+        <div class="tutorial-card">
+            <h2>Python Practicals - For Lesson 2</h2>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/s_DcypOykmg" 
+                        title="Python Practicals Part 2" 
+                        frameborder="0" 
+                        allowfullscreen></iframe>
+            </div>
+            <p class="tutorial-description">Practice implementing the concepts learned in theory Lesson 2.</p>
+        </div>
+    </div>
+
+    <div class="practice-projects">
+        <div class="projects-header">
+            <h2>Practice Projects</h2>
+            <p class="tutor-message">With the skills you've learned so far, be confident you can tackle these exciting projects! Get creative and make them your own.</p>
+            <p><i>If you'd like to see video tutorials for these projects, comment the word "projects" on any of our YouTube videos above.</i></p>
+        </div>
+        <div class="projects-grid">
                     <div class="project-item age-calculator" onclick="toggleCalculator(event, this)">
                         <div class="project-front">1. Age Calculator</div>
                         <div class="modal-overlay"></div>
@@ -183,14 +178,14 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="note-container">
+        </div>
+    </div>
+    <div class="note-container">
                 <p class="improvement-note"><i>Note: Some compliments generated in the above games may appear grammatically imperfect or contextually mismatched. This is because our current implementation uses a simple random selection from fixed responses. While this represents significant progress from our initial games, the responses will become more sophisticated and contextually appropriate as we advance into Part 2 of our tutorials, where we'll explore more advanced Python concepts for natural language processing and dynamic response generation.</i></p>
             </div>
-        </div>
+</div>
 
-        <style>
+<style>
             .note-container {
                 max-width: 800px;
                 margin: 2rem auto;
@@ -949,7 +944,7 @@
             .video-container {
                 position: relative;
                 padding-bottom: 56.25%;
-                height0;
+                height: 0;
                 overflow: hidden;
             }
 
@@ -1328,245 +1323,4 @@
                     `${randomCompliment}<br><span style="font-size: 1.4em; color: #E8E8E8">${celsius}°C = ${fahrenheit.toFixed(1)}°F</span>`;
             }
         </script>
-        {% endblock %}ss="text-center mb-4">Learning Hub</h1>
-    
-    <div class="tutorials-grid">
-        <!-- Python Introduction Card -->
-        <div class="tutorial-card">
-            <div class="card-header">
-                <h2>Python Introduction</h2>
-                <p>Start your coding journey with Python basics</p>
-            </div>
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/kqtD5dpn9C8" allowfullscreen></iframe>
-            </div>
-            <div class="card-content">
-                <h3>What you'll learn:</h3>
-                <ul>
-                    <li>Basic Python syntax</li>
-                    <li>Variables and data types</li>
-                    <li>Simple operations</li>
-                </ul>
-                <a href="/tutorials_part2" class="btn btn-primary mt-3">Try It Yourself</a>
-            </div>
-        </div>
-
-        <!-- Python Calculator Card -->
-        <div class="tutorial-card interactive">
-            <div class="card-header">
-                <h2>Interactive Calculator</h2>
-                <p>Practice Python with a simple calculator</p>
-            </div>
-            <div class="calculator">
-                <div class="calc-display">
-                    <input type="number" id="num1" placeholder="First number">
-                    <select id="operator">
-                        <option value="+">+</option>
-                        <option value="-">-</option>
-                        <option value="*">×</option>
-                        <option value="/">÷</option>
-                    </select>
-                    <input type="number" id="num2" placeholder="Second number">
-                </div>
-                <button onclick="calculate()" class="calc-btn">=</button>
-                <div id="result" class="calc-result">Result: </div>
-            </div>
-            <div class="card-content">
-                <h3>Skills practiced:</h3>
-                <ul>
-                    <li>Basic arithmetic</li>
-                    <li>User input handling</li>
-                    <li>Conditional statements</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Python Functions Card -->
-        <div class="tutorial-card">
-            <div class="card-header">
-                <h2>Python Functions</h2>
-                <p>Learn how to create and use functions</p>
-            </div>
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/u-OmVr_fT4s" allowfullscreen></iframe>
-            </div>
-            <div class="card-content">
-                <h3>Topics covered:</h3>
-                <ul>
-                    <li>Function definition</li>
-                    <li>Parameters and arguments</li>
-                    <li>Return values</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-
-<style>
-.tutorials-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    padding: 1rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.tutorial-card {
-    background: white;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-}
-
-.tutorial-card:hover {
-    transform: translateY(-5px);
-}
-
-.card-header {
-    background: linear-gradient(135deg, #4361ee, #3b82f6);
-    color: white;
-    padding: 1.5rem;
-}
-
-.card-header h2 {
-    margin: 0;
-    font-size: 1.5rem;
-}
-
-.card-header p {
-    margin: 0.5rem 0 0;
-    opacity: 0.9;
-}
-
-.video-container {
-    position: relative;
-    padding-bottom: 56.25%;
-    height: 0;
-    overflow: hidden;
-}
-
-.video-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-}
-
-.card-content {
-    padding: 1.5rem;
-}
-
-.card-content h3 {
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-}
-
-.card-content ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.card-content li {
-    margin-bottom: 0.5rem;
-    padding-left: 1.5rem;
-    position: relative;
-}
-
-.card-content li:before {
-    content: "→";
-    position: absolute;
-    left: 0;
-    color: #4361ee;
-}
-
-.calculator {
-    padding: 1.5rem;
-    background: #f8f9fa;
-    border-radius: 10px;
-    margin: 1rem;
-}
-
-.calc-display {
-    display: flex;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-}
-
-.calc-display input {
-    flex: 1;
-    padding: 0.5rem;
-    border: 1px solid #dee2e6;
-    border-radius: 5px;
-}
-
-.calc-display select {
-    padding: 0.5rem;
-    border: 1px solid #dee2e6;
-    border-radius: 5px;
-    background: white;
-}
-
-.calc-btn {
-    width: 100%;
-    padding: 0.5rem;
-    background: #4361ee;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-bottom: 1rem;
-}
-
-.calc-result {
-    text-align: center;
-    font-size: 1.2rem;
-    font-weight: bold;
-}
-
-@media (max-width: 768px) {
-    .tutorials-grid {
-        grid-template-columns: 1fr;
-    }
-}
-</style>
-
-<script>
-function calculate() {
-    const num1 = parseFloat(document.getElementById('num1').value);
-    const num2 = parseFloat(document.getElementById('num2').value);
-    const operator = document.getElementById('operator').value;
-    let result;
-
-    if (isNaN(num1) || isNaN(num2)) {
-        document.getElementById('result').textContent = 'Please enter valid numbers';
-        return;
-    }
-
-    switch(operator) {
-        case '+':
-            result = num1 + num2;
-            break;
-        case '-':
-            result = num1 - num2;
-            break;
-        case '*':
-            result = num1 * num2;
-            break;
-        case '/':
-            if (num2 === 0) {
-                document.getElementById('result').textContent = 'Cannot divide by zero';
-                return;
-            }
-            result = num1 / num2;
-            break;
-    }
-
-    document.getElementById('result').textContent = `Result: ${result}`;
-}
-</script>
-
-{% endblock %}
+        {% endblock %}

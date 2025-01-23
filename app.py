@@ -625,6 +625,7 @@ def tutorials():
 
 @app.route('/calculator')
 def calculator():
+    """Route for the interactive Python calculator tutorial"""
     if not session.get('logged_in'):
         flash('Please login first to access the calculator page', 'warning')
         return redirect(url_for('login'))
