@@ -9,8 +9,12 @@
     </div>
 
     <div class="section-navigator">
-        <button class="section-btn active" onclick="showSection(1)">Section 1: Fundamentals</button>
-        <button class="section-btn" onclick="showSection(2)">Section 2: Coming Soon</button>
+        <button class="section-btn active" onclick="showSection(1)">
+            <i class="fas fa-code"></i> Fundamentals
+        </button>
+        <button class="section-btn" onclick="showSection(2)">
+            <i class="fas fa-rocket"></i> Advanced
+        </button>
     </div>
 
     <div class="section-content" id="section1">
@@ -451,32 +455,212 @@
     </div>
     <div class="section-content" id="section2" style="display: none;">
         <div class="coming-soon-container">
-            <h2>🚀 Section 2: Advanced Topics</h2>
-            <p>We're preparing exciting new content for you! This section will cover advanced Python concepts, real-world projects, and more.</p>
+            <h2><i class="fas fa-rocket"></i> Advanced Topics</h2>
+            <p>Coming soon! Get ready for advanced programming concepts and real-world projects.</p>
             <div class="features-preview">
                 <div class="feature">
                     <i class="fas fa-code"></i>
                     <h3>Advanced Python</h3>
+                    <p>Master advanced programming concepts</p>
                 </div>
                 <div class="feature">
                     <i class="fas fa-project-diagram"></i>
                     <h3>Real Projects</h3>
+                    <p>Build professional applications</p>
                 </div>
                 <div class="feature">
                     <i class="fas fa-database"></i>
                     <h3>Data Handling</h3>
+                    <p>Learn database management</p>
                 </div>
             </div>
         </div>
     </div>
 
 <style>
+:root {
+    --primary-color: #4361ee;
+    --secondary-color: #3f37c9;
+    --accent-color: #4895ef;
+    --text-color: #2b2d42;
+    --bg-color: #f8f9fa;
+}
+
+.tutorials-container {
+    padding: 2rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: var(--bg-color);
+}
+
+.tutorials-header {
+    text-align: center;
+    padding: 3rem 1rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    border-radius: 15px;
+    margin-bottom: 3rem;
+    color: white;
+}
+
+.tutorials-header h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.welcome-text {
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    opacity: 0.9;
+}
+
 .section-navigator {
     display: flex;
     justify-content: center;
     gap: 1rem;
     margin: 2rem 0;
     padding: 0 1rem;
+    flex-wrap: wrap;
+}
+
+.section-btn {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 10px;
+    background: rgba(67, 97, 238, 0.1);
+    color: var(--primary-color);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+}
+
+.section-btn i {
+    font-size: 1.2rem;
+}
+
+.section-btn.active {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(67, 97, 238, 0.2);
+}
+
+.tutorials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 1rem;
+}
+
+.tutorial-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.tutorial-card:hover {
+    transform: translateY(-5px);
+}
+
+.tutorial-card h2 {
+    padding: 1.5rem;
+    margin: 0;
+    font-size: 1.3rem;
+    color: var(--text-color);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    margin: 1rem 0;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.tutorial-description {
+    padding: 1.5rem;
+    color: var(--text-color);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.coming-soon-container {
+    text-align: center;
+    padding: 3rem 1rem;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.features-preview {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+    padding: 1rem;
+}
+
+.feature {
+    padding: 2rem;
+    background: var(--bg-color);
+    border-radius: 15px;
+    transition: transform 0.3s ease;
+}
+
+.feature:hover {
+    transform: translateY(-5px);
+}
+
+.feature i {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.feature h3 {
+    color: var(--text-color);
+    font-size: 1.2rem;
+    margin: 1rem 0;
+}
+
+.feature p {
+    color: var(--text-color);
+    opacity: 0.8;
+    font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+    .tutorials-container {
+        padding: 1rem;
+    }
+    
+    .tutorials-header {
+        padding: 2rem 1rem;
+    }
+    
+    .section-btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .features-preview {
+        grid-template-columns: 1fr;
+    }
 }
 
 .section-btn {
