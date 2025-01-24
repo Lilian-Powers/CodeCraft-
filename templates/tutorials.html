@@ -767,41 +767,57 @@
     </div>
 
     <script>
+    // Common modal toggle function for all modals
     function toggleModal(event, element, contentClass) {
         event.preventDefault();
-        const modal = element.querySelector(`.${contentClass}`);
+        event.stopPropagation();
+        
+        const modal = contentClass ? 
+            element.querySelector(`.${contentClass}`) : 
+            element.querySelector('.calculator-content');
         const overlay = element.querySelector('.modal-overlay');
         
         if (modal.style.display === 'block') {
-            modal.style.display = 'none';
-            overlay.style.display = 'none';
-            overlay.style.opacity = '0';
-            element.classList.remove('open');
+            closeModal(modal, overlay, element);
         } else {
-            modal.style.display = 'block';
-            overlay.style.display = 'block';
-            setTimeout(() => overlay.style.opacity = '1', 10);
-            element.classList.add('open');
+            openModal(modal, overlay, element);
         }
     }
 
-    function toggleCalculator(event, element) {
-        event.preventDefault();
-        const modal = element.querySelector('.calculator-content');
-        const overlay = element.querySelector('.modal-overlay');
+    function openModal(modal, overlay, element) {
+        modal.style.display = 'block';
+        overlay.style.display = 'block';
+        setTimeout(() => overlay.style.opacity = '1', 10);
+        element.classList.add('open');
         
-        if (modal.style.display === 'block') {
-            modal.style.display = 'none';
-            overlay.style.display = 'none';
-            overlay.style.opacity = '0';
-            element.classList.remove('open');
-        } else {
-            modal.style.display = 'block';
-            overlay.style.display = 'block';
-            setTimeout(() => overlay.style.opacity = '1', 10);
-            element.classList.add('open');
+        // Prevent clicks inside modal from closing it
+        modal.addEventListener('click', (e) => e.stopPropagation());
+        
+        // Add close button functionality
+        const closeBtn = modal.querySelector('.close-btn');
+        if (closeBtn) {
+            closeBtn.onclick = (e) => {
+                e.preventDefault();
+                closeModal(modal, overlay, element);
+            };
         }
+        
+        // Close on overlay click
+        overlay.onclick = (e) => {
+            e.preventDefault();
+            closeModal(modal, overlay, element);
+        };
     }
+
+    function closeModal(modal, overlay, element) {
+        modal.style.display = 'none';
+        overlay.style.display = 'none';
+        overlay.style.opacity = '0';
+        element.classList.remove('open');
+    }
+
+    // Alias for calculator modal
+    const toggleCalculator = toggleModal;
 
     function playAgeGame() {
         const birthYear = parseInt(document.getElementById('detectiveBirthYear').value);
