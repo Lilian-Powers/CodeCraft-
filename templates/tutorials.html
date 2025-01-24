@@ -475,6 +475,7 @@
 /* Modal Content Styles */
 .calculator-content, .superhero-content, .food-content, .vacation-content,
 .compliment-content, .temp-content, .story-content, .talking-content {
+    background: rgba(0, 0, 0, 0.9);
     display: none;
     position: fixed;
     top: 50%;
@@ -520,6 +521,9 @@
 /* Common input styles */
 .game-input, .hero-input, .food-input, .vacation-input, 
 .compliment-input, .temp-input, .story-input, .chat-input {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    font-weight: 500;
     width: 100%;
     padding: 1rem;
     margin-bottom: 1rem;
@@ -767,6 +771,110 @@
     </div>
 
     <script>
+    // Game functions
+    function calculateAge() {
+        const birthYear = parseInt(document.getElementById('birthYear').value);
+        const currentYear = 2024;
+        const age = currentYear - birthYear;
+        const resultDiv = document.querySelector('.age-result');
+        
+        if (birthYear >= 1900 && birthYear <= currentYear) {
+            resultDiv.innerHTML = `You are ${age} years old! ${age < 18 ? 'So young!' : 'Looking good!'}`;
+        } else {
+            resultDiv.innerHTML = "Please enter a valid birth year between 1900 and 2024";
+        }
+    }
+
+    function generateSuperheroName() {
+        const firstName = document.getElementById('firstName').value;
+        const color = document.getElementById('favoriteColor').value;
+        const resultDiv = document.querySelector('.hero-result');
+        
+        if (firstName && color) {
+            const titles = ['Mighty', 'Amazing', 'Incredible', 'Fantastic', 'Super'];
+            const randomTitle = titles[Math.floor(Math.random() * titles.length)];
+            resultDiv.innerHTML = `${randomTitle} ${color.charAt(0).toUpperCase() + color.slice(1)} ${firstName}!`;
+        } else {
+            resultDiv.innerHTML = "Please enter both your name and favorite color!";
+        }
+    }
+
+    function generateFoodResponse() {
+        const food = document.getElementById('favoriteFood').value;
+        const resultDiv = document.querySelector('.food-result');
+        
+        if (food) {
+            resultDiv.innerHTML = `Wow! ${food} is an amazing choice! You must have great taste! 😋`;
+        } else {
+            resultDiv.innerHTML = "Please enter your favorite food!";
+        }
+    }
+
+    function generateVacationResponse() {
+        const destination = document.getElementById('dreamDestination').value;
+        const resultDiv = document.querySelector('.vacation-result');
+        
+        if (destination) {
+            resultDiv.innerHTML = `${destination} sounds like an incredible adventure! Start packing! ✈️`;
+        } else {
+            resultDiv.innerHTML = "Please enter your dream destination!";
+        }
+    }
+
+    function generateCompliment() {
+        const name = document.getElementById('userName').value;
+        const resultDiv = document.querySelector('.compliment-result');
+        
+        if (name) {
+            const compliments = [
+                `${name}, you're absolutely amazing!`,
+                `${name}, your smile lights up the room!`,
+                `${name}, you make the world a better place!`
+            ];
+            resultDiv.innerHTML = compliments[Math.floor(Math.random() * compliments.length)];
+        } else {
+            resultDiv.innerHTML = "Please enter your name!";
+        }
+    }
+
+    function convertTemperature() {
+        const celsius = parseFloat(document.getElementById('celsiusInput').value);
+        const resultDiv = document.querySelector('.temp-result');
+        
+        if (!isNaN(celsius)) {
+            const fahrenheit = (celsius * 9/5) + 32;
+            resultDiv.innerHTML = `${celsius}°C = ${fahrenheit.toFixed(1)}°F`;
+        } else {
+            resultDiv.innerHTML = "Please enter a valid temperature!";
+        }
+    }
+
+    function generateStory() {
+        const character = document.getElementById('characterName').value;
+        const place = document.getElementById('storyPlace').value;
+        const activity = document.getElementById('funActivity').value;
+        const resultDiv = document.querySelector('.story-result');
+        
+        if (character && place && activity) {
+            resultDiv.innerHTML = `Once upon a time, ${character} visited ${place} and had an amazing adventure ${activity}! The end! 📚`;
+        } else {
+            resultDiv.innerHTML = "Please fill in all the story elements!";
+        }
+    }
+
+    function generateChatResponse() {
+        const name = document.getElementById('chatUserName').value;
+        const color = document.getElementById('chatFavoriteColor').value;
+        const animal = document.getElementById('chatFavoriteAnimal').value;
+        const resultDiv = document.querySelector('.chat-result');
+        
+        if (name && color && animal) {
+            resultDiv.innerHTML = `Hi ${name}! I love ${color} too, and ${animal}s are fantastic! We have so much in common! 🎉`;
+        } else {
+            resultDiv.innerHTML = "Please fill in all the fields!";
+        }
+    }
+
     // Common modal toggle function for all modals
     function toggleModal(event, element, contentClass) {
         event.preventDefault();
