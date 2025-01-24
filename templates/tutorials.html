@@ -684,6 +684,9 @@ function toggleModal(event, element, contentClass) {
     event.preventDefault();
     event.stopPropagation();
 
+    const scrollPosition = window.pageYOffset;
+    element.setAttribute('data-scroll', scrollPosition);
+
     closeAllModals();
 
     element.classList.add('open');
@@ -694,7 +697,32 @@ function toggleModal(event, element, contentClass) {
         content.style.display = 'block';
         overlay.style.display = 'block';
         document.body.classList.add('modal-open');
+        document.body.style.top = `-${scrollPosition}px`;
+        document.body.style.position = 'fixed';
+        document.body.style.width = '100%';
     }
+}
+
+function closeAllModals() {
+    document.querySelectorAll('.project-item').forEach(item => {
+        if (item.classList.contains('open')) {
+            const scrollPosition = parseInt(item.getAttribute('data-scroll') || '0');
+            item.classList.remove('open');
+            const modalContent = item.querySelector('.calculator-content, .superhero-content, .food-content, .vacation-content, .compliment-content, .temp-content, .story-content, .talking-content');
+            if (modalContent) {
+                modalContent.style.display = 'none';
+            }
+            const modalOverlay = item.querySelector('.modal-overlay');
+            if (modalOverlay) {
+                modalOverlay.style.display = 'none';
+            }
+            document.body.classList.remove('modal-open');
+            document.body.style.position = '';
+            document.body.style.top = '';
+            document.body.style.width = '';
+            window.scrollTo(0, scrollPosition);
+        }
+    });
 }
 
 // Close modal when clicking outside
