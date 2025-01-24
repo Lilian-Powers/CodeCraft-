@@ -569,30 +569,11 @@
         const currentYear = 2024;
         const age = currentYear - birthYear;
         
-        if (!birthYear) {
-            document.getElementById('ageResult').innerHTML = "Please enter a birth year!";
-            return;
-        }
-        
-        if (birthYear < 1900 || birthYear > currentYear) {
-            document.getElementById('ageResult').innerHTML = "Please enter a valid birth year between 1900 and 2024!";
-            return;
-        }
-
-        let message = '';
-        if (age < 18) {
-            message = `You're just a baby! You are ${age} years old! Wait till you get to the fun part of life! 😜`;
-        } else if (age >= 18 && age < 25) {
-            message = `Ah, you're in your prime! You're ${age} years old! Enjoy it while it lasts! 😉`;
-        } else if (age >= 25 && age < 40) {
-            message = `You're in the golden years! ${age} years old, huh? You're starting to get wiser... but also closer to needing reading glasses! 😂`;
-        } else if (age >= 40 && age < 60) {
-            message = `Whoa, you're ${age} years old? Still young at heart, but do you need a nap after this? 😅`;
+        if (age > 0 && age < 124) {
+            document.getElementById('ageResult').innerHTML = `You are ${age} years old!`;
         } else {
-            message = `${age} years young! The wisdom must be overflowing by now, huh? 🤔`;
+            document.getElementById('ageResult').innerHTML = "Please enter a valid birth year between 1900 and 2024";
         }
-        
-        document.getElementById('ageResult').innerHTML = message;
     }
 
     function playNicknameGame() {
@@ -610,31 +591,6 @@
         }
 
         document.getElementById('nicknameResult').innerHTML = message;
-    }
-
-    function playAgeGame() {
-        const birthYear = parseInt(document.getElementById('birthYear').value);
-        const currentYear = 2024;
-        
-        if (birthYear >= 1900 && birthYear <= currentYear) {
-            const age = currentYear - birthYear;
-            let message = '';
-            
-            if (age < 18) {
-                message = `You're just a baby! You are ${age} years old! Wait till you get to the fun part of life! 😜`;
-            } else if (age >= 18 && age < 25) {
-                message = `Ah, you're in your prime! You're ${age} years old! Enjoy it while it lasts! 😉`;
-            } else if (age >= 25 && age < 40) {
-                message = `You're in the golden years! ${age} years old, huh? You're starting to get wiser... but also closer to needing reading glasses! 😂`;
-            } else if (age >= 40 && age < 60) {
-                message = `Whoa, you're ${age} years old? Still young at heart, but do you need a nap after this? 😅`;
-            } else {
-                message = `${age} years young! The wisdom must be overflowing by now, huh? 🤔`;
-            }
-            document.getElementById('ageResult').innerHTML = message;
-        } else {
-            document.getElementById('ageResult').innerHTML = "Please enter a valid birth year between 1900 and 2024!";
-        }
     }
 
     function playStarGame() {
