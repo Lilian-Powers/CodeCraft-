@@ -1,7 +1,10 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Practice Projects</title>
+    <title>Interactive Learning Games</title>
+    <meta name="description" content="Practice Python programming with fun interactive games and exercises">
+    <meta name="keywords" content="Python learning, programming games, coding practice, interactive tutorials">
     <style>
         .modal {
             display: none;
@@ -29,6 +32,7 @@
             padding: 20px;
             border-radius: 8px;
             background-color: #f8f9fa;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         .game-input {
@@ -36,6 +40,8 @@
             padding: 8px;
             width: 100%;
             max-width: 300px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
         }
 
         .game-button {
@@ -45,6 +51,7 @@
             padding: 10px 20px;
             border-radius: 4px;
             cursor: pointer;
+            transition: background-color 0.2s;
         }
 
         .game-button:hover {
@@ -55,6 +62,7 @@
             margin-top: 10px;
             padding: 10px;
             border-radius: 4px;
+            background-color: #e9ecef;
         }
 
         .close {
@@ -67,11 +75,24 @@
         .close:hover {
             color: #000;
         }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #34495e;
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Practice Projects</h1>
+        <h1>Fun Interactive Games</h1>
+        <p class="text-center mb-4">Let's practice Conditional Statements with these entertaining games!</p>
+        <p class="text-center mb-4">Try different inputs in these games to see how conditional statements (if/elif/else) create different responses. Each game uses these statements to give you unique feedback based on your input!</p>
 
         <!-- Sweet Messages Game -->
         <div class="game-container" id="sweetMessages">
