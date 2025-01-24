@@ -583,17 +583,12 @@
 
     function playAgeGame() {
         const birthYearInput = document.getElementById('birthYear').value;
-        if (!birthYearInput) {
-            document.getElementById('ageResult').innerHTML = "Please enter a birth year!";
-            return;
-        }
-        
+        const currentYear = 2024;
         const birthYear = parseInt(birthYearInput);
-        const currentYear = 2025;
         const age = currentYear - birthYear;
         let message = '';
-        
-        if (isNaN(age)) {
+
+        if (!birthYearInput || isNaN(age)) {
             message = "Please enter a valid birth year!";
         } else if (age < 18) {
             message = `You're just a baby! You are ${age} years old! Wait till you get to the fun part of life! 😜`;
