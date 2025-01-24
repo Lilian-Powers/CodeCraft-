@@ -66,12 +66,12 @@
                 <div class="modal-overlay"></div>
                 <div class="calculator-content">
                     <button class="close-btn">&times;</button>
-                    <h3>Time Machine</h3>
+                    <h3>⏰ Time Machine ⚡</h3>
                     <p class="calc-subtitle">Travel through time to discover your age journey!</p>
                     <div class="calculator-interactive">
-                        <input type="number" id="birthYear" placeholder="Enter your birth year" class="birth-year-input">
-                        <button onclick="calculateAge(this)" class="calculate-btn">Begin Journey</button>
-                        <div class="age-result"></div>
+                        <input type="number" id="birthYear" placeholder="Enter your birth year" class="game-input">
+                        <button onclick="calculateAge()" class="generate-btn time-btn">Begin Journey</button>
+                        <div class="game-result age-result"></div>
                     </div>
                 </div>
             </div>
@@ -499,6 +499,9 @@
 .temp-content { background: linear-gradient(145deg, #8E44AD, #9B59B6); }
 .story-content { background: linear-gradient(145deg, #FF6B6B, #FF8E53); }
 .talking-content { background: linear-gradient(145deg, #6C5CE7, #a55eea); }
+.calculator-content { background: linear-gradient(145deg, #00b894, #00cec9); }
+.time-btn { background: linear-gradient(145deg, #00b894, #00cec9); }
+.time-btn:hover { background: linear-gradient(145deg, #00cec9, #00b894); }
 
 .close-btn {
     position: absolute;
