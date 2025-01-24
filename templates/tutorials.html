@@ -541,7 +541,7 @@
                 <div class="game-inner">
                     <h2>🔍 Age Detective</h2>
                     <div class="game-interactive">
-                        <input type="number" id="birthYear" placeholder="What year were you born?" class="game-input">
+                        <input type="number" id="detectiveBirthYear" placeholder="What year were you born?" class="game-input">
                         <button onclick="playAgeGame()" class="game-btn detective-btn">Reveal Age</button>
                         <div class="game-result" id="ageResult"></div>
                     </div>
@@ -565,11 +565,11 @@
 
     <script>
     function playAgeGame() {
-        const birthYear = parseInt(document.getElementById('birthYear').value);
+        const birthYear = parseInt(document.getElementById('detectiveBirthYear').value);
         const currentYear = 2024;
         const age = currentYear - birthYear;
         
-        if (age > 0 && age < 124) {
+        if (birthYear >= 1900 && birthYear <= currentYear) {
             document.getElementById('ageResult').innerHTML = `You are ${age} years old!`;
         } else {
             document.getElementById('ageResult').innerHTML = "Please enter a valid birth year between 1900 and 2024";
