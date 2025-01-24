@@ -582,8 +582,10 @@
     }
 
     function playAgeGame() {
-        const birthYear = parseInt(document.getElementById('birthYear').value);
-        if (!birthYear || birthYear < 1900 || birthYear > 2025) {
+        const birthYearInput = document.getElementById('birthYear').value;
+        const birthYear = parseInt(birthYearInput);
+        
+        if (birthYearInput === '' || isNaN(birthYear) || birthYear < 1900 || birthYear > 2025) {
             document.getElementById('ageResult').innerHTML = "Please enter a valid birth year between 1900 and 2025! 🤔";
             return;
         }
