@@ -1,159 +1,148 @@
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Interactive Learning Games</title>
-    <meta name="description" content="Practice Python programming with fun interactive games and exercises">
-    <meta name="keywords" content="Python learning, programming games, coding practice, interactive tutorials">
-    <style>
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-        }
+{% extends "base.html" %}
+{% block title %}Video Tutorials - CodeCraft Academy{% endblock %}
 
-        .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 500px;
-            border-radius: 5px;
-        }
+{% block content %}
+<div class="tutorials-container">
+    <div class="tutorials-header">
+        <h1>Video Tutorials Part 1</h1>
+        <p class="welcome-text">Welcome to our structured learning path!</p>
+    </div>
 
-        .game-container {
-            margin: 20px 0;
-            padding: 20px;
-            border-radius: 8px;
-            background-color: #f8f9fa;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .game-input {
-            margin: 10px 0;
-            padding: 8px;
-            width: 100%;
-            max-width: 300px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-
-        .game-button {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-
-        .game-button:hover {
-            background-color: #0056b3;
-        }
-
-        .game-result {
-            margin-top: 10px;
-            padding: 10px;
-            border-radius: 4px;
-            background-color: #e9ecef;
-        }
-
-        .close {
-            float: right;
-            cursor: pointer;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover {
-            color: #000;
-        }
-
-        h1 {
-            color: #2c3e50;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        h2 {
-            color: #34495e;
-            margin-bottom: 15px;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Fun Interactive Games</h1>
-        <p class="text-center mb-4">Let's practice Conditional Statements with these entertaining games!</p>
-        <p class="text-center mb-4">Try different inputs in these games to see how conditional statements (if/elif/else) create different responses. Each game uses these statements to give you unique feedback based on your input!</p>
-
-        <!-- Sweet Messages Game -->
-        <div class="game-container" id="sweetMessages">
-            <h2>💝 Sweet Messages</h2>
-            <input type="text" id="sweetInput" class="game-input" placeholder="Enter a sweet message">
-            <button onclick="sendLove()" class="game-button">Send Love</button>
-            <div id="sweetResult" class="game-result"></div>
+    <div class="tutorials-grid">
+        <div class="tutorial-card">
+            <h2>Lesson 1: Introduction to Coding</h2>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/P-R3ORxbu_M" 
+                        title="Introduction to Programming" 
+                        frameborder="0" 
+                        allowfullscreen></iframe>
+            </div>
+            <p class="tutorial-description">Start your programming journey with this comprehensive first lesson.</p>
         </div>
 
-        <!-- Age Detective Game -->
-        <div class="game-container" id="ageDetective">
-            <h2>🔍 Age Detective</h2>
-            <input type="number" id="birthYear" class="game-input" placeholder="Enter birth year">
-            <button onclick="detectAge()" class="game-button">Reveal Age</button>
-            <div id="ageResult" class="game-result"></div>
+        <div class="tutorial-card">
+            <h2>Python Practicals - For Lesson 1</h2>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/0sYm_0cLlmM" 
+                        title="Python Practicals Part 1" 
+                        frameborder="0" 
+                        allowfullscreen></iframe>
+            </div>
+            <p class="tutorial-description">Practice implementing the concepts learned in Lesson 1.</p>
         </div>
 
-        <!-- Little Star Game -->
-        <div class="game-container" id="littleStar">
-            <h2>⭐ Little Star</h2>
-            <input type="text" id="starName" class="game-input" placeholder="Enter your name">
-            <input type="number" id="starCount" class="game-input" placeholder="How many stars?">
-            <button onclick="makeStars()" class="game-button">Sparkle!</button>
-            <div id="starResult" class="game-result"></div>
+        <div class="tutorial-card">
+            <h2>Lesson 2: Coding Theory</h2>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/W8kSbJ7Nrzg" 
+                        title="Programming Theory Lesson 2" 
+                        frameborder="0" 
+                        allowfullscreen></iframe>
+            </div>
+            <p class="tutorial-description">Learn the theoretical concepts in our second coding lesson.</p>
+        </div>
+
+        <div class="tutorial-card">
+            <h2>Python Practicals - For Lesson 2</h2>
+            <p class="tutor-message">With the skills you've learned so far, be confident you can tackle these exciting projects! Get creative and make them your own.</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/W8kSbJ7Nrzg" 
+                        title="Python Practicals Part 2" 
+                        frameborder="0" 
+                        allowfullscreen></iframe>
+            </div>
+            <p class="tutorial-description">Apply your knowledge with hands-on Python projects.</p>
         </div>
     </div>
 
-    <script>
-        function sendLove() {
-            const message = document.getElementById('sweetInput').value;
-            const resultDiv = document.getElementById('sweetResult');
-            if (message.trim() === '') {
-                resultDiv.textContent = 'Please enter a message!';
-                return;
-            }
-            resultDiv.textContent = `💖 ${message} 💖`;
+    <style>
+        .tutorials-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
         }
 
-        function detectAge() {
-            const birthYear = parseInt(document.getElementById('birthYear').value);
-            const resultDiv = document.getElementById('ageResult');
-            if (isNaN(birthYear)) {
-                resultDiv.textContent = 'Please enter a valid year!';
-                return;
-            }
-            const currentYear = new Date().getFullYear();
-            const age = currentYear - birthYear;
-            resultDiv.textContent = `You are approximately ${age} years old!`;
+        .tutorials-header {
+            text-align: center;
+            margin-bottom: 3rem;
         }
 
-        function makeStars() {
-            const name = document.getElementById('starName').value;
-            const count = parseInt(document.getElementById('starCount').value);
-            const resultDiv = document.getElementById('starResult');
-            if (name.trim() === '' || isNaN(count)) {
-                resultDiv.textContent = 'Please fill in all fields!';
-                return;
-            }
-            const stars = '⭐'.repeat(Math.min(count, 100));
-            resultDiv.textContent = `${name}, here are your stars: ${stars}`;
+        .tutorials-header h1 {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
         }
-    </script>
-</body>
-</html>
+
+        .welcome-text {
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        .tutorials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .tutorial-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .tutorial-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .tutorial-card h2 {
+            padding: 1rem;
+            margin: 0;
+            background: #f8f9fa;
+            color: #2c3e50;
+            font-size: 1.25rem;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .tutorial-description {
+            padding: 1rem;
+            color: #666;
+        }
+
+        .tutor-message {
+            padding: 1rem;
+            background: #e3f2fd;
+            color: #1565c0;
+            margin: 0;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .tutorials-container {
+                padding: 1rem;
+            }
+
+            .tutorials-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</div>
+{% endblock %}
