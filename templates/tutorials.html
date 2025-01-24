@@ -582,17 +582,15 @@
     }
 
     function playAgeGame() {
-        const birthYearInput = document.getElementById('birthYear').value;
-        const birthYear = parseInt(birthYearInput);
+        const birthYear = parseInt(document.getElementById('birthYear').value);
+        const currentYear = 2025;
         
-        if (birthYearInput === '' || isNaN(birthYear) || birthYear < 1900 || birthYear > 2025) {
+        if (!birthYear || birthYear < 1900 || birthYear > currentYear) {
             document.getElementById('ageResult').innerHTML = "Please enter a valid birth year between 1900 and 2025! 🤔";
             return;
         }
 
-        const currentYear = 2025;
         const age = currentYear - birthYear;
-
         let message = '';
         if (age < 18) {
             message = `You're just a baby! You are ${age} years old! Wait till you get to the fun part of life! 😜`;
