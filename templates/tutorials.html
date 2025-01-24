@@ -322,7 +322,7 @@
     margin: 0;
 }
 
-/* Part 2 specific styles */
+/* Part 2 styles */
 .tutorials-container.part2 {
     background: linear-gradient(135deg, rgba(106, 90, 205, 0.1), rgba(147, 112, 219, 0.1));
     margin-top: 4rem;
@@ -367,14 +367,6 @@
     box-shadow: 0 4px 15px rgba(106, 90, 205, 0.3);
 }
 </style>
-
-<style>
-/* Adding styles for Part 2 */
-.tutorials-container.part2 {
-    background: linear-gradient(135deg, rgba(106, 90, 205, 0.1), rgba(147, 112, 219, 0.1));
-    margin-top: 4rem;
-    padding-bottom: 6rem;
-}
 
     <!-- Interactive Games Section -->
     <div class="tutorials-container games-section">
@@ -502,7 +494,7 @@
                 grid-template-columns: 1fr;
                 padding: 0 1rem;
             }
-            
+
             .games-section .tutorials-header h1 {
                 font-size: 2.2rem;
             }
@@ -660,7 +652,7 @@
     function playNicknameGame() {
         const nickname = document.getElementById('nickname').value;
         let message = '';
-        
+
         if (nickname.toLowerCase() === "sweetheart") {
             message = `Aww, you're making me blush! I will miss you, ${nickname}.`;
         } else if (nickname.toLowerCase() === "darling") {
@@ -670,7 +662,7 @@
         } else {
             message = `Hmm, ${nickname}? Well, I guess I'll miss you… but only a little. 😉`;
         }
-        
+
         document.getElementById('nicknameResult').innerHTML = message;
     }
 
@@ -691,7 +683,7 @@
         } else {
             message = `${age} years young! The wisdom must be overflowing by now, huh? 🤔`;
         }
-        
+
         document.getElementById('ageResult').innerHTML = message;
     }
 
@@ -711,637 +703,174 @@
         } else {
             message = `Nice to meet you, ${name.toUpperCase()}! You're ${age} years old, huh? Still young, but feeling super grown up! 🤩`;
         }
-        
+
         document.getElementById('starResult').innerHTML = message;
     }
     </script>
 
 
-.tutorials-container.part2 .tutorials-header h1 {
-    color: #6a5acd;
-    background: linear-gradient(135deg, #6a5acd, #9370db);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-size: 2.8rem;
-}
-
-.tutorials-container.part2 .welcome-text {
-    color: #4a4a4a;
-    font-size: 1.3rem;
-    font-weight: 500;
-}
-
-.tutorials-container.part2 .tutorial-card {
-    background: linear-gradient(145deg, #ffffff, #f8f9fa);
-    border: 1px solid rgba(106, 90, 205, 0.2);
-}
-
-.tutorials-container.part2 .tutorial-card h2 {
-    color: #6a5acd;
-}
-    .tutorials-container {
-        padding: 4rem 0;
-        background: linear-gradient(135deg, rgba(67, 97, 238, 0.1), rgba(72, 149, 239, 0.1));
-        min-height: 100vh;
+    <style>
+    .games-section {
+        background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+        padding: 4rem 2rem;
+        margin-top: 4rem;
     }
 
-    .tutorials-header {
-        text-align: center;
-        max-width: 800px;
-        margin: 0 auto 3rem auto;
-        padding: 2rem;
-    }
-
-    .tutorials-header h1 {
-        color: var(--primary-color);
-        font-size: 2.5rem;
-        margin-bottom: 1rem;
-        font-weight: 700;
-    }
-
-    .welcome-text {
-        font-size: 1.2rem;
-        color: var(--text-color);
-        margin-bottom: 2rem;
-    }
-
-    .tutorials-grid {
+    .games-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: 2rem;
-        padding: 0 2rem;
         max-width: 1200px;
         margin: 0 auto;
     }
 
-    .tutorial-card {
-        background: white;
-        border-radius: 15px;
-        overflow: hidden;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    .game-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 2rem;
+        box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
         transition: transform 0.3s ease;
     }
 
-    .tutorial-card:hover {
+    .game-card:hover {
         transform: translateY(-5px);
     }
 
-    .tutorial-card h2 {
-        color: var(--primary-color);
-        font-size: 1.5rem;
-        padding: 1.5rem;
-        margin: 0;
-    }
-
-    .video-container {
-        position: relative;
-        padding-bottom: 56.25%;
-        height: 0;
-        overflow: hidden;
-    }
-
-    .video-container iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: none;
-    }
-
-    .tutorial-description {
-        padding: 1.5rem;
-        color: var(--text-color);
-        font-size: 1.1rem;
-        line-height: 1.6;
-        margin: 0;
-    }
-
-    .tutorials-section-2 {
-        max-width: 1200px;
-        margin: 6rem auto;
-        padding: 3rem;
-        background: linear-gradient(135deg, rgba(67, 97, 238, 0.08), rgba(72, 149, 239, 0.08));
-        border-radius: 20px;
-        box-shadow: 0 10px 30px rgba(67, 97, 238, 0.1);
-    }
-
-    .tutorials-section-2 .section-header {
+    .game-inner {
         text-align: center;
-        margin-bottom: 3rem;
-        padding: 2rem;
-        background: linear-gradient(135deg, #4361ee, #3f37c9);
-        border-radius: 15px;
-        color: white;
     }
 
-    .tutorials-section-2 .section-header h2 {
+    .game-card h2 {
         color: white;
-        font-size: 2.8rem;
-        font-weight: 700;
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.8rem;
         margin-bottom: 1.5rem;
         text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
     }
 
-    .tutorials-section-2 .section-desc {
-        color: rgba(255, 255, 255, 0.9);
-        font-size: 1.2rem;
-        max-width: 800px;
-        margin: 0.5rem auto;
-        line-height: 1.6;
-    }
-
-    body.modal-open {
-        overflow: hidden;
-        padding-right: 17px;
-        position: fixed;
-        width: 100%;
-    }
-
-    .practice-projects {
-        max-width: 1200px;
-        margin: 4rem auto;
-        padding: 2rem;
-        position: relative;
-        background: rgba(255, 255, 255, 0.7);
-        border-radius: 20px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    }
-
-    .projects-header {
-        text-align: center;
-        margin-bottom: 3rem;
-        padding: 1rem;
-    }
-
-    .projects-header h2 {
-        color: var(--primary-color);
-        font-size: 2.5rem;
-        margin-bottom: 1.5rem;
-        font-weight: 700;
-    }
-
-    .tutor-message {
-        color: var(--text-color);
-        font-size: 1.2rem;
-        line-height: 1.6;
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 1.5rem;
-        background-color: rgba(67, 97, 238, 0.1);
-        border-radius: 15px;
-        box-shadow: 0 4px 15px rgba(67, 97, 238, 0.1);
-    }
-
-    .projects-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 2rem;
-        margin-top: 3rem;
-        padding: 0;
-    }
-
-    .project-item {
-        background: white;
-        padding: 2rem;
-        border-radius: 15px;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-        transition: all 0.3s ease;
-        font-size: 1.2rem;
-        color: var(--text-color);
-        text-align: center;
-        position: relative;
-        cursor: pointer;
-        border: 1px solid rgba(67, 97, 238, 0.1);
-    }
-
-    .project-item:not(.open):hover {
-        transform: translateY(-5px);
-        background: linear-gradient(135deg, rgba(67, 97, 238, 0.1), rgba(72, 149, 239, 0.1));
-    }
-
-    .project-front {
-        cursor: pointer;
-        position: relative;
-    }
-
-    .project-front::after {
-        content: "Click to play! 🎮";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: linear-gradient(145deg, #4361ee, #3f37c9);
-        color: white;
-        padding: 0.8rem 1.5rem;
-        border-radius: 10px;
-        font-size: 1.1rem;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-        pointer-events: none;
-        white-space: nowrap;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        z-index: 2;
-    }
-
-    .project-item:hover .project-front::after {
-        opacity: 1;
-        animation: pulse 2s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-        0% { transform: translate(-50%, -50%) scale(1); }
-        50% { transform: translate(-50%, -50%) scale(1.005); }
-        100% { transform: translate(-50%, -50%) scale(1); }
-    }
-
-    .projects-header {
-        text-align: center;
-        margin-bottom: 2rem;
-    }
-
-    .projects-header h2 {
-        color: var(--primary-color);
-        font-size: 2rem;
-        margin-bottom: 1rem;
-    }
-
-    .tutor-message {
-        color: var(--text-color);
-        font-size: 1.1rem;
-        line-height: 1.6;
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 1rem;
-        background-color: rgba(67, 97, 238, 0.1);
-        border-radius: 10px;
-    }
-
-    .projects-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1.5rem;
-        margin-top: 2rem;
-        padding: 0 2rem;
-    }
-
-    .project-item {
-        background: white;
-        padding: 1.5rem;
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        transition: transform 0.3s ease;
-        font-size: 1.1rem;
-        color: var(--text-color);
-        text-align: center;
-        position: relative;
-        cursor: pointer;
-    }
-
-    .project-item:not(.open):hover {
-        transform: translateY(-5px);
-        background: linear-gradient(135deg, rgba(67, 97, 238, 0.1), rgba(72, 149, 239, 0.1));
-    }
-
-    .project-front {
-        cursor: pointer;
-        position: relative;
-    }
-
-    .project-front::after {
-        content: "Click to play! 🎮";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: linear-gradient(145deg, #4361ee, #3f37c9);
-        color: white;
-        padding: 0.8rem 1.5rem;
-        border-radius: 10px;
-        font-size: 1.1rem;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-        pointer-events: none;
-        white-space: nowrap;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        z-index: 2;
-    }
-
-    .project-item:hover .project-front::after {
-        opacity: 1;
-        animation: pulse 2s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-        0% { transform: translate(-50%, -50%) scale(1); }
-        50% { transform: translate(-50%, -50%) scale(1.005); }
-        100% { transform: translate(-50%, -50%) scale(1); }
-    }
-
-    .modal-overlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.8);
-        backdrop-filter: blur(5px);
-        z-index: 2000000;
-        opacity: 0;
-        transition: opacity 0.3s ease-out;
-        pointer-events: none;
-    }
-
-    .calculator-content,
-    .superhero-content,
-    .food-content,
-    .vacation-content,
-    .compliment-content,
-    .temp-content,
-    .story-content,
-    .talking-content {
-        display: none;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: min(90vw, 400px);
-        max-height: calc(100vh - 120px);
-        margin-top: 30px;
-        overflow-y: auto;
-        border-radius: 20px;
-        box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-        padding: 2rem;
-        margin: 0;
-        z-index: 2000001;
-        text-align: center;
-        color: white;
-    }
-
-    .calculator-content { background: linear-gradient(145deg, #2c3e50, #3498db); }
-    .superhero-content { background: linear-gradient(145deg, #9c27b0, #673ab7); }
-    .food-content { background: linear-gradient(145deg, #ff9800, #ff5722); }
-    .vacation-content { background: linear-gradient(145deg, #2196f3, #03a9f4); }
-    .compliment-content { background: linear-gradient(145deg, #FF1493, #FF69B4); }
-    .temp-content { background: linear-gradient(145deg, #8E44AD, #9B59B6); }
-    .story-content { background: linear-gradient(145deg, #FF6B6B, #FF8E53); }
-    .talking-content { background: linear-gradient(145deg, #6C5CE7, #a55eea); }
-
-    .close-btn {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        background: none;
-        border: none;
-        color: white;
-        font-size: 24px;
-        cursor: pointer;
-        padding: 5px 10px;
-        border-radius: 50%;
-        transition: background-color 0.3s;
-    }
-
-    .close-btn:hover {
-        background-color: rgba(255,255,255,0.1);
-    }
-
-    input[type="text"],
-    input[type="number"] {
+    .game-input {
         width: 100%;
         padding: 1rem;
         margin-bottom: 1rem;
         border: 2px solid rgba(255,255,255,0.2);
-        border-radius: 15px;
+        border-radius: 12px;
         background: rgba(255,255,255,0.1);
         color: white;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+    }
+
+    .game-input:focus {
+        outline: none;
+        border-color: rgba(255,255,255,0.5);
+        box-shadow: 0 0 15px rgba(255,255,255,0.2);
+    }
+
+    .game-input::placeholder {
+        color: rgba(255,255,255,0.6);
+    }
+
+    .game-btn {
+        width: 100%;
+        padding: 1rem;
+        border: none;
+        border-radius: 12px;
         font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .sweet-btn { background: linear-gradient(45deg, #ff6b6b, #ff8e8e); }
+    .detective-btn { background: linear-gradient(45deg, #4facfe, #00f2fe); }
+    .star-btn { background: linear-gradient(45deg, #ffd86f, #fc6262); }
+
+    .game-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .game-result {
+        margin-top: 1.5rem;
+        padding: 1rem;
+        background: rgba(255,255,255,0.1);
+        border-radius: 12px;
+        color: white;
+        font-size: 1.1rem;
+        min-height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         text-align: center;
     }
 
-    input::placeholder {
-        color: rgba(255,255,255,0.7);
-    }
-
-    .generate-btn {
-        width: 100%;
-        padding: 1rem;
-        background: #4CAF50;
-        color: white;
-        border: none;
-        border-radius: 15px;
-        cursor: pointer;
-        font-size: 1.1rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        transition: all 0.3s;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    }
-
-    .generate-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(0,0,0,0.25);
-    }
-
-    .result {
-        font-weight: bold;
-        margin-top: 1rem;
-        padding: 1rem;
-        background: rgba(255,255,255,0.1);
-        border-radius: 15px;
-        font-size: 1.2rem;
-    }
-
     @media (max-width: 768px) {
-        .calculator-content,
-        .superhero-content,
-        .food-content,
-        .vacation-content,
-        .compliment-content,
-        .temp-content,
-        .story-content,
-        .talking-content {
-            width: 95vw;
-            padding: 1.5rem;
+        .games-grid {
+            grid-template-columns: 1fr;
         }
     }
+    </style>
 
-    @media (max-width: 768px) {
-        .tutorials-header h1 {
-            font-size: 2rem;
+    <script>
+    function playNicknameGame() {
+        const nickname = document.getElementById('nickname').value;
+        let message = '';
+
+        if (nickname.toLowerCase() === "sweetheart") {
+            message = `Aww, you're making me blush! I will miss you, ${nickname}.`;
+        } else if (nickname.toLowerCase() === "darling") {
+            message = `Darling, you're too sweet! I will miss you more than you know, ${nickname}.`;
+        } else if (nickname.toLowerCase() === "cutie") {
+            message = `Cutie, I'll miss you too, but don't expect me to stop thinking about you!`;
+        } else {
+            message = `Hmm, ${nickname}? Well, I guess I'll miss you… but only a little. 😉`;
         }
 
-        .tutorials-grid {
-            padding: 0 1rem;
-        }
-
-        .tutorials-section-2 {
-            margin: 3rem auto;
-            padding: 1.5rem;
-        }
-
-        .tutorials-section-2 .section-header h2 {
-            font-size: 2rem;
-        }
+        document.getElementById('nicknameResult').innerHTML = message;
     }
-</style>
 
-<script>
-function closeAllModals() {
-    document.querySelectorAll('.project-item').forEach(item => {
-        item.classList.remove('open');
-        const modalContent = item.querySelector('.calculator-content, .superhero-content, .food-content, .vacation-content, .compliment-content, .temp-content, .story-content, .talking-content');
-        if (modalContent) {
-            modalContent.style.display = 'none';
+    function playAgeGame() {
+        const birthYear = parseInt(document.getElementById('birthYear').value);
+        const currentYear = 2025;
+        const age = currentYear - birthYear;
+        let message = '';
+
+        if (age < 18) {
+            message = `You're just a baby! You are ${age} years old! Wait till you get to the fun part of life! 😜`;
+        } else if (age < 25) {
+            message = `Ah, you're in your prime! You're ${age} years old! Enjoy it while it lasts! 😉`;
+        } else if (age < 40) {
+            message = `You're in the golden years! ${age} years old, huh? You're starting to get wiser... but also closer to needing reading glasses! 😂`;
+        } else if (age < 60) {
+            message = `Whoa, you're ${age} years old? Still young at heart, but do you need a nap after this? 😅`;
+        } else {
+            message = `${age} years young! The wisdom must be overflowing by now, huh? 🤔`;
         }
-        const modalOverlay = item.querySelector('.modal-overlay');
-        if (modalOverlay) {
-            modalOverlay.style.display = 'none';
+
+        document.getElementById('ageResult').innerHTML = message;
+    }
+
+    function playStarGame() {
+        const name = document.getElementById('starName').value;
+        const age = parseInt(document.getElementById('starAge').value);
+        let message = '';
+
+        if (age <= 5) {
+            message = `Wow, ${name.toUpperCase()}! You're so little and cute! Just ${age} years old? You're still a baby! 🍼`;
+        } else if (age <= 8) {
+            message = `Hey, ${name.toUpperCase()}! You're ${age} now! Getting bigger and smarter every day, huh? 😎`;
+        } else if (age <= 12) {
+            message = `Look at you, ${name.toUpperCase()}! Already ${age} years old, huh? Almost a teenager, I see! 😉`;
+        } else if (age <= 15) {
+            message = `Whoa, ${name.toUpperCase()}! You're ${age} already? That means you're practically *so cool* now! 😜`;
+        } else {
+            message = `Nice to meet you, ${name.toUpperCase()}! You're ${age} years old, huh? Still young, but feeling super grown up! 🤩`;
         }
-    });
-    document.body.classList.remove('modal-open');
-}
 
-function toggleCalculator(event, element) {
-    event.preventDefault();
-    event.stopPropagation();
-
-    closeAllModals();
-
-    element.classList.add('open');
-    const content = element.querySelector('.calculator-content');
-    const overlay = element.querySelector('.modal-overlay');
-
-    if (content && overlay) {
-        content.style.display = 'block';
-        overlay.style.display = 'block';
-        document.body.classList.add('modal-open');
+        document.getElementById('starResult').innerHTML = message;
     }
-}
-
-function toggleModal(event, element, contentClass) {
-    event.preventDefault();
-    event.stopPropagation();
-
-    const scrollPosition = window.pageYOffset;
-    element.setAttribute('data-scroll', scrollPosition);
-
-    closeAllModals();
-
-    element.classList.add('open');
-    const content = element.querySelector('.' + contentClass);
-    const overlay = element.querySelector('.modal-overlay');
-
-    if (content && overlay) {
-        content.style.display = 'block';
-        overlay.style.display = 'block';
-        document.body.classList.add('modal-open');
-        document.body.style.top = `-${scrollPosition}px`;
-        document.body.style.position = 'fixed';
-        document.body.style.width = '100%';
-    }
-}
-
-function closeAllModals() {
-    document.querySelectorAll('.project-item').forEach(item => {
-        if (item.classList.contains('open')) {
-            const scrollPosition = parseInt(item.getAttribute('data-scroll') || '0');
-            item.classList.remove('open');
-            const modalContent = item.querySelector('.calculator-content, .superhero-content, .food-content, .vacation-content, .compliment-content, .temp-content, .story-content, .talking-content');
-            if (modalContent) {
-                modalContent.style.display = 'none';
-            }
-            const modalOverlay = item.querySelector('.modal-overlay');
-            if (modalOverlay) {
-                modalOverlay.style.display = 'none';
-            }
-            document.body.classList.remove('modal-open');
-            document.body.style.position = '';
-            document.body.style.top = '';
-            document.body.style.width = '';
-            window.scrollTo(0, scrollPosition);
-        }
-    });
-}
-
-// Close modal when clicking outside
-document.addEventListener('click', function(e) {
-    if (e.target.classList.contains('modal-overlay')) {
-        closeAllModals();
-    }
-});
-
-// Close modal when clicking close button
-document.querySelectorAll('.close-btn').forEach(btn => {
-    btn.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        closeAllModals();
-    });
-});
+    </script>
 
 
-function calculateAge(element) {
-    const birthYear = document.getElementById('birthYear').value;
-    const currentYear = new Date().getFullYear();
-    const age = currentYear - birthYear;
-    const ageResult = element.parentNode.querySelector('.age-result');
-    ageResult.textContent = `You are approximately ${age} years old!`;
-}
-
-function generateSuperheroName() {
-    const firstName = document.getElementById('firstName').value.toLowerCase();
-    const favoriteColor = document.getElementById('favoriteColor').value.toLowerCase();
-    const superheroName = `${firstName}${favoriteColor}Hero`;
-    const heroResult = document.querySelector('.hero-result');
-    heroResult.textContent = `Your superhero name is: ${superheroName}`;
-}
-
-
-function generateFoodResponse() {
-    const favoriteFood = document.getElementById('favoriteFood').value;
-    const foodResult = document.querySelector('.food-result');
-    foodResult.textContent = `Your favorite food is ${favoriteFood}.  That's awesome!`;
-}
-
-function generateVacationResponse() {
-    const dreamDestination = document.getElementById('dreamDestination').value;
-    const vacationResult = document.querySelector('.vacation-result');
-    vacationResult.textContent = `Your dream vacation destination is ${dreamDestination}. Sounds amazing!`;
-}
-
-function generateCompliment() {
-    const userName = document.getElementById('userName').value;
-    const compliment = `Hey ${userName}, you're awesome and incredibly talented! Keep shining!`;
-    const complimentResult = document.querySelector('.compliment-result');
-    complimentResult.textContent = compliment;
-}
-
-function convertTemperature() {
-    const celsiusInput = parseFloat(document.getElementById('celsiusInput').value);
-    const fahrenheit = (celsiusInput * 9/5) + 32;
-    const tempResult = document.querySelector('.temp-result');
-    tempResult.textContent = `${celsiusInput}°C is equal to ${fahrenheit.toFixed(2)}°F`;
-}
-
-
-function generateStory() {
-    const characterName = document.getElementById('characterName').value;
-    const storyPlace = document.getElementById('storyPlace').value;
-    const funActivity = document.getElementById('funActivity').value;
-    const story = `Once upon a time, in the magical land of ${storyPlace}, there lived a brave adventurer named ${characterName}. One day, ${characterName} decided to go on a fun adventure and ${funActivity}! The end.`;
-    const storyResult = document.querySelector('.story-result');
-    storyResult.textContent = story;
-}
-
-function generateChatResponse() {
-    const chatUserName = document.getElementById('chatUserName').value;
-    const chatFavoriteColor = document.getElementById('chatFavoriteColor').value;
-    const chatFavoriteAnimal = document.getElementById('chatFavoriteAnimal').value;
-    const chatResponse = `Hello ${chatUserName}! I hear your favorite color is ${chatFavoriteColor} and your favorite animal is ${chatFavoriteAnimal}. That's cool!`;
-    const chatResult = document.querySelector('.chat-result');
-    chatResult.textContent = chatResponse;
-}
-</script>
 {% endblock %}
