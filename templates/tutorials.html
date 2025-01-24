@@ -69,9 +69,11 @@
                     <h3>⏰ Time Machine ⚡</h3>
                     <p class="calc-subtitle">Travel through time to discover your age journey!</p>
                     <div class="calculator-interactive">
-                        <input type="number" id="birthYear" placeholder="Enter your birth year" class="game-input">
-                        <button onclick="calculateAge()" class="generate-btn time-btn">Begin Journey</button>
-                        <div class="game-result age-result"></div>
+                        <form>
+                            <input type="number" id="birthYear" name="birthYear" placeholder="Enter your birth year" class="game-input">
+                            <button type="submit" class="generate-btn time-btn">Begin Journey</button>
+                            <div class="game-result age-result"></div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -85,10 +87,12 @@
                     <h3>⚡ Superhero Identity Generator ⚡</h3>
                     <p class="hero-subtitle">Discover your epic superhero name!</p>
                     <div class="superhero-interactive">
-                        <input type="text" id="firstName" placeholder="Enter your first name" class="hero-input">
-                        <input type="text" id="favoriteColor" placeholder="What's your favorite color?" class="hero-input">
-                        <button onclick="generateSuperheroName()" class="generate-btn">Transform!</button>
-                        <div class="hero-result"></div>
+                        <form>
+                            <input type="text" id="firstName" name="firstName" placeholder="Enter your first name" class="hero-input">
+                            <input type="text" id="favoriteColor" name="favoriteColor" placeholder="What's your favorite color?" class="hero-input">
+                            <button type="submit" class="generate-btn">Transform!</button>
+                            <div class="hero-result"></div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -102,9 +106,11 @@
                     <h3>🍕 Food Adventure Time! 🌮</h3>
                     <p class="food-subtitle">Share your favorite food and discover why it makes you awesome!</p>
                     <div class="food-interactive">
-                        <input type="text" id="favoriteFood" placeholder="What's your favorite food?" class="food-input">
-                        <button onclick="generateFoodResponse()" class="generate-btn food-btn">Let's Feast!</button>
-                        <div class="food-result"></div>
+                        <form>
+                            <input type="text" id="favoriteFood" name="favoriteFood" placeholder="What's your favorite food?" class="food-input">
+                            <button type="submit" class="generate-btn food-btn">Let's Feast!</button>
+                            <div class="food-result"></div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -118,9 +124,11 @@
                     <h3>✈️ Dream Vacation Planner 🌴</h3>
                     <p class="vacation-subtitle">Share your dream destination and let's imagine the possibilities!</p>
                     <div class="vacation-interactive">
-                        <input type="text" id="dreamDestination" placeholder="Where would you love to visit?" class="vacation-input">
-                        <button onclick="generateVacationResponse()" class="generate-btn vacation-btn">Let's Dream!</button>
-                        <div class="vacation-result"></div>
+                        <form>
+                            <input type="text" id="dreamDestination" name="dreamDestination" placeholder="Where would you love to visit?" class="vacation-input">
+                            <button type="submit" class="generate-btn vacation-btn">Let's Dream!</button>
+                            <div class="vacation-result"></div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -134,9 +142,11 @@
                     <h3>✨ Compliment Generator ✨</h3>
                     <p class="compliment-subtitle">Let's brighten your day with some positivity!</p>
                     <div class="compliment-interactive">
-                        <input type="text" id="userName" placeholder="What's your name?" class="compliment-input">
-                        <button onclick="generateCompliment()" class="generate-btn compliment-btn">Get Compliment</button>
-                        <div class="compliment-result"></div>
+                        <form>
+                            <input type="text" id="userName" name="userName" placeholder="What's your name?" class="compliment-input">
+                            <button type="submit" class="generate-btn compliment-btn">Get Compliment</button>
+                            <div class="compliment-result"></div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -150,9 +160,11 @@
                     <h3>🌡️ Temperature Wizard 🔮</h3>
                     <p class="temp-subtitle">Transform temperatures with a touch of magic!</p>
                     <div class="temp-interactive">
-                        <input type="number" id="celsiusInput" placeholder="Enter temperature in Celsius" class="temp-input" step="0.1">
-                        <button onclick="convertTemperature()" class="generate-btn temp-btn">Convert!</button>
-                        <div class="temp-result"></div>
+                        <form>
+                            <input type="number" id="celsiusInput" name="celsiusInput" placeholder="Enter temperature in Celsius" class="temp-input" step="0.1">
+                            <button type="submit" class="generate-btn temp-btn">Convert!</button>
+                            <div class="temp-result"></div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -166,11 +178,13 @@
                     <h3>📖 Story Magic Creator ✨</h3>
                     <p class="story-subtitle">Let's create an amazing story together!</p>
                     <div class="story-interactive">
-                        <input type="text" id="characterName" placeholder="Enter a character name" class="story-input">
-                        <input type="text" id="storyPlace" placeholder="Enter a magical place" class="story-input">
-                        <input type="text" id="funActivity" placeholder="Enter a fun activity" class="story-input">
-                        <button onclick="generateStory()" class="generate-btn story-btn">Create Magic!</button>
-                        <div class="story-result"></div>
+                        <form>
+                            <input type="text" id="characterName" name="characterName" placeholder="Enter a character name" class="story-input">
+                            <input type="text" id="storyPlace" name="storyPlace" placeholder="Enter a magical place" class="story-input">
+                            <input type="text" id="funActivity" name="funActivity" placeholder="Enter a fun activity" class="story-input">
+                            <button type="submit" class="generate-btn story-btn">Create Magic!</button>
+                            <div class="story-result"></div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -184,11 +198,13 @@
                     <h3>🤖 Friendly Chat Bot ✨</h3>
                     <p class="chat-subtitle">Let's have a fun conversation!</p>
                     <div class="chat-interactive">
-                        <input type="text" id="chatUserName" placeholder="What's your name?" class="chat-input">
-                        <input type="text" id="chatFavoriteColor" placeholder="What's your favorite color?" class="chat-input">
-                        <input type="text" id="chatFavoriteAnimal" placeholder="What's your favorite animal?" class="chat-input">
-                        <button onclick="generateChatResponse()" class="generate-btn chat-btn">Let's Chat!</button>
-                        <div class="chat-result"></div>
+                        <form>
+                            <input type="text" id="chatUserName" name="chatUserName" placeholder="What's your name?" class="chat-input">
+                            <input type="text" id="chatFavoriteColor" name="chatFavoriteColor" placeholder="What's your favorite color?" class="chat-input">
+                            <input type="text" id="chatFavoriteAnimal" name="chatFavoriteAnimal" placeholder="What's your favorite animal?" class="chat-input">
+                            <button type="submit" class="generate-btn chat-btn">Let's Chat!</button>
+                            <div class="chat-result"></div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -747,9 +763,11 @@
                 <div class="game-inner">
                     <h2>💝 Sweet Messages</h2>
                     <div class="game-interactive">
-                        <input type="text" id="nickname" placeholder="Enter our nickname my love..." class="game-input">
-                        <button onclick="playNicknameGame()" class="game-btn sweet-btn">Send Love</button>
-                        <div class="game-result" id="nicknameResult"></div>
+                        <form>
+                            <input type="text" id="nickname" name="nickname" placeholder="Enterour nickname my love..." class="game-input">
+                            <button type="submit" class="game-btn sweet-btn">Send Love</button>
+                            <div class="game-result" id="nicknameResult"></div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -759,9 +777,11 @@
                 <div class="game-inner">
                     <h2>🔍 Age Detective</h2>
                     <div class="game-interactive">
-                        <input type="number" id="detectiveBirthYear" placeholder="What year were you born?" class="game-input">
-                        <button onclick="playAgeGame()" class="game-btn detective-btn">Reveal Age</button>
-                        <div class="game-result" id="ageResult"></div>
+                        <form>
+                            <input type="number" id="detectiveBirthYear" name="detectiveBirthYear" placeholder="What year were you born?" class="game-input">
+                            <button type="submit" class="game-btn detective-btn">Reveal Age</button>
+                            <div class="game-result" id="ageResult"></div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -771,10 +791,12 @@
                 <div class="game-inner">
                     <h2>⭐ Little Star</h2>
                     <div class="game-interactive">
-                        <input type="text" id="starName" placeholder="Enter your name" class="game-input">
-                        <input type="number" id="starAge" placeholder="How old are you?" class="game-input">
-                        <button onclick="playStarGame()" class="game-btn star-btn">Sparkle!</button>
-                        <div class="game-result" id="starResult"></div>
+                        <form>
+                            <input type="text" id="starName" name="starName" placeholder="Enter your name" class="game-input">
+                            <input type="number" id="starAge" name="starAge" placeholder="How old are you?" class="game-input">
+                            <button type="submit" class="game-btn star-btn">Sparkle!</button>
+                            <div class="game-result" id="starResult"></div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -782,167 +804,43 @@
     </div>
 
     <script>
-    // Game functions
-    function calculateAge() {
-        const birthYear = parseInt(document.getElementById('birthYear').value);
-        const currentYear = 2024;
-        const age = currentYear - birthYear;
-        const resultDiv = document.querySelector('.age-result');
-        
-        if (birthYear >= 1900 && birthYear <= currentYear) {
-            resultDiv.innerHTML = `You are ${age} years old! ${age < 18 ? 'So young!' : 'Looking good!'}`;
-        } else {
-            resultDiv.innerHTML = "Please enter a valid birth year between 1900 and 2024";
-        }
-    }
-
-    function generateSuperheroName() {
-        const firstName = document.getElementById('firstName').value;
-        const color = document.getElementById('favoriteColor').value;
-        const resultDiv = document.querySelector('.hero-result');
-        
-        if (firstName && color) {
-            const titles = ['Mighty', 'Amazing', 'Incredible', 'Fantastic', 'Super'];
-            const randomTitle = titles[Math.floor(Math.random() * titles.length)];
-            resultDiv.innerHTML = `${randomTitle} ${color.charAt(0).toUpperCase() + color.slice(1)} ${firstName}!`;
-        } else {
-            resultDiv.innerHTML = "Please enter both your name and favorite color!";
-        }
-    }
-
-    function generateFoodResponse() {
-        const food = document.getElementById('favoriteFood').value;
-        const resultDiv = document.querySelector('.food-result');
-        
-        if (food) {
-            resultDiv.innerHTML = `Wow! ${food} is an amazing choice! You must have great taste! 😋`;
-        } else {
-            resultDiv.innerHTML = "Please enter your favorite food!";
-        }
-    }
-
-    function generateVacationResponse() {
-        const destination = document.getElementById('dreamDestination').value;
-        const resultDiv = document.querySelector('.vacation-result');
-        
-        if (destination) {
-            resultDiv.innerHTML = `${destination} sounds like an incredible adventure! Start packing! ✈️`;
-        } else {
-            resultDiv.innerHTML = "Please enter your dream destination!";
-        }
-    }
-
-    function generateCompliment() {
-        const name = document.getElementById('userName').value;
-        const resultDiv = document.querySelector('.compliment-result');
-        
-        if (name) {
-            const compliments = [
-                `${name}, you're absolutely amazing!`,
-                `${name}, your smile lights up the room!`,
-                `${name}, you make the world a better place!`
-            ];
-            resultDiv.innerHTML = compliments[Math.floor(Math.random() * compliments.length)];
-        } else {
-            resultDiv.innerHTML = "Please enter your name!";
-        }
-    }
-
-    function convertTemperature() {
-        const celsius = parseFloat(document.getElementById('celsiusInput').value);
-        const resultDiv = document.querySelector('.temp-result');
-        
-        if (!isNaN(celsius)) {
-            const fahrenheit = (celsius * 9/5) + 32;
-            resultDiv.innerHTML = `${celsius}°C = ${fahrenheit.toFixed(1)}°F`;
-        } else {
-            resultDiv.innerHTML = "Please enter a valid temperature!";
-        }
-    }
-
-    function generateStory() {
-        const character = document.getElementById('characterName').value;
-        const place = document.getElementById('storyPlace').value;
-        const activity = document.getElementById('funActivity').value;
-        const resultDiv = document.querySelector('.story-result');
-        
-        if (character && place && activity) {
-            resultDiv.innerHTML = `Once upon a time, ${character} visited ${place} and had an amazing adventure ${activity}! The end! 📚`;
-        } else {
-            resultDiv.innerHTML = "Please fill in all the story elements!";
-        }
-    }
-
-    function generateChatResponse() {
-        const name = document.getElementById('chatUserName').value;
-        const color = document.getElementById('chatFavoriteColor').value;
-        const animal = document.getElementById('chatFavoriteAnimal').value;
-        const resultDiv = document.querySelector('.chat-result');
-        
-        if (name && color && animal) {
-            resultDiv.innerHTML = `Hi ${name}! I love ${color} too, and ${animal}s are fantastic! We have so much in common! 🎉`;
-        } else {
-            resultDiv.innerHTML = "Please fill in all the fields!";
-        }
-    }
-
-    // Common modal toggle function for all modals
-    function toggleModal(event, element, contentClass) {
-        event.preventDefault();
-        event.stopPropagation();
-        
-        const modal = contentClass ? 
-            element.querySelector(`.${contentClass}`) : 
-            element.querySelector('.calculator-content');
-        const overlay = element.querySelector('.modal-overlay');
-        
-        if (modal.style.display === 'block') {
-            closeModal(modal, overlay, element);
-        } else {
-            openModal(modal, overlay, element);
-        }
-    }
-
-    function openModal(modal, overlay, element) {
-        modal.style.display = 'block';
-        overlay.style.display = 'block';
-        setTimeout(() => overlay.style.opacity = '1', 10);
-        element.classList.add('open');
-        
-        // Prevent clicks inside modal from closing it
-        modal.addEventListener('click', (e) => e.stopPropagation());
-        
-        // Add close button functionality
-        const closeBtn = modal.querySelector('.close-btn');
-        if (closeBtn) {
-            closeBtn.onclick = (e) => {
+    // Optimize event handling
+    document.addEventListener('DOMContentLoaded', function() {
+        // Prevent form submissions from reloading the page
+        const forms = document.querySelectorAll('form');
+        forms.forEach(form => {
+            form.addEventListener('submit', (e) => {
                 e.preventDefault();
-                closeModal(modal, overlay, element);
-            };
+                const formData = new FormData(form);
+                const resultDiv = form.querySelector('.game-result, .hero-result, .food-result, .vacation-result, .compliment-result, .temp-result, .story-result, .chat-result');
+                if (resultDiv) {
+                    handleFormSubmit(formData, resultDiv);
+                }
+            });
+        });
+    });
+
+    async function handleFormSubmit(formData, resultDiv) {
+        try {
+            const response = await fetch(window.location.href, {
+                method: 'POST',
+                body: formData
+            });
+            const data = await response.json();
+            resultDiv.innerHTML = data.response;
+        } catch (error) {
+            console.error('Error:', error);
+            resultDiv.innerHTML = 'An error occurred. Please try again.';
         }
-        
-        // Close on overlay click
-        overlay.onclick = (e) => {
-            e.preventDefault();
-            closeModal(modal, overlay, element);
-        };
     }
 
-    function closeModal(modal, overlay, element) {
-        modal.style.display = 'none';
-        overlay.style.display = 'none';
-        overlay.style.opacity = '0';
-        element.classList.remove('open');
-    }
-
-    // Alias for calculator modal
     const toggleCalculator = toggleModal;
 
     function playAgeGame() {
         const birthYear = parseInt(document.getElementById('detectiveBirthYear').value);
         const currentYear = 2024;
         const age = currentYear - birthYear;
-        
+
         if (birthYear >= 1900 && birthYear <= currentYear) {
             let message = '';
             if (age < 18) {
