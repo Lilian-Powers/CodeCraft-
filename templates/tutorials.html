@@ -267,6 +267,217 @@
     padding-bottom: 6rem;
 }
 
+    <!-- Interactive Games Section -->
+    <div class="tutorials-container games-section">
+        <div class="tutorials-header">
+            <h1>Fun Interactive Games</h1>
+            <p class="welcome-text">Let's practice conditionals with these entertaining games!</p>
+        </div>
+
+        <div class="games-grid">
+            <!-- Sweet Messages Game -->
+            <div class="game-card">
+                <div class="game-inner">
+                    <h2>💝 Sweet Messages</h2>
+                    <div class="game-interactive">
+                        <input type="text" id="nickname" placeholder="Enter a nickname (try: sweetheart, darling, cutie)" class="game-input">
+                        <button onclick="playNicknameGame()" class="game-btn sweet-btn">Send Love</button>
+                        <div class="game-result" id="nicknameResult"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Age Detective Game -->
+            <div class="game-card">
+                <div class="game-inner">
+                    <h2>🔍 Age Detective</h2>
+                    <div class="game-interactive">
+                        <input type="number" id="birthYear" placeholder="What year were you born?" class="game-input">
+                        <button onclick="playAgeGame()" class="game-btn detective-btn">Reveal Age</button>
+                        <div class="game-result" id="ageResult"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Little Star Game -->
+            <div class="game-card">
+                <div class="game-inner">
+                    <h2>⭐ Little Star</h2>
+                    <div class="game-interactive">
+                        <input type="text" id="starName" placeholder="Enter your name" class="game-input">
+                        <input type="number" id="starAge" placeholder="How old are you?" class="game-input">
+                        <button onclick="playStarGame()" class="game-btn star-btn">Sparkle!</button>
+                        <div class="game-result" id="starResult"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+    .games-section {
+        background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+        padding: 4rem 2rem;
+        margin-top: 4rem;
+    }
+
+    .games-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .game-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 2rem;
+        box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+        transition: transform 0.3s ease;
+    }
+
+    .game-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .game-inner {
+        text-align: center;
+    }
+
+    .game-card h2 {
+        color: white;
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .game-input {
+        width: 100%;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border: 2px solid rgba(255,255,255,0.2);
+        border-radius: 12px;
+        background: rgba(255,255,255,0.1);
+        color: white;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+    }
+
+    .game-input:focus {
+        outline: none;
+        border-color: rgba(255,255,255,0.5);
+        box-shadow: 0 0 15px rgba(255,255,255,0.2);
+    }
+
+    .game-input::placeholder {
+        color: rgba(255,255,255,0.6);
+    }
+
+    .game-btn {
+        width: 100%;
+        padding: 1rem;
+        border: none;
+        border-radius: 12px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .sweet-btn { background: linear-gradient(45deg, #ff6b6b, #ff8e8e); }
+    .detective-btn { background: linear-gradient(45deg, #4facfe, #00f2fe); }
+    .star-btn { background: linear-gradient(45deg, #ffd86f, #fc6262); }
+
+    .game-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .game-result {
+        margin-top: 1.5rem;
+        padding: 1rem;
+        background: rgba(255,255,255,0.1);
+        border-radius: 12px;
+        color: white;
+        font-size: 1.1rem;
+        min-height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    @media (max-width: 768px) {
+        .games-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+    </style>
+
+    <script>
+    function playNicknameGame() {
+        const nickname = document.getElementById('nickname').value;
+        let message = '';
+        
+        if (nickname.toLowerCase() === "sweetheart") {
+            message = `Aww, you're making me blush! I will miss you, ${nickname}.`;
+        } else if (nickname.toLowerCase() === "darling") {
+            message = `Darling, you're too sweet! I will miss you more than you know, ${nickname}.`;
+        } else if (nickname.toLowerCase() === "cutie") {
+            message = `Cutie, I'll miss you too, but don't expect me to stop thinking about you!`;
+        } else {
+            message = `Hmm, ${nickname}? Well, I guess I'll miss you… but only a little. 😉`;
+        }
+        
+        document.getElementById('nicknameResult').innerHTML = message;
+    }
+
+    function playAgeGame() {
+        const birthYear = parseInt(document.getElementById('birthYear').value);
+        const currentYear = 2025;
+        const age = currentYear - birthYear;
+        let message = '';
+
+        if (age < 18) {
+            message = `You're just a baby! You are ${age} years old! Wait till you get to the fun part of life! 😜`;
+        } else if (age < 25) {
+            message = `Ah, you're in your prime! You're ${age} years old! Enjoy it while it lasts! 😉`;
+        } else if (age < 40) {
+            message = `You're in the golden years! ${age} years old, huh? You're starting to get wiser... but also closer to needing reading glasses! 😂`;
+        } else if (age < 60) {
+            message = `Whoa, you're ${age} years old? Still young at heart, but do you need a nap after this? 😅`;
+        } else {
+            message = `${age} years young! The wisdom must be overflowing by now, huh? 🤔`;
+        }
+        
+        document.getElementById('ageResult').innerHTML = message;
+    }
+
+    function playStarGame() {
+        const name = document.getElementById('starName').value;
+        const age = parseInt(document.getElementById('starAge').value);
+        let message = '';
+
+        if (age <= 5) {
+            message = `Wow, ${name.toUpperCase()}! You're so little and cute! Just ${age} years old? You're still a baby! 🍼`;
+        } else if (age <= 8) {
+            message = `Hey, ${name.toUpperCase()}! You're ${age} now! Getting bigger and smarter every day, huh? 😎`;
+        } else if (age <= 12) {
+            message = `Look at you, ${name.toUpperCase()}! Already ${age} years old, huh? Almost a teenager, I see! 😉`;
+        } else if (age <= 15) {
+            message = `Whoa, ${name.toUpperCase()}! You're ${age} already? That means you're practically *so cool* now! 😜`;
+        } else {
+            message = `Nice to meet you, ${name.toUpperCase()}! You're ${age} years old, huh? Still young, but feeling super grown up! 🤩`;
+        }
+        
+        document.getElementById('starResult').innerHTML = message;
+    }
+    </script>
+
+
 .tutorials-container.part2 .tutorials-header h1 {
     color: #6a5acd;
     background: linear-gradient(135deg, #6a5acd, #9370db);
