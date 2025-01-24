@@ -503,7 +503,25 @@
         <div class="tutorials-header">
             <h1>Fun Interactive Games</h1>
             <p class="welcome-text">Let's practice Conditional Statements with these entertaining games!</p>
+            <div class="info-box">
+                <p>Try different inputs in these games to see how conditional statements (if/elif/else) create different responses. Each game uses these statements to give you unique feedback based on your input!</p>
+            </div>
         </div>
+
+        <style>
+        .info-box {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-top: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .info-box p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            margin: 0;
+        }
+        </style>
 
         <div class="games-grid">
             <!-- Sweet Messages Game -->
@@ -565,10 +583,15 @@
 
     function playAgeGame() {
         const birthYear = parseInt(document.getElementById('birthYear').value);
+        if (!birthYear || birthYear < 1900 || birthYear > 2025) {
+            document.getElementById('ageResult').innerHTML = "Please enter a valid birth year between 1900 and 2025! 🤔";
+            return;
+        }
+
         const currentYear = 2025;
         const age = currentYear - birthYear;
-        let message = '';
 
+        let message = '';
         if (age < 18) {
             message = `You're just a baby! You are ${age} years old! Wait till you get to the fun part of life! 😜`;
         } else if (age >= 18 && age < 25) {
