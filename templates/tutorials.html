@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Practice Projects</title>
+    <style>
+        /* Style the modals */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        .close-btn {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close-btn:hover,
+        .close-btn:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .calculator-modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .calculator-modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 30%;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Practice Projects</h1>
+
+<h2>Age Calculator</h2>
+<div>
+    <label for="birthYear">Enter your birth year:</label>
+    <input type="number" id="birthYear"><br><br>
+    <button onclick="playAgeGame()">Calculate Age</button>
+    <div class="age-result"></div>
+</div>
+
+<h2>Story Generator</h2>
+<div>
+    <label for="storyName">Enter your name:</label>
+    <input type="text" id="storyName"><br><br>
+    <label for="favoriteFood">Enter your favorite food:</label>
+    <input type="text" id="favoriteFood"><br><br>
+    <button onclick="generateStory()">Generate Story</button>
+    <div class="story-result"></div>
+</div>
+
+
+<h2>Chatbot</h2>
+<div>
+    <label for="userMessage">Type your message:</label>
+    <input type="text" id="userMessage"><br><br>
+    <button onclick="generateChatResponse()">Get Response</button>
+    <div class="chat-result"></div>
+</div>
+
+<button onclick="toggleCalculator()">Open Calculator</button>
+
+<!-- Modal for calculator -->
+<div class="calculator-modal modal">
+    <div class="modal-overlay"></div>
+    <div class="calculator-modal-content modal-content">
+        <span class="close-btn">&times;</span>
+        <p>Calculator content will go here.</p>
+    </div>
+</div>
+
+<script>
+function toggleModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        if (modal.style.display === 'flex') {
+            modal.style.display = 'none';
+        } else {
+            modal.style.display = 'flex';
+        }
+    }
+}
+
+function playAgeGame() {
+    const birthYear = document.getElementById('birthYear').value;
+    const resultDiv = document.querySelector('.age-result');
+    if (birthYear) {
+        const currentYear = new Date().getFullYear();
+        const age = currentYear - parseInt(birthYear);
+        resultDiv.textContent = `You are approximately ${age} years old!`;
+    } else {
+        resultDiv.textContent = 'Please enter your birth year.';
+    }
+}
+
+function generateStory() {
+    const nameInput = document.getElementById('storyName').value;
+    const foodInput = document.getElementById('favoriteFood').value;
+    const resultDiv = document.querySelector('.story-result');
+
+    if (nameInput && foodInput) {
+        const story = `Once upon a time, there was someone named ${nameInput} who loved ${foodInput} more than anything in the world. Every day, they would dream about eating delicious ${foodInput}. The End!`;
+        resultDiv.textContent = story;
+    } else {
+        resultDiv.textContent = 'Please fill in all fields to generate your story!';
+    }
+}
+
+function generateChatResponse() {
+    const messageInput = document.getElementById('userMessage').value;
+    const resultDiv = document.querySelector('.chat-result');
+
+    if (messageInput) {
+        const responses = [
+            "That's interesting! Tell me more.",
+            "I understand how you feel.",
+            "That's a great point!",
+            "I never thought about it that way.",
+            "Thanks for sharing that with me!"
+        ];
+        const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+        resultDiv.textContent = randomResponse;
+    } else {
+        resultDiv.textContent = 'Please type a message first!';
+    }
+}
+
+function toggleCalculator() {
+    const modal = document.querySelector('.calculator-modal');
+    modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
+}
+
+// Close modal when clicking outside
+document.addEventListener('click', function(event) {
+    if (event.target.classList.contains('modal-overlay')) {
+        event.target.parentElement.style.display = 'none';
+    }
+});
+
+// Close button functionality
+document.querySelectorAll('.close-btn').forEach(button => {
+    button.addEventListener('click', function() {
+        this.closest('.modal').style.display = 'none';
+    });
+});
+</script>
+</body>
+</html>
