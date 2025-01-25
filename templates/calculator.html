@@ -27,93 +27,110 @@
 
 <style>
 .calculator-page {
-    max-width: 1000px;
-    margin: 4rem auto;
-    padding: 2rem;
+    max-width: min(90%, 1000px);
+    margin: clamp(2rem, 5vw, 4rem) auto;
+    padding: clamp(1rem, 3vw, 2rem);
 }
 
 .calculator-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 3rem;
+    margin-top: clamp(1.5rem, 4vw, 3rem);
 }
 
 .calculator {
     background: linear-gradient(145deg, #2c3e50, #34495e);
-    padding: 2rem;
-    border-radius: 20px;
+    padding: clamp(1rem, 3vw, 2rem);
+    border-radius: clamp(10px, 2vw, 20px);
     box-shadow: 0 15px 35px rgba(0,0,0,0.3);
     width: 100%;
-    max-width: 400px;
+    max-width: min(90%, 400px);
 }
 
 .calc-display {
     background: #1a2634;
-    padding: 1.5rem;
-    border-radius: 12px;
-    margin-bottom: 1.5rem;
+    padding: clamp(1rem, 3vw, 1.5rem);
+    border-radius: clamp(8px, 2vw, 12px);
+    margin-bottom: clamp(1rem, 3vw, 1.5rem);
     text-align: right;
 }
 
 .calc-message {
     color: #3498db;
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
+    font-size: clamp(0.8rem, 2vw, 0.9rem);
+    margin-bottom: clamp(0.3rem, 1vw, 0.5rem);
     font-family: monospace;
 }
 
 .calc-result {
     color: #fff;
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 4vw, 2rem);
     font-weight: bold;
     font-family: 'Digital', monospace;
+    word-break: break-all;
 }
 
 .calc-inputs {
     display: grid;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
+    gap: clamp(0.5rem, 2vw, 1rem);
+    margin-bottom: clamp(1rem, 3vw, 1.5rem);
 }
 
 .calc-number {
-    padding: 1rem;
+    padding: clamp(0.75rem, 2vw, 1rem);
     border: none;
-    border-radius: 8px;
+    border-radius: clamp(6px, 1.5vw, 8px);
     background: #fff;
-    font-size: 1.1rem;
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
     text-align: center;
     transition: transform 0.2s;
+    width: 100%;
 }
 
 .calc-operations {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 0.8rem;
-    margin-bottom: 1rem;
+    gap: clamp(0.4rem, 1.5vw, 0.8rem);
+    margin-bottom: clamp(0.75rem, 2vw, 1rem);
 }
 
 .calc-btn {
-    padding: 1rem;
+    padding: clamp(0.75rem, 2vw, 1rem);
     border: none;
-    border-radius: 8px;
+    border-radius: clamp(6px, 1.5vw, 8px);
     background: #3498db;
     color: white;
-    font-size: 1.5rem;
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
     cursor: pointer;
     transition: all 0.2s;
+    min-height: clamp(2.5rem, 8vw, 3.5rem);
 }
 
 .calc-clear {
     width: 100%;
-    padding: 1rem;
+    padding: clamp(0.75rem, 2vw, 1rem);
     border: none;
-    border-radius: 8px;
+    border-radius: clamp(6px, 1.5vw, 8px);
     background: #e74c3c;
     color: white;
-    font-size: 1.1rem;
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
     cursor: pointer;
     transition: all 0.2s;
+}
+
+@media (max-width: 480px) {
+    .calculator {
+        padding: 1rem;
+    }
+    
+    .calc-operations {
+        gap: 0.4rem;
+    }
+    
+    .calc-btn {
+        padding: 0.75rem;
+    }
 }
 </style>
 
