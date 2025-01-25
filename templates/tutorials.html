@@ -184,7 +184,7 @@
         <p class="improvement-note"><i>Note: Some compliments generated in the above games may appear grammatically imperfect or contextually mismatched. This is because our current implementation uses a simple random selection from fixed responses. While this represents significant progress from our initial games, the responses will become more sophisticated and contextually appropriate as we advance into Part 2 of our tutorials, where we'll explore more advanced Python concepts for natural language processing and dynamic response generation.</i></p>
     </div>
 
-    <div class="tutorials-part2-container">
+    <div class="tutorials-section part2">
         <div class="part2-header">
             <h2>Video Tutorials Part 2</h2>
             <p class="part2-description">Continue your learning journey with conditional statements (if, elif, else) and practice what you've learned so far!</p>
@@ -217,43 +217,12 @@
 </div>
 
 <style>
-    .tutorials-part2-container {
+    .tutorials-section.part2 {
         background: linear-gradient(135deg, rgba(67, 97, 238, 0.05), rgba(63, 55, 201, 0.05));
         padding: 4rem 2rem;
         margin-top: 4rem;
         width: 100%;
-    }
-
-    .part2-header {
-        text-align: center;
-        max-width: 800px;
-        margin: 0 auto 3rem auto;
-    }
-
-    .part2-header h2 {
-        color: #4361ee;
-        font-size: 2.5rem;
-        font-weight: 700;
-        margin-bottom: 1rem;
-        background: linear-gradient(135deg, #4361ee, #3f37c9);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-
-    .part2-description {
-        font-size: 1.2rem;
-        color: #666;
-        line-height: 1.6;
-    }
-</style>
-
-<style>
-    .tutorials-part2 {
-        background: linear-gradient(135deg, rgba(67, 97, 238, 0.05), rgba(63, 55, 201, 0.05));
-        padding: 4rem 2rem;
-        margin-top: 4rem;
         display: block;
-        width: 100%;
         position: relative;
         z-index: 1;
     }
@@ -280,16 +249,45 @@
         color: #666;
         line-height: 1.6;
     }
+</style>
 
-    .video-grid {
+<style>
+    .tutorials-container {
+        padding: 4rem 0;
+        background: linear-gradient(135deg, rgba(67, 97, 238, 0.1), rgba(72, 149, 239, 0.1));
+        min-height: 100vh;
+    }
+
+    .tutorials-header {
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto 3rem auto;
+        padding: 2rem;
+    }
+
+    .tutorials-header h1 {
+        color: var(--primary-color);
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        font-weight: 700;
+    }
+
+    .welcome-text {
+        font-size: 1.2rem;
+        color: var(--text-color);
+        margin-bottom: 2rem;
+    }
+
+    .tutorials-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: 2rem;
+        padding: 0 2rem;
         max-width: 1200px;
         margin: 0 auto;
     }
 
-    .video-card {
+    .tutorial-card {
         background: white;
         border-radius: 15px;
         overflow: hidden;
@@ -297,21 +295,36 @@
         transition: transform 0.3s ease;
     }
 
-    .video-card:hover {
+    .tutorial-card:hover {
         transform: translateY(-5px);
     }
 
-    .video-card h3 {
-        color: #4361ee;
+    .tutorial-card h2 {
+        color: var(--primary-color);
         font-size: 1.5rem;
         padding: 1.5rem;
         margin: 0;
-        text-align: center;
     }
 
-    .video-description {
+    .video-container {
+        position: relative;
+        padding-bottom: 56.25%;
+        height0;
+        overflow: hidden;
+    }
+
+    .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+
+    .tutorial-description {
         padding: 1.5rem;
-        color: #666;
+        color: var(--text-color);
         font-size: 1.1rem;
         line-height: 1.6;
         margin: 0;
@@ -776,8 +789,7 @@
     }
 
 
-    .food-input {
-        width: 100%;
+    .food-input {        width: 100%;
         padding: 1rem;
         margin-bottom: 1rem;
         border: 2px solid rgba(255,255,255,0.2);
