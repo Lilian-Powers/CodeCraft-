@@ -32,7 +32,7 @@ app.config.update(
 @app.after_request
 def add_basic_security(response):
     # Allow YouTube embeds and essential content
-    response.headers['Content-Security-Policy'] = "default-src 'self' 'unsafe-inline' 'unsafe-eval' https:; img-src 'self' data: https:; media-src 'self' https:; frame-src 'self' https://www.youtube.com"
+    response.headers['Content-Security-Policy'] = "default-src 'self' 'unsafe-inline' 'unsafe-eval' https:; img-src 'self' data: https:; media-src 'self' https:; frame-src 'self' https://www.youtube.com https://*.doubleclick.net https://*.google.com https://googleads.g.doubleclick.net https://*.adtrafficquality.google"
     response.headers['X-Content-Type-Options'] = 'nosniff'
     response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
     response.headers['Pragma'] = 'no-cache'
