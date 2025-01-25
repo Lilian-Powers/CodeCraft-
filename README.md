@@ -61,7 +61,19 @@ Note: All sensitive credentials are managed through Replit's Secrets system for 
 
 ## Contact
 
-For more information about CodeCraft Academy, visit our social media:
-- YouTube: [CodeCraft Academy Channel]
+## Portfolio
+
+Visit our developer portfolio to learn more about:
+- Full Stack Development expertise
+- Technical certifications
+- Project showcase
+- Live demonstrations
+- Developer contact information
+
+## Contact & Social Media
+
+For more information about CodeCraft Academy:
+- YouTube: https://www.youtube.com/channel/UC6d9bq2T8A72bl6zrZvT_wQ
 - Instagram: @introduction_to_coding101
 - TikTok: @coding101.to.p0
+- Portfolio: Visit our website's portfolio section
