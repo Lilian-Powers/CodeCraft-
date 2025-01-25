@@ -527,8 +527,8 @@ function playStarGame() {
 <style>
     .tutorials-section.part2 {
         background: linear-gradient(135deg, rgba(67, 97, 238, 0.05), rgba(63, 55, 201, 0.05));
-        padding: 4rem 2rem;
-        margin-top: 4rem;
+        padding: clamp(2rem, 5vw, 4rem);
+        margin-top: clamp(2rem, 5vw, 4rem);
         width: 100%;
         display: block;
         position: relative;
@@ -537,25 +537,48 @@ function playStarGame() {
 
     .part2-header {
         text-align: center;
-        max-width: 800px;
-        margin: 0 auto 3rem auto;
+        max-width: min(90%, 800px);
+        margin: 0 auto clamp(1.5rem, 4vw, 3rem) auto;
+        padding: 0 1rem;
     }
 
     .part2-header h2 {
         color: #4361ee;
-        font-size: 2.5rem;
+        font-size: clamp(1.8rem, 4vw, 2.5rem);
         font-weight: 700;
-        margin-bottom: 1rem;
+        margin-bottom: clamp(0.5rem, 2vw, 1rem);
         background: linear-gradient(135deg, #4361ee, #3f37c9);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        word-wrap: break-word;
     }
 
     .part2-description {
-        font-size: 1.2rem;
+        font-size: clamp(1rem, 2vw, 1.2rem);
         color: #666;
         line-height: 1.6;
+        padding: 0 clamp(0.5rem, 2vw, 1rem);
+    }
+
+    @media (max-width: 768px) {
+        .tutorials-section.part2 {
+            padding: 2rem 1rem;
+        }
+        
+        .part2-header {
+            margin-bottom: 2rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .tutorials-section.part2 {
+            padding: 1.5rem 0.75rem;
+        }
+        
+        .part2-header {
+            margin-bottom: 1.5rem;
+        }
     }
 </style>
 
