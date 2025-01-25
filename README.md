@@ -74,6 +74,6 @@ Visit our developer portfolio to learn more about:
 
 For more information about CodeCraft Academy:
 - YouTube: https://www.youtube.com/channel/UC6d9bq2T8A72bl6zrZvT_wQ
-- Instagram: @introduction_to_coding101
-- TikTok: @coding101.to.p0
-- Portfolio: Visit our website's portfolio section
+- Instagram: https://instagram.com/introduction_to_coding101
+- TikTok: https://tiktok.com/@coding101.to.p0
+- Portfolio: https://introductiontocoding101.replit.app/portfolio
