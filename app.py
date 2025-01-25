@@ -14,13 +14,14 @@ import sqlite3
 
 app = Flask(__name__)
 
-# Verify all required environment variables
-required_env_vars = ['SECRET_KEY', 'MAIL_USERNAME', 'MAIL_PASSWORD']
+# Set default secret key if not provided
+app.secret_key = os.environ.get('SECRET_KEY', 'default-secret-key-for-development')
+
+# Check other required variables
+required_env_vars = ['MAIL_USERNAME', 'MAIL_PASSWORD']
 missing_vars = [var for var in required_env_vars if not os.environ.get(var)]
 if missing_vars:
-    raise ValueError(f"Missing required environment variables: {', '.join(missing_vars)}")
-
-app.secret_key = os.environ['SECRET_KEY']
+    print(f"Warning: Missing environment variables: {', '.join(missing_vars)}")
 
 # Basic security settings
 app.config.update(
