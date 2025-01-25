@@ -9,11 +9,22 @@ A dynamic web platform for teaching coding to beginners, built with Python Flask
 - In-browser code editor for practice
 - Educational games including:
   - Python Treasure Hunt
-  - Rock Paper Scissors
+  - Rock Paper Scissors 
   - Shape Generator
+  - Sweet Nicknames Game
+  - Age Explorer Game
+  - Little Star Game
+  - Calculator Project
 - User authentication system
 - Progress tracking
 - Mobile-responsive design
+
+## Interactive Games
+Our platform now includes fun interactive games that teach coding concepts:
+- Sweet Nicknames: Practice string manipulation and conditionals
+- Age Explorer: Learn about mathematical operations and conditional logic
+- Little Star: Understand user input and string formatting
+- Calculator Project: Apply mathematical operations in a real project
 
 ## Tech Stack
 
