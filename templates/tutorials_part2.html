@@ -1,4 +1,3 @@
-
 {% extends "base.html" %}
 {% block title %}Improved Games{% endblock %}
 
@@ -11,7 +10,7 @@
 
     <div class="games-grid">
         <!-- Sweet Nicknames Game -->
-        <div class="game-card" data-game="nicknames">
+        <div class="game-card" data-game="nicknames" style="background-color: #FFD700; /* Gold */">
             <div class="game-card-inner">
                 <h2>💝 Sweet Nicknames</h2>
                 <div class="game-content">
@@ -23,7 +22,7 @@
         </div>
 
         <!-- Age Explorer Game -->
-        <div class="game-card" data-game="age">
+        <div class="game-card" data-game="age" style="background-color: #ADD8E6; /* Light Blue */">
             <div class="game-card-inner">
                 <h2>🎂 Age Explorer</h2>
                 <div class="game-content">
@@ -35,7 +34,7 @@
         </div>
 
         <!-- Little Star Game -->
-        <div class="game-card" data-game="star">
+        <div class="game-card" data-game="star" style="background-color: #FFC0CB; /* Pink */">
             <div class="game-card-inner">
                 <h2>⭐ Little Star</h2>
                 <div class="game-content">
@@ -72,6 +71,14 @@
     <div class="youtube-request">
         <h3>Want to see how these games are different?</h3>
         <p>These improved games include input validation, better error handling, and age-appropriate responses! To see a detailed video explanation of the improvements, comment "IMPROVED GAMES" on any of our YouTube tutorials.</p>
+    </div>
+</div>
+
+<!-- Modal elements -->
+<div id="imageModal" class="modal-overlay">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <img id="modalImage" src="" alt="Enlarged preview">
     </div>
 </div>
 
@@ -220,6 +227,7 @@
     object-fit: cover;
     border-radius: 8px;
     transition: transform 0.3s ease;
+    cursor: pointer;
 }
 
 .preview-card:hover .preview-image {
@@ -246,15 +254,53 @@
     margin: 0;
 }
 
+/* Modal styles */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    max-width: 80%;
+    max-height: 80%;
+    overflow: auto; /* Allow scrolling if content is too large */
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+#modalImage{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+
 @media (max-width: 768px) {
     .improved-games-container {
         padding: 1rem;
     }
-    
+
     .games-grid, .preview-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .game-card-inner {
         padding: 1.5rem;
     }
@@ -264,7 +310,7 @@
     .header-section {
         padding: 1.5rem;
     }
-    
+
     .game-input, .game-button {
         padding: 0.8rem;
     }
@@ -272,6 +318,29 @@
 </style>
 
 <script>
+// Image popup functionality
+const modal = document.getElementById('imageModal');
+const modalImg = document.getElementById('modalImage');
+const closeModalButton = document.querySelector('.close-modal');
+
+
+document.querySelectorAll('.preview-image').forEach(img => {
+    img.addEventListener('click', function() {
+        modal.style.display = "block";
+        modalImg.src = this.src;
+    });
+});
+
+modal.addEventListener('click', function(event) {
+    if (event.target === modal) {
+        modal.style.display = "none";
+    }
+});
+
+closeModalButton.addEventListener('click', function() {
+    modal.style.display = "none";
+});
+
 function playSweetNicknames() {
     const nickname = document.getElementById('nicknameInput').value.trim();
     const resultDiv = document.getElementById('nicknameResult');
