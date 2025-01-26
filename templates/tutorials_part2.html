@@ -1,40 +1,49 @@
+
 {% extends "base.html" %}
 {% block title %}Improved Games{% endblock %}
 
 {% block content %}
 <div class="improved-games-container">
-    <h1>Welcome to Our Improved Games!</h1>
-    <p class="intro-text">These games now include input validation and better response handling!</p>
+    <div class="header-section">
+        <h1>Welcome to Our Improved Games!</h1>
+        <p class="intro-text">These games now include input validation and better response handling!</p>
+    </div>
 
     <div class="games-grid">
         <!-- Sweet Nicknames Game -->
-        <div class="game-card">
-            <h2>💝 Sweet Nicknames</h2>
-            <div class="game-content">
-                <input type="text" id="nicknameInput" placeholder="What is your nickname, my love?" class="game-input">
-                <button onclick="playSweetNicknames()" class="game-button">Send Love ❤️</button>
-                <div id="nicknameResult" class="game-result"></div>
+        <div class="game-card" data-game="nicknames">
+            <div class="game-card-inner">
+                <h2>💝 Sweet Nicknames</h2>
+                <div class="game-content">
+                    <input type="text" id="nicknameInput" placeholder="What is your nickname, my love?" class="game-input">
+                    <button onclick="playSweetNicknames()" class="game-button">Send Love ❤️</button>
+                    <div id="nicknameResult" class="game-result"></div>
+                </div>
             </div>
         </div>
 
         <!-- Age Explorer Game -->
-        <div class="game-card">
-            <h2>🎂 Age Explorer</h2>
-            <div class="game-content">
-                <input type="number" id="birthYearInput" placeholder="What year were you born?" class="game-input">
-                <button onclick="playAgeExplorer()" class="game-button">Discover Age 🎈</button>
-                <div id="ageResult" class="game-result"></div>
+        <div class="game-card" data-game="age">
+            <div class="game-card-inner">
+                <h2>🎂 Age Explorer</h2>
+                <div class="game-content">
+                    <input type="number" id="birthYearInput" placeholder="What year were you born?" class="game-input">
+                    <button onclick="playAgeExplorer()" class="game-button">Discover Age 🎈</button>
+                    <div id="ageResult" class="game-result"></div>
+                </div>
             </div>
         </div>
 
         <!-- Little Star Game -->
-        <div class="game-card">
-            <h2>⭐ Little Star</h2>
-            <div class="game-content">
-                <input type="text" id="nameInput" placeholder="Enter your name, little star" class="game-input">
-                <input type="number" id="ageInput" placeholder="How old are you, champ?" class="game-input">
-                <button onclick="playLittleStar()" class="game-button">Shine Bright ✨</button>
-                <div id="starResult" class="game-result"></div>
+        <div class="game-card" data-game="star">
+            <div class="game-card-inner">
+                <h2>⭐ Little Star</h2>
+                <div class="game-content">
+                    <input type="text" id="nameInput" placeholder="Enter your name, little star" class="game-input">
+                    <input type="number" id="ageInput" placeholder="How old are you, champ?" class="game-input">
+                    <button onclick="playLittleStar()" class="game-button">Shine Bright ✨</button>
+                    <div id="starResult" class="game-result"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -42,54 +51,181 @@
 
 <style>
 .improved-games-container {
-    padding: 2rem;
-    max-width: 1200px;
+    padding: 3rem 2rem;
+    max-width: 1400px;
     margin: 0 auto;
+    background: linear-gradient(135deg, #f6f8ff 0%, #f0f3ff 100%);
+    min-height: 100vh;
+}
+
+.header-section {
+    text-align: center;
+    margin-bottom: 4rem;
+    padding: 2rem;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.header-section h1 {
+    font-size: 3rem;
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+.intro-text {
+    font-size: 1.2rem;
+    color: #6b7280;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
 }
 
 .games-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2.5rem;
+    padding: 1rem;
 }
 
 .game-card {
+    perspective: 1000px;
+    height: 100%;
+}
+
+.game-card-inner {
     background: white;
-    border-radius: 15px;
-    padding: 2rem;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    height: 100%;
+    transform-style: preserve-3d;
+}
+
+.game-card[data-game="nicknames"] .game-card-inner {
+    border-top: 5px solid #ec4899;
+}
+
+.game-card[data-game="age"] .game-card-inner {
+    border-top: 5px solid #8b5cf6;
+}
+
+.game-card[data-game="star"] .game-card-inner {
+    border-top: 5px solid #f59e0b;
+}
+
+.game-card-inner:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.game-card h2 {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    color: #1f2937;
+}
+
+.game-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
 .game-input {
     width: 100%;
-    padding: 0.8rem;
-    margin-bottom: 1rem;
-    border: 2px solid #e0e0e0;
-    border-radius: 8px;
+    padding: 1rem 1.5rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    background: #f9fafb;
+    color: #374151;
+}
+
+.game-input:focus {
+    outline: none;
+    border-color: #6366f1;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+    background: white;
 }
 
 .game-button {
     width: 100%;
     padding: 1rem;
-    background: #4CAF50;
-    color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: all 0.3s ease;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.game-card[data-game="nicknames"] .game-button {
+    background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
+}
+
+.game-card[data-game="age"] .game-button {
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+}
+
+.game-card[data-game="star"] .game-button {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
 }
 
 .game-button:hover {
-    background: #45a049;
+    transform: translateY(-2px);
+    filter: brightness(110%);
 }
 
 .game-result {
     margin-top: 1rem;
-    padding: 1rem;
-    background: #f5f5f5;
-    border-radius: 8px;
+    padding: 1.5rem;
+    background: #f9fafb;
+    border-radius: 12px;
     min-height: 80px;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #374151;
+    transition: all 0.3s ease;
+}
+
+.game-result:not(:empty) {
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .improved-games-container {
+        padding: 2rem 1rem;
+    }
+
+    .header-section h1 {
+        font-size: 2.5rem;
+    }
+
+    .games-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
 }
 </style>
 
@@ -97,7 +233,7 @@
 function playSweetNicknames() {
     const nickname = document.getElementById('nicknameInput').value.trim();
     const resultDiv = document.getElementById('nicknameResult');
-
+    
     if (!nickname) {
         resultDiv.innerHTML = "You didn't enter anything! I can't miss someone without a nickname. 😅";
         return;
