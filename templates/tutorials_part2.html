@@ -1,247 +1,182 @@
-
 {% extends "base.html" %}
-{% block title %}Interactive Python Calculator - CodeCraft Academy{% endblock %}
+{% block title %}Improved Games{% endblock %}
 
 {% block content %}
-<div class="calculator-page">
-    <div class="tutorial-header">
-        <h1>Interactive Python Calculator</h1>
-        <p class="header-desc">Practice your Python skills with this interactive calculator!</p>
-    </div>
+<div class="improved-games-container">
+    <h1>Welcome to Our Improved Games!</h1>
+    <p class="intro-text">These games now include input validation and better response handling!</p>
 
-    <div class="skills-section">
-        <h2>Skills You'll Practice:</h2>
-        <ul class="skills-list">
-            <li><code>input()</code> function - Getting user input</li>
-            <li><code>print()</code> function - Displaying output</li>
-            <li><code>.upper()</code> method - String manipulation</li>
-            <li>Basic arithmetic operators (+, -, *, /)</li>
-            <li>Conditional statements (if/elif/else)</li>
-            <li>Variable creation and management</li>
-        </ul>
-    </div>
+    <div class="games-grid">
+        <!-- Sweet Nicknames Game -->
+        <div class="game-card">
+            <h2>💝 Sweet Nicknames (Improved)</h2>
+            <div class="game-content">
+                <input type="text" id="nicknameInput" placeholder="What is your nickname, my love?" class="game-input">
+                <button onclick="playSweetNicknames()" class="game-button">Send Love ❤️</button>
+                <div id="nicknameResult" class="game-result"></div>
+            </div>
+        </div>
 
-    <div class="calculator-wrapper">
-        <div class="calculator">
-            <div class="calc-display">
-                <div class="calc-message">LET'S DO SOME MATHS!</div>
-                <div class="calc-result">0</div>
+        <!-- Age Explorer Game -->
+        <div class="game-card">
+            <h2>🎂 Age Explorer (Improved)</h2>
+            <div class="game-content">
+                <input type="number" id="birthYearInput" placeholder="What year were you born?" class="game-input">
+                <button onclick="playAgeExplorer()" class="game-button">Discover Age 🎈</button>
+                <div id="ageResult" class="game-result"></div>
             </div>
-            <div class="calc-inputs">
-                <input type="number" id="num1" placeholder="Enter first number" class="calc-number">
-                <input type="number" id="num2" placeholder="Enter second number" class="calc-number">
+        </div>
+
+        <!-- Little Star Game -->
+        <div class="game-card">
+            <h2>⭐ Little Star (Improved)</h2>
+            <div class="game-content">
+                <input type="text" id="nameInput" placeholder="Enter your name, little star" class="game-input">
+                <input type="number" id="ageInput" placeholder="How old are you, champ?" class="game-input">
+                <button onclick="playLittleStar()" class="game-button">Shine Bright ✨</button>
+                <div id="starResult" class="game-result"></div>
             </div>
-            <div class="calc-operations">
-                <button onclick="calculate('+')" class="calc-btn">+</button>
-                <button onclick="calculate('-')" class="calc-btn">-</button>
-                <button onclick="calculate('*')" class="calc-btn">×</button>
-                <button onclick="calculate('/')" class="calc-btn">÷</button>
-            </div>
-            <button onclick="clearCalc()" class="calc-clear">Clear</button>
         </div>
     </div>
 </div>
 
 <style>
-    .calculator-page {
-        max-width: 1000px;
-        margin: 4rem auto;
-        padding: 2rem;
-    }
+.improved-games-container {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
-    .tutorial-header {
-        text-align: center;
-        margin-bottom: 3rem;
-        background: linear-gradient(135deg, #4361ee, #3f37c9);
-        padding: 2rem;
-        border-radius: 15px;
-        color: white;
-        box-shadow: 0 10px 30px rgba(67, 97, 238, 0.3);
-    }
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
 
-    .tutorial-header h1 {
-        font-size: 2.5rem;
-        margin-bottom: 1rem;
-        font-weight: 700;
-    }
+.game-card {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
 
-    .header-desc {
-        font-size: 1.2rem;
-        opacity: 0.9;
-    }
+.game-input {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+}
 
-    .skills-section {
-        background: white;
-        padding: 2rem;
-        border-radius: 15px;
-        margin-bottom: 2rem;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
+.game-button {
+    width: 100%;
+    padding: 1rem;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
 
-    .skills-list {
-        list-style: none;
-        padding: 0;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1rem;
-        margin-top: 1rem;
-    }
+.game-button:hover {
+    background: #45a049;
+}
 
-    .skills-list li {
-        padding: 1rem;
-        background: #f8f9fa;
-        border-radius: 8px;
-        border-left: 4px solid #4361ee;
-    }
-
-    .skills-list code {
-        background: #e9ecef;
-        padding: 0.2rem 0.4rem;
-        border-radius: 4px;
-        color: #4361ee;
-    }
-
-    .calculator-wrapper {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 3rem;
-    }
-
-    .calculator {
-        background: linear-gradient(145deg, #2c3e50, #34495e);
-        padding: 2rem;
-        border-radius: 20px;
-        box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-        width: 100%;
-        max-width: 400px;
-    }
-
-    .calc-display {
-        background: #1a2634;
-        padding: 1.5rem;
-        border-radius: 12px;
-        margin-bottom: 1.5rem;
-        text-align: right;
-    }
-
-    .calc-message {
-        color: #3498db;
-        font-size: 0.9rem;
-        margin-bottom: 0.5rem;
-        font-family: monospace;
-    }
-
-    .calc-result {
-        color: #fff;
-        font-size: 2rem;
-        font-weight: bold;
-        font-family: 'Digital', monospace;
-    }
-
-    .calc-inputs {
-        display: grid;
-        gap: 1rem;
-        margin-bottom: 1.5rem;
-    }
-
-    .calc-number {
-        padding: 1rem;
-        border: none;
-        border-radius: 8px;
-        background: #fff;
-        font-size: 1.1rem;
-        text-align: center;
-        transition: transform 0.2s;
-    }
-
-    .calc-number:focus {
-        outline: none;
-        transform: scale(1.02);
-    }
-
-    .calc-operations {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 0.8rem;
-        margin-bottom: 1rem;
-    }
-
-    .calc-btn {
-        padding: 1rem;
-        border: none;
-        border-radius: 8px;
-        background: #3498db;
-        color: white;
-        font-size: 1.5rem;
-        cursor: pointer;
-        transition: all 0.2s;
-    }
-
-    .calc-btn:hover {
-        background: #2980b9;
-        transform: translateY(-2px);
-    }
-
-    .calc-btn:active {
-        transform: translateY(0);
-    }
-
-    .calc-clear {
-        width: 100%;
-        padding: 1rem;
-        border: none;
-        border-radius: 8px;
-        background: #e74c3c;
-        color: white;
-        font-size: 1.1rem;
-        cursor: pointer;
-        transition: all 0.2s;
-    }
-
-    .calc-clear:hover {
-        background: #c0392b;
-    }
+.game-result {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: #f5f5f5;
+    border-radius: 8px;
+    min-height: 80px;
+}
 </style>
 
 <script>
-    function calculate(operation) {
-        const num1 = parseFloat(document.getElementById('num1').value);
-        const num2 = parseFloat(document.getElementById('num2').value);
-        const resultDisplay = document.querySelector('.calc-result');
-        
-        if (isNaN(num1) || isNaN(num2)) {
-            resultDisplay.textContent = 'Please enter both numbers';
-            return;
-        }
+function playSweetNicknames() {
+    const nickname = document.getElementById('nicknameInput').value.trim();
+    const resultDiv = document.getElementById('nicknameResult');
 
-        let result;
-        switch(operation) {
-            case '+':
-                result = num1 + num2;
-                break;
-            case '-':
-                result = num1 - num2;
-                break;
-            case '*':
-                result = num1 * num2;
-                break;
-            case '/':
-                if (num2 === 0) {
-                    resultDisplay.textContent = 'Cannot divide by zero';
-                    return;
-                }
-                result = num1 / num2;
-                break;
-        }
-
-        resultDisplay.textContent = result.toFixed(2);
+    if (!nickname) {
+        resultDiv.innerHTML = "You didn't enter anything! I can't miss someone without a nickname. 😅";
+        return;
     }
 
-    function clearCalc() {
-        document.getElementById('num1').value = '';
-        document.getElementById('num2').value = '';
-        document.querySelector('.calc-result').textContent = '0';
+    switch(nickname.toLowerCase()) {
+        case 'sweetheart':
+            resultDiv.innerHTML = `Aww, you're making me blush! I will miss you, ${nickname}.`;
+            break;
+        case 'darling':
+            resultDiv.innerHTML = `Darling, you're too sweet! I will miss you more than you know, ${nickname}.`;
+            break;
+        case 'cutie':
+            resultDiv.innerHTML = `Cutie, I'll miss you too, but don't expect me to stop thinking about you!`;
+            break;
+        default:
+            resultDiv.innerHTML = `Hmm, ${nickname}? Well, I guess I'll miss you… but only a little. 😉`;
     }
+}
+
+function playAgeExplorer() {
+    const birthYear = parseInt(document.getElementById('birthYearInput').value);
+    const currentYear = 2025;
+    const resultDiv = document.getElementById('ageResult');
+
+    if (isNaN(birthYear)) {
+        resultDiv.innerHTML = "That doesn't look like a valid year! Please enter a number like '2005'.";
+        return;
+    }
+
+    const age = currentYear - birthYear;
+
+    if (age < 0) {
+        resultDiv.innerHTML = "Wow! You can't be from the future... or can you? 🤔 Try again!";
+    } else if (age < 18) {
+        resultDiv.innerHTML = `You're just a baby! You are ${age} years old! Wait till you get to the fun part of life! 😜`;
+    } else if (age < 25) {
+        resultDiv.innerHTML = `Ah, you're in your prime! You're ${age} years old! Enjoy it while it lasts! 😉`;
+    } else if (age < 40) {
+        resultDiv.innerHTML = `You're in the golden years! ${age} years old, huh? You're starting to get wiser... but also closer to needing reading glasses! 😂`;
+    } else if (age < 60) {
+        resultDiv.innerHTML = `Whoa, you're ${age} years old? Still young at heart, but do you need a nap after this? 😅`;
+    } else if (age <= 120) {
+        resultDiv.innerHTML = `${age} years young! The wisdom must be overflowing by now, huh? 🤔`;
+    } else {
+        resultDiv.innerHTML = "Wow! That's a really old age—are you sure you entered the correct year? 🤔";
+    }
+}
+
+function playLittleStar() {
+    const name = document.getElementById('nameInput').value.trim();
+    const age = parseInt(document.getElementById('ageInput').value);
+    const resultDiv = document.getElementById('starResult');
+
+    if (!name) {
+        resultDiv.innerHTML = "You didn't tell me your name! How can I talk to you properly? 😅";
+        return;
+    }
+
+    if (isNaN(age)) {
+        resultDiv.innerHTML = `Oops! That doesn't look like a valid number for your age, ${name.toUpperCase()}. Please try again!`;
+        return;
+    }
+
+    if (age < 0) {
+        resultDiv.innerHTML = `Are you a time traveler, ${name.toUpperCase()}? You can't have a negative age! Try again. 😅`;
+    } else if (age <= 5) {
+        resultDiv.innerHTML = `Wow, ${name.toUpperCase()}! You're so little and cute! Just ${age} years old? You're still a baby! 🍼`;
+    } else if (age <= 8) {
+        resultDiv.innerHTML = `Hey, ${name.toUpperCase()}! You're ${age} now! Getting bigger and smarter every day, huh? 😎`;
+    } else if (age <= 12) {
+        resultDiv.innerHTML = `Look at you, ${name.toUpperCase()}! Already ${age} years old, huh? Almost a teenager, I see! 😉`;
+    } else if (age <= 15) {
+        resultDiv.innerHTML = `Whoa, ${name.toUpperCase()}! You're ${age} already? That means you're practically so cool now! 😜`;
+    } else if (age <= 120) {
+        resultDiv.innerHTML = `Nice to meet you, ${name.toUpperCase()}! You're ${age} years old, huh? Still young, but feeling super grown up! 🤩`;
+    } else {
+        resultDiv.innerHTML = `Wow, ${name.toUpperCase()}! That's an impressive age. Are you sure you entered it correctly? 🤔`;
+    }
+}
 </script>
 {% endblock %}
