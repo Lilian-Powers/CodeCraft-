@@ -1,3 +1,4 @@
+
 {% extends "base.html" %}
 {% block title %}Improved Games{% endblock %}
 
@@ -46,27 +47,229 @@
             </div>
         </div>
     </div>
+
+    <div class="preview-grid">
+        <div class="preview-card">
+            <h3 class="preview-title">💝 Sweet Nicknames</h3>
+            <div class="preview-image-container">
+                <img src="{{ url_for('static', filename='nickname_game.png') }}" alt="Sweet Nicknames Game" class="preview-image">
+            </div>
+        </div>
+        <div class="preview-card">
+            <h3 class="preview-title">🎂 Age Explorer</h3>
+            <div class="preview-image-container">
+                <img src="{{ url_for('static', filename='age_explorer.png') }}" alt="Age Explorer Game" class="preview-image">
+            </div>
+        </div>
+        <div class="preview-card">
+            <h3 class="preview-title">⭐ Little Star</h3>
+            <div class="preview-image-container">
+                <img src="{{ url_for('static', filename='little_star.png') }}" alt="Little Star Game" class="preview-image">
+            </div>
+        </div>
+    </div>
+
+    <div class="youtube-request">
+        <h3>Want to see how these games are different?</h3>
+        <p>These improved games include input validation, better error handling, and age-appropriate responses! To see a detailed video explanation of the improvements, comment "IMPROVED GAMES" on any of our YouTube tutorials.</p>
+    </div>
 </div>
 
-<div class="game-previews">
-    <div class="preview-section">
-        <h3 class="preview-title">💝 Sweet Nicknames</h3>
-        <img src="{{ url_for('static', filename='nickname_game.png') }}" alt="Sweet Nicknames Game" class="preview-image">
-    </div>
-    <div class="preview-section">
-        <h3 class="preview-title">🎂 Age Explorer</h3>
-        <img src="{{ url_for('static', filename='age_explorer.png') }}" alt="Age Explorer Game" class="preview-image">
-    </div>
-    <div class="preview-section">
-        <h3 class="preview-title">⭐ Little Star</h3>
-        <img src="{{ url_for('static', filename='little_star.png') }}" alt="Little Star Game" class="preview-image">
-    </div>
-</div>
+<style>
+.improved-games-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+}
 
-<div class="youtube-request" style="text-align: center; margin-top: 3rem; padding: 2rem; background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);">
-    <h3 style="color: #6366f1; margin-bottom: 1rem;">Want to see how these games are different?</h3>
-    <p style="color: #6b7280; line-height: 1.6;">These improved games include input validation, better error handling, and age-appropriate responses! To see a detailed video explanation of the improvements, comment "IMPROVED GAMES" on any of our YouTube tutorials.</p>
-</div>
+.header-section {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(99, 102, 241, 0.05));
+    border-radius: 20px;
+}
+
+.header-section h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: #6366f1;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.intro-text {
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    color: #4b5563;
+}
+
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.game-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(99, 102, 241, 0.15);
+}
+
+.game-card-inner {
+    padding: 2rem;
+}
+
+.game-card h2 {
+    font-size: 1.5rem;
+    color: #6366f1;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.game-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.game-input {
+    padding: 1rem;
+    border: 2px solid rgba(99, 102, 241, 0.2);
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.game-input:focus {
+    outline: none;
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.game-button {
+    padding: 1rem;
+    background: linear-gradient(135deg, #6366f1, #818cf8);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.game-button:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #4f46e5, #6366f1);
+}
+
+.game-result {
+    min-height: 60px;
+    padding: 1rem;
+    background: rgba(99, 102, 241, 0.1);
+    border-radius: 12px;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.preview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.preview-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.preview-card:hover {
+    transform: translateY(-5px);
+}
+
+.preview-title {
+    font-size: 1.25rem;
+    color: #6366f1;
+    text-align: center;
+    padding: 1rem;
+    margin: 0;
+    background: rgba(99, 102, 241, 0.1);
+}
+
+.preview-image-container {
+    padding: 1rem;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+}
+
+.preview-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.preview-card:hover .preview-image {
+    transform: scale(1.05);
+}
+
+.youtube-request {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.youtube-request h3 {
+    color: #6366f1;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.youtube-request p {
+    color: #4b5563;
+    line-height: 1.6;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .improved-games-container {
+        padding: 1rem;
+    }
+    
+    .games-grid, .preview-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .game-card-inner {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-section {
+        padding: 1.5rem;
+    }
+    
+    .game-input, .game-button {
+        padding: 0.8rem;
+    }
+}
+</style>
 
 <script>
 function playSweetNicknames() {
