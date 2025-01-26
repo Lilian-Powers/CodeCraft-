@@ -227,7 +227,66 @@
         gap: 2rem;
     }
 }
+/* Additional responsive breakpoints */
+    @media (max-width: 1024px) {
+        .games-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+        
+        .header-section h1 {
+            font-size: 2.8rem;
+        }
+    }
+
+    @media (max-width: 640px) {
+        .improved-games-container {
+            padding: 1rem;
+        }
+        
+        .header-section {
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .header-section h1 {
+            font-size: 2rem;
+        }
+        
+        .intro-text {
+            font-size: 1rem;
+        }
+        
+        .game-card-inner {
+            padding: 1.5rem;
+        }
+        
+        .game-card h2 {
+            font-size: 1.5rem;
+        }
+        
+        .game-input {
+            padding: 0.8rem 1rem;
+        }
+        
+        .game-button {
+            padding: 0.8rem;
+            font-size: 1rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .game-result {
+            padding: 1rem;
+            font-size: 1rem;
+        }
+    }
 </style>
+
+<div class="youtube-request" style="text-align: center; margin-top: 3rem; padding: 2rem; background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);">
+    <h3 style="color: #6366f1; margin-bottom: 1rem;">Want to see how these games are different?</h3>
+    <p style="color: #6b7280; line-height: 1.6;">These improved games include input validation, better error handling, and age-appropriate responses! To see a detailed video explanation of the improvements, comment "IMPROVED GAMES" on any of our YouTube tutorials above.</p>
+</div>
 
 <script>
 function playSweetNicknames() {
