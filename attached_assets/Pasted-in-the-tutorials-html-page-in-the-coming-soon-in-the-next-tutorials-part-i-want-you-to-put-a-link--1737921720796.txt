@@ -1,0 +1,65 @@
+in the tutorials.html page, in the coming soon in the next tutorials part, i want you to put a link that will redirect the user to the sweet nicknames age explorer and little star games which are improved with this codes, for the sweet nicknames use nickname = input("What is your nickname, my love? ").strip()
+
+if not nickname:
+print("You didn't enter anything! I can't miss someone without a nickname. 😅")
+elif nickname.lower() == "sweetheart":
+print(f"Aww, you’re making me blush! I will miss you, {nickname}.")
+elif nickname.lower() == "darling":
+print(f"Darling, you're too sweet! I will miss you more than you know, {nickname}.")
+elif nickname.lower() == "cutie":
+print(f"Cutie, I’ll miss you too, but don’t expect me to stop thinking about you!")
+else:
+print(f"Hmm, {nickname}? Well, I guess I’ll miss you… but only a little. 😉")
+for the age explorer use current_year = 2025
+
+try:
+birth_year = int(input("What year were you born? ").strip())
+age = current_year - birth_year
+
+if age < 0:
+    print("Wow! You can't be from the future... or can you? 🤔 Try again!")
+elif age < 18:
+    print(f"You're just a baby! You are {age} years old! Wait till you get to the fun part of life! 😜")
+elif 18 <= age < 25:
+    print(f"Ah, you're in your prime! You're {age} years old! Enjoy it while it lasts! 😉")
+elif 25 <= age < 40:
+    print(f"You're in the golden years! {age} years old, huh? You're starting to get wiser... but also closer to needing reading glasses! 😂")
+elif 40 <= age < 60:
+    print(f"Whoa, you're {age} years old? Still young at heart, but do you need a nap after this? 😅")
+elif age <= 120:  # Upper realistic age limit
+    print(f"{age} years young! The wisdom must be overflowing by now, huh? 🤔")
+else:
+    print("Wow! That's a really old age—are you sure you entered the correct year? 🤔")
+except ValueError:
+print("That doesn't look like a valid year! Please enter a number like '2005'.")
+for the little star game use name = input("Enter your name, little star: ").strip()
+
+if not name:
+print("You didn't tell me your name! How can I talk to you properly? 😅")
+else:
+try:
+age = int(input("How old are you, champ? ").strip())
+
+    if age < 0:
+        print(f"Are you a time traveler, {name.upper()}? You can't have a negative age! Try again. 😅")
+    elif age <= 5:
+        print(f"Wow, {name.upper()}! You're so little and cute! Just {age} years old? You're still a baby! 🍼")
+    elif 6 <= age <= 8:
+        print(f"Hey, {name.upper()}! You're {age} now! Getting bigger and smarter every day, huh? 😎")
+    elif 9 <= age <= 12:
+        print(f"Look at you, {name.upper()}! Already {age} years old, huh? Almost a teenager, I see! 😉")
+    elif 13 <= age <= 15:
+        print(f"Whoa, {name.upper()}! You're {age} already? That means you're practically so cool now! 😜")
+    elif age <= 120:  # Upper realistic age limit
+        print(f"Nice to meet you, {name.upper()}! You’re {age} years old, huh? Still young, but feeling super grown up! 🤩")
+    else:
+        print(f"Wow, {name.upper()}! That's an impressive age. Are you sure you entered it correctly? 🤔")
+except ValueError:
+    print(f"Oops! That doesn't look like a valid number for your age, {name.upper()}. Please try again!")
+make sure not to change anything else just add the link that will take the user to the new and improved games. inform the user that what they were promised is coming soon in the next tutorials is ready to view when they click the link.
+
+LI
+
+lilianjeripower
+Assistant
+2 minutes ago
