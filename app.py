@@ -624,14 +624,6 @@ def tutorials():
         return redirect(url_for('login'))
     return render_template('tutorials.html')
 
-@app.route('/calculator')
-def calculator():
-    """Route for the interactive Python calculator tutorial"""
-    if not session.get('logged_in'):
-        flash('Please login first to access the calculator page', 'warning')
-        return redirect(url_for('login'))
-    return render_template('tutorials_part2.html')
-
 @app.route('/tutorials_part2')
 def tutorials_part2():
     """Route for the improved games tutorials"""
