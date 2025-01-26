@@ -7,6 +7,7 @@ A dynamic web platform for teaching coding to beginners, built with Python Flask
 
 - Interactive coding tutorials and challenges
 - In-browser code editor for practice
+- Responsive design optimized for all screen sizes
 - Educational games including:
   - Python Treasure Hunt
   - Rock Paper Scissors 
@@ -15,16 +16,21 @@ A dynamic web platform for teaching coding to beginners, built with Python Flask
   - Age Explorer Game
   - Little Star Game
   - Calculator Project
-- User authentication system
-- Progress tracking
-- Mobile-responsive design
 
-## Interactive Games
-Our platform now includes fun interactive games that teach coding concepts:
+## Interactive Games (Part 1)
+Our platform includes fun interactive games that teach coding concepts:
 - Sweet Nicknames: Practice string manipulation and conditionals
 - Age Explorer: Learn about mathematical operations and conditional logic
 - Little Star: Understand user input and string formatting
 - Calculator Project: Apply mathematical operations in a real project
+
+## Improved Games (Part 2)
+Enhanced versions of our games with advanced features:
+- Dream Vacation Explorer: Interactive destination planner
+- Compliment Machine: Personalized message generator
+- Temperature Converter: Practice mathematical conversions
+- Story Magic Creator: Creative writing tool
+- Talking Computer: Interactive chatbot experience
 
 ## Tech Stack
 
@@ -56,19 +62,6 @@ This project is hosted on Replit, providing seamless development and deployment.
    - MAIL_PASSWORD
 3. Click "Run" to start the development server
 4. The app will be available at your Repl's URL
-
-Note: All sensitive credentials are managed through Replit's Secrets system for security.
-
-## Contact
-
-## Portfolio
-
-Visit our developer portfolio to learn more about:
-- Full Stack Development expertise
-- Technical certifications
-- Project showcase
-- Live demonstrations
-- Developer contact information
 
 ## Contact & Social Media
 
